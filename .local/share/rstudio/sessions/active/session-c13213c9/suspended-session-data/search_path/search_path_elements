@@ -1,0 +1,15 @@
+.GlobalEnv
+package:gridExtra
+package:gamlss.data
+package:dplyr
+package:ggplot2
+package:HistData
+tools:rstudio
+package:stats
+package:graphics
+package:grDevices
+package:utils
+package:datasets
+package:methods
+Autoloads
+package:base

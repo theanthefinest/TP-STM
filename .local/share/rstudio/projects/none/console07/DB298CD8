@@ -1,0 +1,28 @@
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+]0;~[?2004h]0;rstudio@dff366d872a4: ~[01;32mrstudio@dff366d872a4[00m:[01;34m~[00m$ clear
+[?2004l[H[2J[3J]0;~[?2004h]0;rstudio@dff366d872a4: ~[01;32mrstudio@dff366d872a4[00m:[01;34m~[00m$ [K]0;rstudio@dff366d872a4: ~[01;32mrstudio@dff366d872a4[00m:[01;34m~[00m$ To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+]0;~[?2004h]0;rstudio@dff366d872a4: ~[01;32mrstudio@dff366d872a4[00m:[01;34m~[00m$ [K]0;rstudio@dff366d872a4: ~[01;32mrstudio@dff366d872a4[00m:[01;34m~[00m$ [?2004l[?2004h[?2004l
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+]0;~[?2004h]0;rstudio@dff366d872a4: ~[01;32mrstudio@dff366d872a4[00m:[01;34m~[00m$ clear
+[?2004l[H[2J[3J]0;~[?2004h]0;rstudio@dff366d872a4: ~[01;32mrstudio@dff366d872a4[00m:[01;34m~[00m$ [7mgit init[27mgit init
+[?2004l[33mhint: Using 'master' as the name for the initial branch. This default branch name[m
+[33mhint: is subject to change. To configure the initial branch name to use in all[m
+[33mhint: of your new repositories, which will suppress this warning, call:[m
+[33mhint: [m
+[33mhint: 	git config --global init.defaultBranch <name>[m
+[33mhint: [m
+[33mhint: Names commonly chosen instead of 'master' are 'main', 'trunk' and[m
+[33mhint: 'development'. The just-created branch can be renamed via this command:[m
+[33mhint: [m
+[33mhint: 	git branch -m <name>[m
+Initialized empty Git repository in /home/rstudio/.git/
+]0;~[?2004h]0;rstudio@dff366d872a4: ~[01;32mrstudio@dff366d872a4[00m:[01;34m~[00m$ clear
+[?2004l[H[2J[3J]0;~[?2004h]0;rstudio@dff366d872a4: ~[01;32mrstudio@dff366d872a4[00m:[01;34m~[00m$ [7mgit remote add origin git@github.com:theanthefinest/TP-STM.git[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cgit remote add origin git@github.com:theanthefinest/TP-STM.git
+[?2004l]0;~[?2004h]0;rstudio@dff366d872a4: ~[01;32mrstudio@dff366d872a4[00m:[01;34m~[00m$ git add .
+[?2004l

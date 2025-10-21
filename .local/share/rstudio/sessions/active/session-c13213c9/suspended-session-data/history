@@ -1,0 +1,512 @@
+hist <- function(data, var) {
+ggplot(data, aes(x = .data[[var]])) +
+geom_histogram(aes(y = ..density..), bins = 30, color = "black", fill = "lightgray") +
+geom_density(color = "red", linewidth = 0.5) +
+labs(
+title = paste("Hist. and Kernel Density:", var),
+x = var,
+y = "Density"
+) +
+theme_minimal()
+}
+# Load data
+library(gamlss.data)
+data(rent99)
+rent99 <- as.data.frame(rent99)
+rent99$rentsqm <- rent99$rent / rent99$area
+# Create plots
+p1 <- hist(rent99, "rent")
+p2 <- hist(rent99, "rentsqm")
+p3 <- hist(rent99, "area")
+p4 <- hist(rent99, "yearc")
+# Display all
+library(gridExtra)
+grid.arrange(p1, p2, p3, p4, ncol = 2)
+ggplot(data, aes(x = .data[[var]])) +
+geom_histogram(aes(y = ..density..), bins = 30, color = "black", fill = "lightgray") +
+geom_density(color = "red", linewidth = 0.5) +
+labs(
+title = paste("Hist. and Kernel Density:", var),
+x = paste("net",var, " in Euro"),
+y = "Estimate Density"
+) +
+theme_minimal()
+# Load required libraries
+library(gamlss.data)
+library(ggplot2)
+library(gridExtra)
+library(dplyr)
+data(rent99)
+rent99 <- as.data.frame(rent99)
+# Rent for sqm ----------------->
+rent99$rentsqm <- rent99$rent / rent99$area
+# Define the variables to plot --------------->
+vars <- c("rent", "rentsqm", "area", "yearc")
+# Create a reusable function ----------------->
+hist <- function(data, var) {
+ggplot(data, aes(x = .data[[var]])) +
+geom_histogram(aes(y = ..density..), bins = 30, color = "black", fill = "lightgray") +
+geom_density(color = "red", linewidth = 0.5) +
+labs(
+title = paste("Hist. and Kernel Density:", var),
+x = paste("net",var, " in Euro"),
+y = "Estimate Density"
+) +
+theme_minimal()
+}
+# Create plots
+p1 <- hist(rent99, "rent")
+p2 <- hist(rent99, "rentsqm")
+p3 <- hist(rent99, "area")
+p4 <- hist(rent99, "yearc")
+# Display all
+library(gridExtra)
+grid.arrange(p1, p2, p3, p4, ncol = 2)
+# Load required libraries
+library(gamlss.data)
+library(ggplot2)
+library(gridExtra)
+library(dplyr)
+data(rent99)
+rent99 <- as.data.frame(rent99)
+# Rent for sqm ----------------->
+rent99$rentsqm <- rent99$rent / rent99$area
+# Define the variables to plot --------------->
+vars <- c("rent", "rentsqm", "area", "yearc")
+# Create a reusable function ----------------->
+hist <- function(data, var, x_name) {
+ggplot(data, aes(x = .data[[var]])) +
+geom_histogram(aes(y = ..density..), bins = 30, color = "black", fill = "lightgray") +
+geom_density(color = "red", linewidth = 0.5) +
+labs(
+title = paste("Hist. and Kernel Density:", var),
+if (var == "yearc"){
+x = paste(var,"of construction")
+}else if(var == "area"){
+x = paste(var,"in sqm")
+}else{
+x = paste("net",var, "in Euro")
+}
+y = "Estimate Density"
+# Load required libraries
+library(gamlss.data)
+library(ggplot2)
+library(gridExtra)
+library(dplyr)
+data(rent99)
+rent99 <- as.data.frame(rent99)
+# Rent for sqm ----------------->
+rent99$rentsqm <- rent99$rent / rent99$area
+# Define the variables to plot --------------->
+vars <- c("rent", "rentsqm", "area", "yearc")
+# Create a reusable function ----------------->
+hist <- function(data, var, x_name) {
+ggplot(data, aes(x = .data[[var]])) +
+geom_histogram(aes(y = ..density..), bins = 30, color = "black", fill = "lightgray") +
+geom_density(color = "red", linewidth = 0.5) +
+labs(
+title = paste("Hist. and Kernel Density:", var),
+if (var == "yearc"){
+x = paste(var,"of construction")
+}else if(var == "area"){
+x = paste(var,"in sqm")
+}else{
+x = paste("net",var, "in Euro")
+},
+y = "Estimate Density"
+) +
+theme_minimal()
+}
+# Create plots
+p1 <- hist(rent99, "rent")
+p2 <- hist(rent99, "rentsqm")
+p3 <- hist(rent99, "area")
+p4 <- hist(rent99, "yearc")
+# Display all
+library(gridExtra)
+grid.arrange(p1, p2, p3, p4, ncol = 2)
+# Load required libraries
+library(gamlss.data)
+library(ggplot2)
+library(gridExtra)
+library(dplyr)
+data(rent99)
+rent99 <- as.data.frame(rent99)
+# Rent for sqm ----------------->
+rent99$rentsqm <- rent99$rent / rent99$area
+# Define the variables to plot --------------->
+vars <- c("rent", "rentsqm", "area", "yearc")
+# Create a reusable function ----------------->
+hist <- function(data, var, x_name) {
+ggplot(data, aes(x = .data[[var]])) +
+geom_histogram(aes(y = ..density..), bins = 30, color = "black", fill = "lightgray") +
+geom_density(color = "red", linewidth = 0.5) +
+labs(
+title = paste("Hist. and Kernel Density:", var),
+if (var == "yearc"){
+x = paste(var,"of construction")
+}else if(var == "area"){
+x = paste(var,"in sqm")
+}else{
+x = paste("net", var, "in Euro")
+},
+y = "Estimate Density"
+) +
+theme_minimal()
+}
+# Create plots
+p1 <- hist(rent99, "rent")
+p2 <- hist(rent99, "rentsqm")
+p3 <- hist(rent99, "area")
+p4 <- hist(rent99, "yearc")
+# Display all
+library(gridExtra)
+grid.arrange(p1, p2, p3, p4, ncol = 2)
+x = paste("net" + var + "in Euro")
+# Load required libraries
+library(gamlss.data)
+library(ggplot2)
+library(gridExtra)
+library(dplyr)
+data(rent99)
+rent99 <- as.data.frame(rent99)
+# Rent for sqm ----------------->
+rent99$rentsqm <- rent99$rent / rent99$area
+# Define the variables to plot --------------->
+vars <- c("rent", "rentsqm", "area", "yearc")
+# Create a reusable function ----------------->
+hist <- function(data, var, x_name) {
+ggplot(data, aes(x = .data[[var]])) +
+geom_histogram(aes(y = ..density..), bins = 30, color = "black", fill = "lightgray") +
+geom_density(color = "red", linewidth = 0.5) +
+labs(
+title = paste("Hist. and Kernel Density:", var),
+if (var == "yearc"){
+x = paste(var + "of construction")
+}else if(var == "area"){
+x = paste(var + "in sqm")
+}else{
+x = paste("net" + var + "in Euro")
+},
+y = "Estimate Density"
+) +
+theme_minimal()
+}
+# Create plots
+p1 <- hist(rent99, "rent")
+# Load required libraries
+library(gamlss.data)
+library(ggplot2)
+library(gridExtra)
+library(dplyr)
+data(rent99)
+rent99 <- as.data.frame(rent99)
+# Rent for sqm ----------------->
+rent99$rentsqm <- rent99$rent / rent99$area
+# Define the variables to plot --------------->
+vars <- c("rent", "rentsqm", "area", "yearc")
+# Create a reusable function ----------------->
+hist <- function(data, var, x_name) {
+ggplot(data, aes(x = .data[[var]])) +
+geom_histogram(aes(y = ..density..), bins = 30, color = "black", fill = "lightgray") +
+geom_density(color = "red", linewidth = 0.5) +
+labs(
+title = paste("Hist. and Kernel Density:", var),
+if (var == "yearc"){
+x = paste(var,"of construction")
+}else if(var == "area"){
+x = paste(var,"in sqm")
+}else{
+x = paste("net", var, "in Euro")
+},
+y = "Estimate Density"
+) +
+theme_minimal()
+}
+# Create plots
+p1 <- hist(rent99, "rent")
+p2 <- hist(rent99, "rentsqm")
+p3 <- hist(rent99, "area")
+p4 <- hist(rent99, "yearc")
+# Display all
+library(gridExtra)
+grid.arrange(p1, p2, p3, p4, ncol = 2)
+# Load required libraries
+library(gamlss.data)
+library(ggplot2)
+library(gridExtra)
+library(dplyr)
+data(rent99)
+rent99 <- as.data.frame(rent99)
+# Rent for sqm ----------------->
+rent99$rentsqm <- rent99$rent / rent99$area
+# Define the variables to plot --------------->
+vars <- c("rent", "rentsqm", "area", "yearc")
+# Create a reusable function ----------------->
+hist <- function(data, var, x_name) {
+if (var == "yearc") {
+x_label <- "year of construction"
+} else if (var == "area") {
+x_label <- "area in sqm"
+} else if (var == "rentsqm") {
+x_label <- "net rent per sqm in Euro"
+} else {  # var == "rent"
+x_label <- "net rent in Euro"
+}
+ggplot(data, aes(x = .data[[var]])) +
+geom_histogram(aes(y = ..density..), bins = 30, color = "black", fill = "lightgray") +
+geom_density(color = "red", linewidth = 0.5) +
+labs(
+title = paste("Hist. and Kernel Density:", var),
+x = x_label,
+y = "Estimate Density"
+) +
+theme_minimal()
+}
+# Create plots
+p1 <- hist(rent99, "rent")
+p2 <- hist(rent99, "rentsqm")
+p3 <- hist(rent99, "area")
+p4 <- hist(rent99, "yearc")
+# Display all
+library(gridExtra)
+grid.arrange(p1, p2, p3, p4, ncol = 2)
+ggplot(data, aes(x = .data[[var_x]], y = .data[[var_y]]))+
+geom_point(alpha = 0.6, size = 1) +
+labs(
+title = "Net rent per sqm vs. area",
+x = x_lable,
+y = "Net rent per sqm (Euro)"
+) +
+theme_minimal()
+# =============================================================================>
+# (b). Reconstruct the scatter plots below.
+# =============================================================================>
+scatterplot <- function(data, var_x, var_y){
+if (var_x == "area"){
+x_label = "area in sqm"
+}else if (var_x = "yearc"){
+# =============================================================================>
+# (b). Reconstruct the scatter plots below.
+# =============================================================================>
+scatterplot <- function(data, var_x, var_y){
+if (var_x == "area"){
+x_label = "area in sqm"
+}else if (var_x == "yearc"){
+x_label = "year of construction"
+}
+ggplot(data, aes(x = .data[[var_x]], y = .data[[var_y]]))+
+geom_point(alpha = 0.6, size = 1) +
+labs(
+title = "Net rent per sqm vs. area",
+x = x_lable,
+y = "Net rent per sqm (Euro)"
+) +
+theme_minimal()
+}
+# =============================================================================>
+# (b). Reconstruct the scatter plots below.
+# =============================================================================>
+scatterplot <- function(data, var_x, var_y){
+if (var_x == "area"){
+x_label = "area in sqm"
+}else if (var_x == "yearc"){
+x_label = "year of construction"
+}
+ggplot(data, aes(x = .data[[var_x]], y = .data[[var_y]]))+
+geom_point(alpha = 0.6, size = 1) +
+labs(
+title = "Net rent per sqm vs. area",
+x = x_lable,
+y = "Net rent per sqm (Euro)"
+) +
+theme_minimal()
+}
+scatter1 <- scatterplot(rent99, "area", "rent")
+# =============================================================================>
+# (b). Reconstruct the scatter plots below.
+# =============================================================================>
+vars <- c("rent", "rentsqm", "area", "yearc")
+scatterplot <- function(data, var_x, var_y){
+if (var_x == "area"){
+x_label = "area in sqm"
+}else if (var_x == "yearc"){
+x_label = "year of construction"
+}
+ggplot(data, aes(x = .data[[var_x]], y = .data[[var_y]]))+
+geom_point(alpha = 0.6, size = 1) +
+labs(
+title = "Net rent per sqm vs. area",
+x = x_lable,
+y = "Net rent per sqm (Euro)"
+) +
+theme_minimal()
+}
+scatter1 <- scatterplot(rent99, "area", "rent")
+# =============================================================================>
+# (a). Reconstruct the histograms and kernel density estimates below
+# =============================================================================>
+data(rent99)
+rent99 <- as.data.frame(rent99)
+# Rent for sqm ----------------->
+rent99$rentsqm <- rent99$rent / rent99$area
+# Define the variables to plot --------------->
+vars <- c("rent", "rentsqm", "area", "yearc")
+# Create a reusable function ----------------->
+hist <- function(data, var) {
+if (var == "yearc") {
+x_label <- "year of construction"
+} else if (var == "area") {
+x_label <- "area in sqm"
+} else if (var == "rentsqm") {
+x_label <- "net rent per sqm in Euro"
+} else {  # var == "rent"
+x_label <- "net rent in Euro"
+}
+ggplot(data, aes(x = .data[[var]])) +
+geom_histogram(aes(y = ..density..), bins = 30, color = "black", fill = "lightgray") +
+geom_density(color = "red", linewidth = 0.5) +
+labs(
+title = paste("Hist. and Kernel Density:", var),
+x = x_label,
+y = "Estimate Density"
+) +
+theme_minimal()
+}
+# Create plots --------------->
+p1 <- hist(rent99, "rent")
+p2 <- hist(rent99, "rentsqm")
+p3 <- hist(rent99, "area")
+p4 <- hist(rent99, "yearc")
+# Display all ---------------->
+library(gridExtra)
+grid.arrange(p1, p2, p3, p4, ncol = 2)
+# =============================================================================>
+# (b). Reconstruct the scatter plots below.
+# =============================================================================>
+scatterplot <- function(data, var_x, var_y){
+if (var_x == "area"){
+x_label = "area in sqm"
+}else if (var_x == "yearc"){
+x_label = "year of construction"
+}
+ggplot(data, aes(x = .data[[var_x]], y = .data[[var_y]]))+
+geom_point(alpha = 0.6, size = 1) +
+labs(
+title = "Net rent per sqm vs. area",
+x = x_lable,
+y = "Net rent per sqm (Euro)"
+) +
+theme_minimal()
+}
+scatter1 <- scatterplot(rent99, "area", "rent")
+# =============================================================================>
+# (b). Reconstruct the scatter plots below.
+# =============================================================================>
+scatterplot <- function(data, var_x, var_y){
+if (var_x == "area"){
+x_label = "area in sqm"
+}else if (var_x == "yearc"){
+x_label = "year of construction"
+}
+ggplot(data, aes(x = .data[[var_x]], y = .data[[var_y]]))+
+geom_point(alpha = 0.6, size = 1) +
+labs(
+title = "Net rent per sqm vs. area",
+x = x_label,
+y = "Net rent per sqm (Euro)"
+) +
+theme_minimal()
+}
+scatter1 <- scatterplot(rent99, "area", "rent")
+# =============================================================================>
+# (b). Reconstruct the scatter plots below.
+# =============================================================================>
+scatterplot <- function(data, var_x, var_y){
+if (var_x == "area"){
+x_label = "area in sqm"
+}else if (var_x == "yearc"){
+x_label = "year of construction"
+}
+ggplot(data, aes(x = .data[[var_x]], y = .data[[var_y]]))+
+geom_point(alpha = 0.6, size = 1) +
+labs(
+title = "Net rent per sqm vs. area",
+x = x_label,
+y = "Net rent per sqm (Euro)"
+) +
+theme_minimal()
+}
+scatter1 <- scatterplot(rent99, "area", "rent")
+print(scatter1)
+# =============================================================================>
+# (b). Reconstruct the scatter plots below.
+# =============================================================================>
+scatterplot <- function(data, var_x, var_y){
+if (var_x == "area"){
+x_label = "area in sqm"
+}else if (var_x == "yearc"){
+x_label = "year of construction"
+}
+ggplot(data, aes(x = .data[[var_x]], y = .data[[var_y]]))+
+geom_point(alpha = 0.6, size = 1) +
+labs(
+title = "Net rent per sqm vs. area",
+x = x_label,
+y = "Net rent per sqm (Euro)"
+) +
+theme_minimal()
+}
+scatter1 <- scatterplot(rent99, "area", "rent")
+scatter2 <- scatterplot(rent99, "rentsqm", "rent")
+# =============================================================================>
+# (b). Reconstruct the scatter plots below.
+# =============================================================================>
+scatterplot <- function(data, var_x, var_y){
+if (var_x == "area"){
+x_label = "area in sqm"
+}else if (var_x == "yearc"){
+x_label = "year of construction"
+}else if (var_x == "rentsqm"){
+x_label = "area in sqm"
+}
+ggplot(data, aes(x = .data[[var_x]], y = .data[[var_y]]))+
+geom_point(alpha = 0.6, size = 1) +
+labs(
+title = "Net rent per sqm vs. area",
+x = x_label,
+y = "Net rent per sqm (Euro)"
+) +
+theme_minimal()
+}
+scatter1 <- scatterplot(rent99, "area", "rent")
+scatter2 <- scatterplot(rent99, "rentsqm", "rent")
+scatter3 <- scatterplot(rent99, "yearc", "rent")
+print(scatter1)
+print(scatter2)
+scatter2 <- scatterplot(rent99, "rentsqm", "area")
+# =============================================================================>
+# (b). Reconstruct the scatter plots below.
+# =============================================================================>
+scatterplot <- function(data, var_x, var_y){
+if (var_x == "area"){
+x_label = "area in sqm"
+}else if (var_x == "yearc"){
+x_label = "year of construction"
+}else if (var_x == "rentsqm"){
+x_label = "area in sqm"
+}
+ggplot(data, aes(x = .data[[var_x]], y = .data[[var_y]]))+
+geom_point(alpha = 0.6, size = 1) +
+labs(
+title = "Net rent per sqm vs. area",
+x = x_label,
+y = "Net rent per sqm (Euro)"
+) +
+theme_minimal()
+}
+scatter1 <- scatterplot(rent99, "area", "rent")
+scatter2 <- scatterplot(rent99, "rentsqm", "area")
+scatter3 <- scatterplot(rent99, "yearc", "rent")
+print(scatter1)
+print(scatter2)

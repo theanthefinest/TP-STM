@@ -1,0 +1,386 @@
+---
+title: "TP01-STM"
+author: "Chhaythean LY"
+group: "Group 5"
+format: html
+editor: visual
+---
+
+### Task 1: Galton Inheredity
+
+```{r}
+
+# ==============================>
+# Task 1: Galton Inheredity
+# ==============================>
+
+# (a). Reconstruct the contingency table between the height of 928 adults children and the average height of their 205 set of parents.
+
+library(HistData)
+data(Galton)
+
+Galton <- data.frame(Galton)
+
+print(Galton)
+```
+
+```{r}
+
+contigency_table <- table(Galton$parent, Galton$child)
+dim(contigency_table)
+
+print(contigency_table)
+```
+
+```{r}
+
+# (b). Recontruct the scatter plot and regression line between the height of children and average height of parents
+library(ggplot2)
+
+ggplot(Galton, aes(x = parent, y = child)) +
+  geom_point(alpha = 1, size = 4) +
+  geom_smooth(method = "lm", se = FALSE, color = "red", linewidth = 0.5) +
+  labs(
+    title = "Scatter Plot and Regression Line",
+    x = "Mid-Parent Height (inches)", 
+    y = "Child Height (inches)" 
+  ) +
+  theme_minimal()
+```
+
+### Task 2: Munich Rent Index of 1999
+
+```{r}
+
+# ---------------->
+# Package 
+# ---------------->
+library(gamlss.data)
+library(ggplot2)
+library(gridExtra)
+library(dplyr)
+
+glimpse(rent99)
+```
+
+```{r}
+
+
+# =============================================================================>
+# (a). Reconstruct the histograms and kernel density estimates below
+# =============================================================================>
+
+data(rent99)
+rent99 <- as.data.frame(rent99)
+
+# Rent for sqm ----------------->
+
+rent99$rentsqm <- rent99$rent / rent99$area
+
+# Define the variables to plot --------------->
+vars <- c("rent", "rentsqm", "area", "yearc")
+
+# Create a reusable function ----------------->
+
+hist <- function(data, var) {
+  
+    if (var == "yearc") {
+    x_label <- "year of construction"
+  } else if (var == "area") {
+    x_label <- "area in sqm"
+  } else if (var == "rentsqm") {
+    x_label <- "net rent per sqm in Euro"
+  } else {  # var == "rent"
+    x_label <- "net rent in Euro"
+  }
+  
+  ggplot(data, aes(x = .data[[var]])) +
+    geom_histogram(aes(y = ..density..), bins = 30, color = "black", fill = "lightgray") +
+    geom_density(color = "red", linewidth = 0.5) +
+    labs(
+      title = paste("Hist. and Kernel Density:", var),
+      x = x_label,
+      y = "Estimate Density"
+    ) +
+    theme_minimal()
+}
+
+# Create plots --------------->
+p1 <- hist(rent99, "rent")
+p2 <- hist(rent99, "rentsqm")
+p3 <- hist(rent99, "area")
+p4 <- hist(rent99, "yearc")
+
+# Display all ---------------->
+library(gridExtra)
+grid.arrange(p1, p2, p3, p4, ncol = 2)
+```
+
+```{r}
+
+# =============================================================================>
+# (b). Reconstruct the scatter plots below.
+# =============================================================================>
+
+# A resuable function of scatterplot Rent99 ----------->
+
+scatterplot <- function(data, var_x, var_y){
+  if (var_x == "area"){
+    x_label = "area in sqm"
+  }else if (var_x == "yearc"){
+    x_label = "year of construction"
+  }else if (var_x == "rentsqm"){
+    x_label = "area in sqm"
+  }
+  
+  ggplot(data, aes(x = .data[[var_x]], y = .data[[var_y]]))+
+    geom_point(alpha = 0.6, size = 1) +
+    labs(
+    title = "Net rent per sqm vs. area",
+    x = x_label,
+    y = "Net rent per sqm (Euro)"
+    ) +
+    theme_minimal()
+}
+
+scatter1 <- scatterplot(rent99, "area", "rent")
+scatter2 <- scatterplot(rent99, "area", "rentsqm")
+scatter3 <- scatterplot(rent99, "yearc", "rent")
+scatter4 <- scatterplot(rent99, "yearc", "rentsqm")
+
+grid.arrange(scatter1, scatter2, scatter3, scatter4, ncol = 2, nrow =2)
+```
+
+```{r}
+
+# ==============================================================================>
+# Cluster scatter plot below
+# (c). Recontruct Average net rent (left) and net rent per sqm (right) plus/minus one 
+# standard deviation versus area and year of construction
+# ==============================================================================>
+
+
+# Define function ---------------->
+cluster_scatter <- function(data, x, y, title) {
+  main <- data %>%
+    group_by(.data[[x]]) %>%
+    summarise(
+      y_mean = mean(.data[[y]], na.rm = TRUE),
+      y_sd   = sd(.data[[y]], na.rm = TRUE),
+      .groups = "drop"
+    ) %>%
+    mutate(
+      ymin = y_mean - y_sd,
+      ymax = y_mean + y_sd
+    )
+  
+  ggplot(main, aes(x = .data[[x]], y = y_mean)) +
+    geom_point(size = 1.5) +
+    geom_errorbar(aes(ymin = ymin, ymax = ymax), width = 0.5) +
+    labs(
+      title = title,
+      x = x,
+      y = paste("Average", y)
+    ) +
+    theme_minimal() +
+    theme(plot.title = element_text(hjust = 0.5))
+}
+
+p1 <- cluster_scatter(rent99, "area", "rent", "Average net rent vs. area")
+p2 <- cluster_scatter(rent99, "area", "rentsqm", "Average net rent per sqm vs. area")
+p3 <- cluster_scatter(rent99, "yearc", "rent", "Average net rent vs. year of construction")
+p4 <- cluster_scatter(rent99, "yearc", "rentsqm", "Average net rent per sqm vs. year of const.")
+
+grid.arrange(p1, p2, p3, p4, ncol = 2)
+```
+
+```{r}
+
+# ===================================================================================>
+# (d). Reconstruct the box plots and smooth density estimators below.
+# ===================================================================================>
+
+rent99 <- rent99 %>%
+  mutate(
+    location_label = case_when(
+      location == 1 ~ "average",
+      location == 2 ~ "good",
+      location == 3 ~ "top"
+    )
+  )
+
+# ------------------> Panel 1: Boxplot of rentsqm by location
+box_plot <- ggplot(rent99, aes(x = factor(location), y = rentsqm)) +
+  geom_boxplot(fill = "lightgray", color = "black") +
+  labs(
+    title = "Boxplots of net rent per sqm by location",
+    x = "location",
+    y = "net rent per sqm"
+  ) +
+  theme_minimal()
+
+# ------------------> Panel 2: Density curves by location
+density <- ggplot(rent99, aes(x = rentsqm, color = location_label)) +
+  geom_density(linewidth = 1, show.legend = TRUE) +
+  scale_color_manual(
+    name = "",
+    values = c("average" = "black", "good" = "blue", "top" = "red"),
+    guide = guide_legend(override.aes = list(linetype = c(1, 2, 3)))
+  ) +
+  labs(
+    title = "Density of net rent per sqm by location",
+    x = "net rent per sqm",
+    y = "estimated density"
+  ) +
+  theme_minimal() +
+  theme(legend.position = c(0.9, 0.9))
+
+grid.arrange(box_plot, density, ncol = 2, widths = c(1, 1.5))
+```
+
+### Task 3: Fuel Consumption
+
+```{r}
+# Packages ---------------------------------->
+library(alr4)
+data(fuel2001)
+fuel2001<-data.frame(fuel2001)
+
+print(fuel2001)
+```
+
+```{r}
+# ============================================================================>
+# (a). Create 3 more following variables and add to the fuel data consumption.
+# • Fuel: 1000×FuelC/Pop
+# • Dlic: 1000×Drivers/Pop
+# • log(Miles): natural logarithm of Miles
+# ============================================================================>
+
+fuel2001$Fuel <- 1000 * fuel2001$FuelC / fuel2001$Pop
+fuel2001$Dlic <- 1000 * fuel2001$Drivers / fuel2001$Pop
+fuel2001$log <- log(fuel2001$Miles)
+
+summary(fuel2001$Fuel)
+summary(fuel2001$Dlic)
+summary(fuel2001$logMiles)
+```
+
+plots
+
+```{r}
+
+# Define a new columb ====================================================>
+
+fuel2001 <- fuel2001 %>%
+  mutate(
+    Fuel = 1000 * FuelC / Pop,      # Fuel consumption per capita
+    Dlic = 1000 * Drivers / Pop,    # Licensed drivers per 1000 population
+    log_Miles = log(Miles)          # Natural logarithm of Miles
+  )
+
+# ===================================================================================> 
+# (b). Define response variable Based on the task goal, Fuel (fuel consumption per  capital is the response variable
+# ===================================================================================>
+response_var <- "Fuel"
+
+# ===================================================================>
+# Study overview of each variable - Descriptive statistics
+# ===================================================================>
+
+cat("Descriptive Statistics:\n")
+print(summary(fuel2001))
+
+# Function to create univariate plots
+create_univariate_plots <- function(data) {
+  # Select numeric variables for univariate analysis
+  numeric_vars <- c("Fuel", "Dlic", "Income", "log_Miles", "Pop", "Tax")
+  
+  # Create histograms for each variable
+  plots <- list()
+  for (var in numeric_vars) {
+    plots[[var]] <- ggplot(data, aes(x = .data[[var]])) +
+      geom_histogram(bins = 15, fill = "skyblue", color = "black", alpha = 0.7) +
+      labs(title = paste("Distribution of", var),
+           x = var, y = "Frequency") +
+      theme_minimal()
+  }
+  for (plot in plots) {
+    print(plot)
+  }
+}
+
+# Create univariate plots
+cat("\nCreating Univariate Plots...\n")
+create_univariate_plots(fuel2001)
+
+# Correlation plots across variables
+cat("\nCorrelation Analysis:\n")
+
+# Select variables for correlation analysis
+cor_vars <- fuel2001 %>% 
+  select(Fuel, Dlic, Income, log_Miles, Pop, Tax)
+
+# Calculate correlation matrix
+cor_matrix <- cor(cor_vars)
+print(round(cor_matrix, 3))
+
+# Create correlation plot
+corrplot(cor_matrix, method = "color", type = "upper", 
+         order = "hclust", tl.col = "black", tl.srt = 45,
+         title = "Correlation Plot of Fuel Consumption Variables",
+         mar = c(0, 0, 1, 0))
+
+# Alternative correlation plot using ggpairs
+cat("\nCreating Detailed Correlation Plot...\n")
+ggpairs(cor_vars) +
+  labs(title = "Pairwise Relationships - Fuel Consumption Data") +
+  theme_minimal()
+
+## Visualize relationship between response and predictor variables
+cat("\nCreating Response-Predictor Relationship Plots...\n")
+
+# Create scatter plots of Fuel vs each predictor
+predictors <- c("Dlic", "Income", "log_Miles", "Tax")
+
+response_predictor_plots <- list()
+for (predictor in predictors) {
+  response_predictor_plots[[predictor]] <- ggplot(fuel2001, aes(x = .data[[predictor]], y = Fuel)) +
+    geom_point(size = 2, alpha = 0.7, color = "steelblue") +
+    geom_smooth(method = "lm", se = TRUE, color = "red", linetype = "solid") +
+    labs(title = paste("Fuel Consumption vs", predictor),
+         x = predictor, y = "Fuel Consumption per Capita") +
+    theme_minimal()
+}
+
+# Print all response-predictor plots
+for (plot in response_predictor_plots) {
+  print(plot)
+}
+
+# Additional detailed analysis
+cat("\n=== ADDITIONAL INSIGHTS ===\n")
+
+# State with highest and lowest fuel consumption
+max_fuel_state <- fuel2001[which.max(fuel2001$Fuel), "row.names"]
+min_fuel_state <- fuel2001[which.min(fuel2001$Fuel), "row.names"]
+
+cat("State with highest fuel consumption per capita:", max_fuel_state, "\n")
+cat("State with lowest fuel consumption per capita:", min_fuel_state, "\n")
+
+# Basic linear model to see initial relationships
+cat("\nInitial Linear Model Summary:\n")
+initial_model <- lm(Fuel ~ Dlic + Income + log_Miles + Tax, data = fuel2001)
+print(summary(initial_model))
+
+# Create a comprehensive summary table
+cat("\nComprehensive Summary Table:\n")
+summary_table <- fuel2001 %>%
+  select(Fuel, Dlic, Income, log_Miles, Tax) %>%
+  summarise(across(everything(), 
+                   list(Mean = mean, SD = sd, Min = min, Max = max),
+                   .names = "{.col}_{.fn}")) %>%
+  round(3)
+
+print(summary_table)
+```

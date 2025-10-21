@@ -1,0 +1,12 @@
+{
+    "new-document": {
+        "title": "TP01-STM",
+        "author": "Chhaythean LY",
+        "format": "html",
+        "engine": "knitr",
+        "kernel": "python3",
+        "language": "r",
+        "editor": "visual",
+        "empty": false
+    }
+}

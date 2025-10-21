@@ -1,0 +1,3059 @@
+1761021662774:# ==============================>
+1761021662774:# Task 1: Galton Inheredity
+1761021662775:# ==============================>
+1761021662775:# (a). Reconstruct the contingency table between the height of 928 adults children and the average height of their 205 set of parents.
+1761021662776:install.packages("HistData")
+1761021711097:# ==============================>
+1761021711098:# Task 1: Galton Inheredity
+1761021711098:# ==============================>
+1761021711099:# (a). Reconstruct the contingency table between the height of 928 adults children and the average height of their 205 set of parents.
+1761021711100:library(HistData)
+1761021711106:data(Galton)
+1761021711108:Galton <- data.frame(Galton)
+1761021711113:print(Galton)
+1761021855821:# ==============================>
+1761021855822:# Task 1: Galton Inheredity
+1761021855822:# ==============================>
+1761021855823:# (a). Reconstruct the contingency table between the height of 928 adults children and the average height of their 205 set of parents.
+1761021855823:library(HistData)
+1761021855824:data(Galton)
+1761021855825:Galton <- data.frame(Galton)
+1761021855828:print(Galton)
+1761021855834:library(ggplot2)
+1761021909604:# ==============================>
+1761021909604:# Task 1: Galton Inheredity
+1761021909605:# ==============================>
+1761021909606:# (a). Reconstruct the contingency table between the height of 928 adults children and the average height of their 205 set of parents.
+1761021909606:library(HistData)
+1761021909607:data(Galton)
+1761021909609:Galton <- data.frame(Galton)
+1761021909612:print(Galton)
+1761021909643:library(ggplot2)
+1761021909644:ggplot(data = Galton) +
+1761021909644:geom_histogram(
+1761021909645:mapping =  aes(x = height),
+1761021909645:bins = 30
+1761021909645:)
+1761021944346:ggplot(data = Galton) +
+1761021944347:geom_histogram(
+1761021944347:mapping =  aes(x = height),
+1761021944348:bins = 30
+1761021944348:)
+1761021950659:ggplot(Galton) +
+1761021950660:geom_histogram(
+1761021950660:mapping =  aes(x = height),
+1761021950661:bins = 30
+1761021950661:)
+1761022098849:print(Galton)
+1761022172227:library(ggplot2)
+1761022172228:contigency_table <- table(Galton$parent, Galton$child)
+1761022172233:dim(contigency_table)
+1761022172234:print(contigency_table)
+1761022399297:y_mean = mean(Galton$parent)
+1761022491116:# (b). Recontruct the scatter plot and regression line between the height of children and average height of parents
+1761022491117:library(ggplot2)
+1761022491118:# --------> Let y = parents's height and x = children's height
+1761022491119:y_mean = mean(Galton$parent)
+1761022491121:x <- Galton$child
+1761022491123:ggplot(Galton, aes(x, y_mean))
+1761022671068:ggplot(Galton, aes(x, y_mean))+
+1761022671068:geom_point(size=2)+ geom_smooth(method="lm", se = FALSE) +
+1761022671069:labs(title = "Scatter Plot and Regression",
+1761022671069:x = "Child's Height",
+1761022671070:y = "Averange Parents's height")
+1761022763757:ggplot(Galton, aes(x_mean, y))+
+1761022763757:geom_point(size=2)+ geom_smooth(method="lm", se = FALSE) +
+1761022763758:labs(title = "Scatter Plot and Regression",
+1761022763758:x = "Child's Height",
+1761022763759:y = "Averange Parents's height")
+1761022796582:# (b). Recontruct the scatter plot and regression line between the height of children and average height of parents
+1761022796584:library(ggplot2)
+1761022796586:# --------> Let x = parents's height and y = children's height
+1761022796587:y = Galton$child
+1761022796592:x_mean = mean(Galton$parent)
+1761022796594:ggplot(Galton, aes(x = x_mean, y = y))+
+1761022796595:geom_point(size=2)+ geom_smooth(method="lm", se = FALSE) +
+1761022796595:labs(title = "Scatter Plot and Regression",
+1761022796596:x = "Child's Height",
+1761022796596:y = "Averange Parents's height")
+1761022873576:# Add legend
+1761022873577:legend(
+1761022873577:"topleft",
+1761022873578:legend = c("Data points", "Regression line", "y = x"),
+1761022873578:col = c(rgb(0,0,0,0.4), "red", "gray50"),
+1761022873579:pch = c(16, NA, NA),
+1761022873579:lty = c(NA, 1, 2),
+1761022873579:lwd = c(NA, 2, 1),
+1761022873580:bty = "n"
+1761022873580:)
+1761022878030:# Load required package and data
+1761022878030:library(HistData)
+1761022878031:data(Galton)
+1761022878033:# Create scatterplot
+1761022878033:plot(
+1761022878033:x = Galton$parent,
+1761022878034:y = Galton$child,
+1761022878034:xlab = "Mid-Parent Height (inches)",
+1761022878035:ylab = "Child Height (inches)",
+1761022878035:main = "Galton's Data: Child vs. Mid-Parent Height",
+1761022878035:pch = 16,                     # Solid dots
+1761022878036:cex = 0.6,                    # Slightly smaller points
+1761022878036:col = rgb(0, 0, 0, alpha = 0.4)  # Semi-transparent black
+1761022878036:)
+1761022878051:# Fit linear regression model: child ~ parent
+1761022878052:fit <- lm(child ~ parent, data = Galton)
+1761022878071:# Add regression line (in red)
+1761022878072:abline(fit, col = "red", lwd = 2)
+1761022878073:# Optional: add line of equality (y = x) for reference (dashed gray)
+1761022878074:abline(a = 0, b = 1, lty = 2, col = "gray50")
+1761022878075:# Add legend
+1761022878076:legend(
+1761022878076:"topleft",
+1761022878077:legend = c("Data points", "Regression line", "y = x"),
+1761022878077:col = c(rgb(0,0,0,0.4), "red", "gray50"),
+1761022878077:pch = c(16, NA, NA),
+1761022878078:lty = c(NA, 1, 2),
+1761022878078:lwd = c(NA, 2, 1),
+1761022878078:bty = "n"
+1761022878079:)
+1761022963890:# Create the plot
+1761022963891:ggplot(Galton, aes(x = parent, y = child)) +
+1761022963892:# Scatter points with slight transparency to handle overplotting
+1761022963892:geom_point(alpha = 0.4, color = "black", size = 1.2) +
+1761022963893:# Add linear regression line (OLS)
+1761022963893:geom_smooth(method = "lm", color = "red", se = TRUE, linetype = "solid") +
+1761022963894:# Optional: add y = x reference line (perfect inheritance)
+1761022963895:geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "gray50") +
+1761022963896:# Labels and title
+1761022963896:labs(
+1761022963897:title = "Galton's Data: Child Height vs. Mid-Parent Height",
+1761022963897:subtitle = "Regression line shows 'regression toward the mean'",
+1761022963898:x = "Mid-Parent Height (inches)",
+1761022963899:y = "Child Height (inches)",
+1761022963899:caption = "Data: Galton (1886) | n = 928 children"
+1761022963900:) +
+1761022963901:# Clean theme
+1761022963901:theme_minimal(base_size = 12) +
+1761022963902:# Optional: expand axes slightly for better visual margin
+1761022963902:scale_x_continuous(expand = expansion(mult = 0.01)) +
+1761022963903:scale_y_continuous(expand = expansion(mult = 0.01))
+1761023117269:# (b). Recontruct the scatter plot and regression line between the height of children and average height of parents
+1761023117270:library(ggplot2)
+1761023117271:# --------> Let x = parents's height and y = children's height
+1761023117272:y = Galton$child
+1761023117274:x_mean = mean(Galton$parent)
+1761023117276:library(HistData)
+1761023117276:library(ggplot2)
+1761023117277:data(Galton)
+1761023117279:ggplot(Galton, aes(x = parent, y = child)) +
+1761023117279:geom_point(alpha = 0.5, size = 1.5) +
+1761023117280:geom_smooth(method = "lm", se = FALSE, color = "red", linewidth = 1) +
+1761023117280:labs(
+1761023117281:title = "Scatter Plot and Regression Line",
+1761023117281:x = "Mid-Parent Height (inches)",      # x = parent height
+1761023117282:y = "Child Height (inches)"            # y = child height
+1761023117283:) +
+1761023117283:theme_minimal()
+1761023241617:ggplot(Galton, aes(x = parent, y = child)) +
+1761023241618:geom_point(alpha = 0.5, size = 1) +
+1761023241619:geom_smooth(method = "lm", se = FALSE, color = "red", linewidth = 1) +
+1761023241619:labs(
+1761023241620:title = "Scatter Plot and Regression Line",
+1761023241620:x = "Mid-Parent Height (inches)",
+1761023241621:y = "Child Height (inches)"
+1761023241621:) +
+1761023241621:theme_minimal()
+1761023250608:ggplot(Galton, aes(x = parent, y = child)) +
+1761023250609:geom_point(alpha = 0.5, size = 1) +
+1761023250610:geom_smooth(method = "lm", se = FALSE, color = "red", linewidth = 0.5) +
+1761023250610:labs(
+1761023250611:title = "Scatter Plot and Regression Line",
+1761023250612:x = "Mid-Parent Height (inches)",
+1761023250612:y = "Child Height (inches)"
+1761023250613:) +
+1761023250613:theme_minimal()
+1761023261861:ggplot(Galton, aes(x = parent, y = child)) +
+1761023261861:geom_point(alpha = 0.25, size = 2) +
+1761023261862:geom_smooth(method = "lm", se = FALSE, color = "red", linewidth = 0.5) +
+1761023261862:labs(
+1761023261863:title = "Scatter Plot and Regression Line",
+1761023261863:x = "Mid-Parent Height (inches)",
+1761023261864:y = "Child Height (inches)"
+1761023261864:) +
+1761023261865:theme_minimal()
+1761023469934:install.packages("gamlss.data")
+1761023496089:library(gamlss.data)
+1761023519103:# ------------------------------------------------------->
+1761023519104:# For this task you need to use Munich rent index of 1999   # data. You can get the data by using the followingR-code:
+1761023519104:# ------------------------------------------------------->
+1761023519105:# (a). Reconstruct the histograms and kernel density estimates below
+1761023519106:data("rent99")
+1761023544036:glimpse(data("rent99"))
+1761023562329:install.packages("dplyr")
+1761023566538:install.packages("dplyr")
+1761023578586:# ==============================>
+1761023578587:# Task 1: Galton Inheredity
+1761023578587:# ==============================>
+1761023578588:# (a). Reconstruct the contingency table between the height of 928 adults children and the average height of their 205 set of parents.
+1761023578588:library(HistData)
+1761023578603:data(Galton)
+1761023578605:Galton <- data.frame(Galton)
+1761023578608:print(Galton)
+1761023578686:contigency_table <- table(Galton$parent, Galton$child)
+1761023578690:dim(contigency_table)
+1761023578691:print(contigency_table)
+1761023578707:# (b). Recontruct the scatter plot and regression line between the height of children and average height of parents
+1761023578708:library(ggplot2)
+1761023579009:ggplot(Galton, aes(x = parent, y = child)) +
+1761023579009:geom_point(alpha = 0.25, size = 2) +
+1761023579010:geom_smooth(method = "lm", se = FALSE, color = "red", linewidth = 0.5) +
+1761023579010:labs(
+1761023579011:title = "Scatter Plot and Regression Line",
+1761023579011:x = "Mid-Parent Height (inches)",
+1761023579012:y = "Child Height (inches)"
+1761023579012:) +
+1761023579012:theme_minimal()
+1761023579960:# ---------------->
+1761023579961:# Package
+1761023579962:# ---------------->
+1761023579962:install.packages("dplyr")
+1761023579975:library(dplyr)
+1761023579985:library(gamlss.data)
+1761023580000:# ------------------------------------------------------->
+1761023580001:# For this task you need to use Munich rent index of 1999   # data. You can get the data by using the followingR-code:
+1761023580002:# ------------------------------------------------------->
+1761023580004:# (a). Reconstruct the histograms and kernel density estimates below
+1761023580005:data("rent99")
+1761023580008:glimpse(data("rent99"))
+1761023582055:install.packages("dplyr")
+1761023593772:# ==============================>
+1761023593773:# Task 1: Galton Inheredity
+1761023593773:# ==============================>
+1761023593774:# (a). Reconstruct the contingency table between the height of 928 adults children and the average height of their 205 set of parents.
+1761023593775:library(HistData)
+1761023593776:data(Galton)
+1761023593779:Galton <- data.frame(Galton)
+1761023593785:print(Galton)
+1761023593846:contigency_table <- table(Galton$parent, Galton$child)
+1761023593849:dim(contigency_table)
+1761023593850:print(contigency_table)
+1761023593861:# (b). Recontruct the scatter plot and regression line between the height of children and average height of parents
+1761023593862:library(ggplot2)
+1761023593863:ggplot(Galton, aes(x = parent, y = child)) +
+1761023593863:geom_point(alpha = 0.25, size = 2) +
+1761023593864:geom_smooth(method = "lm", se = FALSE, color = "red", linewidth = 0.5) +
+1761023593864:labs(
+1761023593864:title = "Scatter Plot and Regression Line",
+1761023593865:x = "Mid-Parent Height (inches)",
+1761023593865:y = "Child Height (inches)"
+1761023593866:) +
+1761023593866:theme_minimal()
+1761023594028:# ---------------->
+1761023594028:# Package
+1761023594029:# ---------------->
+1761023594029:library(dplyr)
+1761023594030:library(gamlss.data)
+1761023594033:# ------------------------------------------------------->
+1761023594033:# For this task you need to use Munich rent index of 1999   # data. You can get the data by using the followingR-code:
+1761023594034:# ------------------------------------------------------->
+1761023594035:# (a). Reconstruct the histograms and kernel density estimates below
+1761023594035:data("rent99")
+1761023594036:glimpse(data("rent99"))
+1761023617037:data_frame(glimpse(data("rent99")))
+1761023651342:# ==============================>
+1761023651342:# Task 1: Galton Inheredity
+1761023651343:# ==============================>
+1761023651344:# (a). Reconstruct the contingency table between the height of 928 adults children and the average height of their 205 set of parents.
+1761023651344:library(HistData)
+1761023651345:data(Galton)
+1761023651347:Galton <- data.frame(Galton)
+1761023651350:print(Galton)
+1761023651361:contigency_table <- table(Galton$parent, Galton$child)
+1761023651365:dim(contigency_table)
+1761023651366:print(contigency_table)
+1761023651378:# (b). Recontruct the scatter plot and regression line between the height of children and average height of parents
+1761023651378:library(ggplot2)
+1761023651379:ggplot(Galton, aes(x = parent, y = child)) +
+1761023651380:geom_point(alpha = 0.25, size = 2) +
+1761023651380:geom_smooth(method = "lm", se = FALSE, color = "red", linewidth = 0.5) +
+1761023651381:labs(
+1761023651381:title = "Scatter Plot and Regression Line",
+1761023651381:x = "Mid-Parent Height (inches)",
+1761023651382:y = "Child Height (inches)"
+1761023651382:) +
+1761023651383:theme_minimal()
+1761023651510:# ---------------->
+1761023651511:# Package
+1761023651511:# ---------------->
+1761023651512:library(dplyr)
+1761023651512:library(gamlss.data)
+1761023651516:# ------------------------------------------------------->
+1761023651516:# For this task you need to use Munich rent index of 1999   # data. You can get the data by using the followingR-code:
+1761023651517:# ------------------------------------------------------->
+1761023651517:# (a). Reconstruct the histograms and kernel density estimates below
+1761023651518:glimpse(rent99)
+1761023671994:glimpse(rent99)
+1761023896538:ggplot(rent99, aes(rent99$rent))+
+1761023896539:geom_histogram(aes(y = rent99))
+1761024132403:ggplot(rent99, aes(rent99$rent))+
+1761024132404:geom_histogram(bins = 500, fill = "skyblue", color = "black", alpha = 0.5)+
+1761024132404:labs(
+1761024132405:title = "Hist. and Kernel density: net rent",
+1761024132405:x = "net rent in Euro",
+1761024132406:y = "estimated density"
+1761024132406:)
+1761024293533:library(gridExtra)
+1761024323289:# ---------------->
+1761024323290:# Package
+1761024323290:# ---------------->
+1761024323291:library(dplyr)
+1761024323291:library(gamlss.data)
+1761024323292:install.packages("gridExtra")
+1761024331253:glimpse(rent99)
+1761024335402:library(gamlss.data)
+1761024339365:ggplot(rent99, aes(rent99$rent))+
+1761024339366:geom_histogram(bins = 500, fill = "skyblue", color = "black", alpha = 0.5)+
+1761024339366:labs(
+1761024339367:title = "Hist. and Kernel density: net rent",
+1761024339367:x = "net rent in Euro",
+1761024339368:y = "estimated density"
+1761024339368:)
+1761024445434:hist1 <- ggplot(rent99, aes(rent99$rent))+
+1761024445435:geom_histogram(bins = 500, fill = "skyblue", color = "gray", alpha = 0.5)+
+1761024445436:labs(
+1761024445436:title = "Hist. and Kernel density: net rent",
+1761024445437:x = "net rent in Euro",
+1761024445437:y = "estimated density"
+1761024445437:)
+1761024541979:grid.arrange(hist1, hist2, nrow = 2)
+1761024553982:# ------------------------------------------------------->
+1761024553983:# For this task you need to use Munich rent index of 1999   # data. You can get the data by using the followingR-code:
+1761024553984:# ------------------------------------------------------->
+1761024553985:# (a). Reconstruct the histograms and kernel density estimates below
+1761024553986:library(ggplot2)
+1761024553987:library(gridExtra)
+1761024553998:# -------> Grid size 2*2
+1761024553999:hist1 <- ggplot(rent99, aes(rent99$rent))+
+1761024554000:geom_histogram(bins = 500, fill = "skyblue", color = "gray", alpha = 0.5)+
+1761024554000:labs(
+1761024554001:title = "Hist. and Kernel density: net rent",
+1761024554002:x = "net rent in Euro",
+1761024554002:y = "estimated density"
+1761024554002:)
+1761024554019:hist2 <- ggplot(rent99, aes(rent99$rentsqm))+
+1761024554020:geom_histogram(bins = 5, fill = "green", color = "grey", alpha = 0.5)+
+1761024554020:labs(
+1761024554021:title = "Hist. and Kernel Density: Net rent per sqm",
+1761024554021:x = "net rent per sqm in Euro",
+1761024554022:y = "Estimated Density"
+1761024554022:)
+1761024554037:grid.arrange(hist1, hist2, nrow = 2)
+1761024694887:# Arrange in 2x2 grid
+1761024694888:grid.arrange(p1, p2, p3, p4, ncol = 2)
+1761024697475:# Load required libraries
+1761024697476:library(gamlss.data)
+1761024697478:library(ggplot2)
+1761024697479:library(gridExtra)
+1761024697480:library(dplyr)
+1761024697481:# Load and prepare data
+1761024697482:data(rent99)
+1761024697484:rent99 <- as.data.frame(rent99)
+1761024697489:# Create rent per square meter
+1761024697490:rent99$rentsqm <- rent99$rent / rent99$area
+1761024697494:# Define the variables to plot
+1761024697495:vars <- c("rent", "rentsqm", "area", "yearc")
+1761024697496:# Function to create histogram + density plot for one variable
+1761024697497:plot_hist_density <- function(data, var_name) {
+1761024697497:ggplot(data, aes(x = .data[[var_name]])) +
+1761024697498:geom_histogram(aes(y = ..density..), bins = 30,
+1761024697498:colour = "black", fill = "lightgray") +
+1761024697499:geom_density(colour = "red", size = 1) +
+1761024697499:labs(title = paste("Histogram and density for", var_name),
+1761024697500:x = var_name, y = "Density") +
+1761024697500:theme_minimal()
+1761024697501:}
+1761024697502:# Generate all four plots
+1761024697502:p1 <- plot_hist_density(rent99, "rent")
+1761024697651:p2 <- plot_hist_density(rent99, "rentsqm")
+1761024697748:p3 <- plot_hist_density(rent99, "area")
+1761024697833:p4 <- plot_hist_density(rent99, "yearc")
+1761024697904:# Arrange in 2x2 grid
+1761024697904:grid.arrange(p1, p2, p3, p4, ncol = 2)
+1761024778375:ggplot(data, aes(x = .data[[var_name]])) +
+1761024778375:geom_histogram(aes(y = ..density..), bins = 30,
+1761024778376:colour = "black", fill = "lightgray") +
+1761024778377:geom_density(colour = "red", linewidth = 1) +
+1761024778377:labs(title = paste("Histogram and density for", var_name),
+1761024778378:x = var_name, y = "Density") +
+1761024778378:theme_minimal()
+1761024781272:# Load required libraries
+1761024781274:library(gamlss.data)
+1761024781276:library(ggplot2)
+1761024781277:library(gridExtra)
+1761024781279:library(dplyr)
+1761024781280:# Load and prepare data
+1761024781280:data(rent99)
+1761024781282:rent99 <- as.data.frame(rent99)
+1761024781288:# Create rent per square meter
+1761024781288:rent99$rentsqm <- rent99$rent / rent99$area
+1761024781293:# Define the variables to plot
+1761024781293:vars <- c("rent", "rentsqm", "area", "yearc")
+1761024781295:# Function to create histogram + density plot for one variable
+1761024781295:plot_hist_density <- function(data, var_name) {
+1761024781296:ggplot(data, aes(x = .data[[var_name]])) +
+1761024781296:geom_histogram(aes(y = ..density..), bins = 30,
+1761024781296:colour = "black", fill = "lightgray") +
+1761024781297:geom_density(colour = "red", linewidth = 1) +
+1761024781297:labs(title = paste("Histogram and density for", var_name),
+1761024781298:x = var_name, y = "Density") +
+1761024781298:theme_minimal()
+1761024781299:}
+1761024781300:# Generate all four plots
+1761024781300:p1 <- plot_hist_density(rent99, "rent")
+1761024781385:p2 <- plot_hist_density(rent99, "rentsqm")
+1761024781458:p3 <- plot_hist_density(rent99, "area")
+1761024781531:p4 <- plot_hist_density(rent99, "yearc")
+1761024781598:# Arrange in 2x2 grid
+1761024781598:grid.arrange(p1, p2, p3, p4, ncol = 2)
+1761025063522:p3 <- histogram(rent99, "area")
+1761025065327:# Load required libraries
+1761025065328:library(gamlss.data)
+1761025065328:library(ggplot2)
+1761025065329:library(gridExtra)
+1761025065330:library(dplyr)
+1761025065330:data(rent99)
+1761025065332:rent99 <- as.data.frame(rent99)
+1761025065341:# Rent for sqm ----------------->
+1761025065341:rent99$rentsqm <- rent99$rent / rent99$area
+1761025065349:# Define the variables to plot --------------->
+1761025065350:vars <- c("rent", "rentsqm", "area", "yearc")
+1761025065351:# Function to create histogram + density plot for one variable
+1761025065352:histogram <- function(data, var_name) {
+1761025065353:ggplot(data, aes(x = .data[[var_name]])) +
+1761025065353:geom_histogram(aes(y = ..density..), bins = 30,
+1761025065354:colour = "black", fill = "lightgray") +
+1761025065354:geom_density(colour = "red", linewidth = 1) +
+1761025065355:labs(title = paste("Histogram and density for", var_name),
+1761025065355:x = var_name, y = "Density") +
+1761025065356:theme_minimal()
+1761025065356:}
+1761025065357:# Generate all four plots
+1761025065358:p2 <- histogram(rent99, "rentsqm")
+1761025065497:p1 <- histogram(rent99, "rent")
+1761025065626:p3 <- histogram(rent99, "area")
+1761025065712:p4 <- histogram(rent99, "yearc")
+1761025065781:# Arrange in 2x2 grid
+1761025065782:grid.arrange(p1, p2, p3, p4, ncol = 2)
+1761025410390:print(hist1)
+1761025433652:theme_minimal()
+1761025437210:# Load required libraries
+1761025437211:library(gamlss.data)
+1761025437213:library(ggplot2)
+1761025437213:library(gridExtra)
+1761025437214:library(dplyr)
+1761025437215:data(rent99)
+1761025437216:rent99 <- as.data.frame(rent99)
+1761025437222:# Rent for sqm ----------------->
+1761025437223:rent99$rentsqm <- rent99$rent / rent99$area
+1761025437228:# Define the variables to plot --------------->
+1761025437228:vars <- c("rent", "rentsqm", "area", "yearc")
+1761025437231:hist1 <- ggplot(rent99, aes(rent99$rent)+
+1761025437231:geom_histogram(aes(y=..density..), bins = 30, colours = "skyblue", fill = "lightgray") +
+1761025437232:geom_density(colour = "green", linewidth = 1) +
+1761025437233:labs(
+1761025437233:title = "Histogram and density",
+1761025437234:x = "net rent in Euro",
+1761025437235:y = "Estimate Density"
+1761025437235:)+
+1761025437236:theme_minimal()
+1761025437237:print(hist1)
+1761025444838:# Load required libraries
+1761025444838:library(gamlss.data)
+1761025444839:library(ggplot2)
+1761025444840:library(gridExtra)
+1761025444840:library(dplyr)
+1761025444841:data(rent99)
+1761025444843:rent99 <- as.data.frame(rent99)
+1761025444849:# Rent for sqm ----------------->
+1761025444850:rent99$rentsqm <- rent99$rent / rent99$area
+1761025444855:# Define the variables to plot --------------->
+1761025444856:vars <- c("rent", "rentsqm", "area", "yearc")
+1761025444857:hist1 <- ggplot(rent99, aes(rent99$rent)+
+1761025444858:geom_histogram(aes(y=..density..), bins = 30, colours = "skyblue", fill = "lightgray") +
+1761025444859:geom_density(colour = "green", linewidth = 1) +
+1761025444859:labs(
+1761025444860:title = "Histogram and density",
+1761025444860:x = "net rent in Euro",
+1761025444861:y = "Estimate Density"
+1761025444861:)+
+1761025444862:theme_minimal();
+1761025450776:# Load required libraries
+1761025450776:library(gamlss.data)
+1761025450777:library(ggplot2)
+1761025450778:library(gridExtra)
+1761025450779:library(dplyr)
+1761025450779:data(rent99)
+1761025450781:rent99 <- as.data.frame(rent99)
+1761025450787:# Rent for sqm ----------------->
+1761025450787:rent99$rentsqm <- rent99$rent / rent99$area
+1761025450792:# Define the variables to plot --------------->
+1761025450792:vars <- c("rent", "rentsqm", "area", "yearc")
+1761025450794:hist1 <- ggplot(rent99, aes(rent99$rent)+
+1761025450794:geom_histogram(aes(y=..density..), bins = 30, colours = "skyblue", fill = "lightgray") +
+1761025450795:geom_density(colour = "green", linewidth = 1) +
+1761025450795:labs(
+1761025450796:title = "Histogram and density",
+1761025450796:x = "net rent in Euro",
+1761025450797:y = "Estimate Density"
+1761025450797:)+
+1761025450798:theme_minimal())
+1761025457646:# Load required libraries
+1761025457647:library(gamlss.data)
+1761025457648:library(ggplot2)
+1761025457649:library(gridExtra)
+1761025457649:library(dplyr)
+1761025457650:data(rent99)
+1761025457652:rent99 <- as.data.frame(rent99)
+1761025457657:# Rent for sqm ----------------->
+1761025457658:rent99$rentsqm <- rent99$rent / rent99$area
+1761025457662:# Define the variables to plot --------------->
+1761025457663:vars <- c("rent", "rentsqm", "area", "yearc")
+1761025457665:hist1 <- ggplot(rent99, aes(rent99$rent)+
+1761025457665:geom_histogram(aes(y=..density..), bins = 30, colours = "skyblue", fill = "lightgray") +
+1761025457666:geom_density(colour = "green", linewidth = 1) +
+1761025457666:labs(
+1761025457667:title = "Histogram and density",
+1761025457667:x = "net rent in Euro",
+1761025457668:y = "Estimate Density"
+1761025457668:)
+1761025457669:print(hist1)
+1761025465114:# Load required libraries
+1761025465115:library(gamlss.data)
+1761025465116:library(ggplot2)
+1761025465116:library(gridExtra)
+1761025465117:library(dplyr)
+1761025465118:data(rent99)
+1761025465119:rent99 <- as.data.frame(rent99)
+1761025465127:# Rent for sqm ----------------->
+1761025465127:rent99$rentsqm <- rent99$rent / rent99$area
+1761025465133:# Define the variables to plot --------------->
+1761025465133:vars <- c("rent", "rentsqm", "area", "yearc")
+1761025465135:hist1 <- ggplot(rent99, aes(rent99$rent)+
+1761025465135:geom_histogram(aes(y=..density..), bins = 30, colours = "skyblue", fill = "lightgray") +
+1761025465136:geom_density(colour = "green", linewidth = 1) +
+1761025465136:labs(
+1761025465137:title = "Histogram and density",
+1761025465137:x = "net rent in Euro",
+1761025465138:y = "Estimate Density"
+1761025465138:)
+1761025465139:hist1
+1761025486469:# Load required libraries
+1761025486469:library(gamlss.data)
+1761025486470:library(ggplot2)
+1761025486471:library(gridExtra)
+1761025486471:library(dplyr)
+1761025486472:data(rent99)
+1761025486473:rent99 <- as.data.frame(rent99)
+1761025486480:# Rent for sqm ----------------->
+1761025486480:rent99$rentsqm <- rent99$rent / rent99$area
+1761025486485:# Define the variables to plot --------------->
+1761025486486:vars <- c("rent", "rentsqm", "area", "yearc")
+1761025486487:hist1 <- ggplot(rent99, aes(rent99$rent)+
+1761025486488:geom_histogram(aes(y=..density..), bins = 30, colours = "skyblue", fill = "lightgray") +
+1761025486488:geom_density(colour = "green", linewidth = 1) +
+1761025486489:labs(
+1761025486489:title = "Histogram and density",
+1761025486490:x = "net rent in Euro",
+1761025486490:y = "Estimate Density"
+1761025486491:)
+1761025495151:# Load required libraries
+1761025495152:library(gamlss.data)
+1761025495153:library(ggplot2)
+1761025495154:library(gridExtra)
+1761025495154:library(dplyr)
+1761025495155:data(rent99)
+1761025495157:rent99 <- as.data.frame(rent99)
+1761025495163:# Rent for sqm ----------------->
+1761025495164:rent99$rentsqm <- rent99$rent / rent99$area
+1761025495169:# Define the variables to plot --------------->
+1761025495169:vars <- c("rent", "rentsqm", "area", "yearc")
+1761025495171:hist1 <- ggplot(rent99, aes(rent99$rent)+
+1761025495172:geom_histogram(aes(y=..density..), bins = 30, colours = "skyblue", fill = "lightgray") +
+1761025495172:geom_density(colour = "green", linewidth = 1) +
+1761025495173:labs(
+1761025495173:title = "Histogram and density",
+1761025495174:x = "net rent in Euro",
+1761025495174:y = "Estimate Density"
+1761025495175:))
+1761025500600:# Load required libraries
+1761025500601:library(gamlss.data)
+1761025500602:library(ggplot2)
+1761025500602:library(gridExtra)
+1761025500603:library(dplyr)
+1761025500604:data(rent99)
+1761025500605:rent99 <- as.data.frame(rent99)
+1761025500612:# Rent for sqm ----------------->
+1761025500612:rent99$rentsqm <- rent99$rent / rent99$area
+1761025500617:# Define the variables to plot --------------->
+1761025500618:vars <- c("rent", "rentsqm", "area", "yearc")
+1761025500620:hist1 <- ggplot(rent99, aes(rent99$rent)+
+1761025500620:geom_histogram(aes(y=..density..), bins = 30, colours = "skyblue", fill = "lightgray") +
+1761025500621:geom_density(colour = "green", linewidth = 1) +
+1761025500621:labs(
+1761025500622:title = "Histogram and density",
+1761025500622:x = "net rent in Euro",
+1761025500623:y = "Estimate Density"
+1761025500623:)
+1761025510122:# Load required libraries
+1761025510123:library(gamlss.data)
+1761025510124:library(ggplot2)
+1761025510125:library(gridExtra)
+1761025510125:library(dplyr)
+1761025510126:data(rent99)
+1761025510127:rent99 <- as.data.frame(rent99)
+1761025510134:# Rent for sqm ----------------->
+1761025510134:rent99$rentsqm <- rent99$rent / rent99$area
+1761025510140:# Define the variables to plot --------------->
+1761025510141:vars <- c("rent", "rentsqm", "area", "yearc")
+1761025510143:hist1 <- ggplot(rent99, aes(rent99$rent)+
+1761025510144:geom_histogram(aes(y=..density..), bins = 30, colours = "skyblue", fill = "lightgray") +
+1761025510144:geom_density(colour = "green", linewidth = 1) +
+1761025510145:labs(
+1761025510146:title = "Histogram and density",
+1761025510146:x = "net rent in Euro",
+1761025510147:y = "Estimate Density"
+1761025510148:))
+1761025525600:# Load required libraries
+1761025525601:library(gamlss.data)
+1761025525602:library(ggplot2)
+1761025525603:library(gridExtra)
+1761025525604:library(dplyr)
+1761025525605:data(rent99)
+1761025525607:rent99 <- as.data.frame(rent99)
+1761025525613:# Rent for sqm ----------------->
+1761025525614:rent99$rentsqm <- rent99$rent / rent99$area
+1761025525619:# Define the variables to plot --------------->
+1761025525620:vars <- c("rent", "rentsqm", "area", "yearc")
+1761025525622:hist1 <- ggplot(rent99, aes(rent)+
+1761025525622:geom_histogram(aes(y=..density..), bins = 30, colours = "skyblue", fill = "lightgray") +
+1761025525623:geom_density(colour = "green", linewidth = 1) +
+1761025525623:labs(
+1761025525624:title = "Histogram and density",
+1761025525624:x = "net rent in Euro",
+1761025525625:y = "Estimate Density"
+1761025525625:))
+1761025551671:# Load required libraries
+1761025551672:library(gamlss.data)
+1761025551673:library(ggplot2)
+1761025551674:library(gridExtra)
+1761025551675:library(dplyr)
+1761025551676:data(rent99)
+1761025551677:rent99 <- as.data.frame(rent99)
+1761025551684:# Rent for sqm ----------------->
+1761025551685:rent99$rentsqm <- rent99$rent / rent99$area
+1761025551690:# Define the variables to plot --------------->
+1761025551690:vars <- c("rent", "rentsqm", "area", "yearc")
+1761025551692:hist1 <- ggplot(rent99, aes(rent99$rent)+
+1761025551693:geom_histogram(aes(y=..density..), bins = 30, colours = "skyblue", fill = "lightgray") +
+1761025551693:geom_density(colour = "green", linewidth = 1) +
+1761025551694:labs(
+1761025551695:title = "Histogram and density",
+1761025551695:x = "net rent in Euro",
+1761025551696:y = "Estimate Density"
+1761025551696:))
+1761025555010:# ---------------->
+1761025555011:# Package
+1761025555012:# ---------------->
+1761025555013:library(dplyr)
+1761025555013:library(gamlss.data)
+1761025555014:glimpse(rent99)
+1761025557606:# Load required libraries
+1761025557607:library(gamlss.data)
+1761025557608:library(ggplot2)
+1761025557608:library(gridExtra)
+1761025557609:library(dplyr)
+1761025557610:data(rent99)
+1761025557611:rent99 <- as.data.frame(rent99)
+1761025557616:# Rent for sqm ----------------->
+1761025557616:rent99$rentsqm <- rent99$rent / rent99$area
+1761025557620:# Define the variables to plot --------------->
+1761025557621:vars <- c("rent", "rentsqm", "area", "yearc")
+1761025557622:hist1 <- ggplot(rent99, aes(rent99$rent)+
+1761025557622:geom_histogram(aes(y=..density..), bins = 30, colours = "skyblue", fill = "lightgray") +
+1761025557623:geom_density(colour = "green", linewidth = 1) +
+1761025557623:labs(
+1761025557624:title = "Histogram and density",
+1761025557624:x = "net rent in Euro",
+1761025557624:y = "Estimate Density"
+1761025557625:))
+1761025568170:# Load required libraries
+1761025568171:library(gamlss.data)
+1761025568173:library(ggplot2)
+1761025568173:library(gridExtra)
+1761025568174:library(dplyr)
+1761025568175:data(rent99)
+1761025568177:rent99 <- as.data.frame(rent99)
+1761025568182:# Rent for sqm ----------------->
+1761025568183:rent99$rentsqm <- rent99$rent / rent99$area
+1761025568187:# Define the variables to plot --------------->
+1761025568188:hist1 <- ggplot(rent99, aes(rent99$rent)+
+1761025568188:geom_histogram(aes(y=..density..), bins = 30, colours = "skyblue", fill = "lightgray") +
+1761025568189:geom_density(colour = "green", linewidth = 1) +
+1761025568189:labs(
+1761025568190:title = "Histogram and density",
+1761025568190:x = "net rent in Euro",
+1761025568191:y = "Estimate Density"
+1761025568191:))
+1761025617397:# Load required libraries
+1761025617398:library(gamlss.data)
+1761025617399:library(ggplot2)
+1761025617399:library(gridExtra)
+1761025617400:library(dplyr)
+1761025617401:data(rent99)
+1761025617403:rent99 <- as.data.frame(rent99)
+1761025617410:# Rent for sqm ----------------->
+1761025617411:rent99$rentsqm <- rent99$rent / rent99$area
+1761025617417:# Define the variables to plot --------------->
+1761025617418:hist1 <- ggplot(rent99, aes(x = rent)) +
+1761025617418:geom_histogram(aes(y = ..density..), bins = 30, color = "skyblue", fill = "lightgray") +
+1761025617419:geom_density(color = "green", linewidth = 1) +
+1761025617419:labs(
+1761025617420:title = "Histogram and density",
+1761025617420:x = "net rent in Euro",
+1761025617421:y = "Estimated Density"
+1761025617421:)
+1761025629644:print(hist1)
+1761025963653:hist2 <- hist(rent99, rent99$yearc)
+1761025998112:hist2 <- hist(rent99, yearc)
+1761026020484:hist2 <- hist(rent99, var_name)
+1761026054093:ggplot(data, aes(x = var)) +
+1761026054093:geom_histogram(ase(y = ..density..), bins = 30, color = "black", fill = "lightgray")+
+1761026054094:geom_density(color="red", linewidth = 0.5)+
+1761026054094:labs(
+1761026054095:title = paste("Hist. and Kernel Density: ", var),
+1761026054095:x =var
+1761026054096:)
+1761026060324:# Load required libraries
+1761026060325:library(gamlss.data)
+1761026060325:library(ggplot2)
+1761026060326:library(gridExtra)
+1761026060326:library(dplyr)
+1761026060327:data(rent99)
+1761026060328:rent99 <- as.data.frame(rent99)
+1761026060335:# Rent for sqm ----------------->
+1761026060335:rent99$rentsqm <- rent99$rent / rent99$area
+1761026060340:# Define the variables to plot --------------->
+1761026060341:hist1 <- ggplot(rent99, aes(x = rent)) +
+1761026060341:geom_histogram(aes(y = ..density..), bins = 30, color = "skyblue", fill = "lightgray") +
+1761026060342:geom_density(color = "green", linewidth = 1) +
+1761026060342:labs(
+1761026060343:title = "Histogram and density",
+1761026060343:x = "net rent in Euro",
+1761026060343:y = "Estimated Density"
+1761026060344:)
+1761026060366:print(hist1)
+1761026060454:var_name <- c("yearc")
+1761026060457:hist <- function(data, var){
+1761026060457:ggplot(data, aes(x = var)) +
+1761026060458:geom_histogram(ase(y = ..density..), bins = 30, color = "black", fill = "lightgray")+
+1761026060459:geom_density(color="red", linewidth = 0.5)+
+1761026060459:labs(
+1761026060460:title = paste("Hist. and Kernel Density: ", var),
+1761026060460:x =var
+1761026060461:)
+1761026060462:}
+1761026060464:hist2 <- hist(rent99, var_name)
+1761026074487:hist2 <- hist(rent99, "yearc")
+1761026086578:# Load required libraries
+1761026086580:library(gamlss.data)
+1761026086581:library(ggplot2)
+1761026086582:library(gridExtra)
+1761026086583:library(dplyr)
+1761026086584:data(rent99)
+1761026086585:rent99 <- as.data.frame(rent99)
+1761026086591:# Rent for sqm ----------------->
+1761026086592:rent99$rentsqm <- rent99$rent / rent99$area
+1761026086597:# Define the variables to plot --------------->
+1761026086598:hist1 <- ggplot(rent99, aes(x = rent)) +
+1761026086598:geom_histogram(aes(y = ..density..), bins = 30, color = "skyblue", fill = "lightgray") +
+1761026086599:geom_density(color = "green", linewidth = 1) +
+1761026086599:labs(
+1761026086599:title = "Histogram and density",
+1761026086600:x = "net rent in Euro",
+1761026086600:y = "Estimated Density"
+1761026086601:)
+1761026086623:print(hist1)
+1761026086702:hist <- function(data, var){
+1761026086703:ggplot(data, aes(x = var)) +
+1761026086704:geom_histogram(ase(y = ..density..), bins = 30, color = "black", fill = "lightgray")+
+1761026086705:geom_density(color="red", linewidth = 0.5)+
+1761026086705:labs(
+1761026086706:title = paste("Hist. and Kernel Density: ", var),
+1761026086706:x =var
+1761026086707:)
+1761026086707:}
+1761026086709:hist2 <- hist(rent99, "yearc")
+1761026118107:# Load required libraries
+1761026118108:library(gamlss.data)
+1761026118108:library(ggplot2)
+1761026118109:library(gridExtra)
+1761026118110:library(dplyr)
+1761026118110:data(rent99)
+1761026118112:rent99 <- as.data.frame(rent99)
+1761026118117:# Rent for sqm ----------------->
+1761026118118:rent99$rentsqm <- rent99$rent / rent99$area
+1761026118123:# Define the variables to plot --------------->
+1761026118124:hist1 <- ggplot(rent99, aes(x = rent)) +
+1761026118124:geom_histogram(aes(y = ..density..), bins = 30, color = "skyblue", fill = "lightgray") +
+1761026118125:geom_density(color = "green", linewidth = 1) +
+1761026118125:labs(
+1761026118126:title = "Histogram and density",
+1761026118126:x = "net rent in Euro",
+1761026118127:y = "Estimated Density"
+1761026118127:)
+1761026118149:print(hist1)
+1761026118240:hist <- function(data, var){
+1761026118240:ggplot(data, aes(x = var)) +
+1761026118241:geom_histogram(ase(y = ..density..), bins = 30, color = "black", fill = "lightgray")+
+1761026118242:geom_density(color="red", linewidth = 0.5)+
+1761026118242:labs(
+1761026118243:title = paste("Hist. and Kernel Density: ", var),
+1761026118243:x =var
+1761026118244:)
+1761026118244:}
+1761026118246:hist2 <- hist(rent99, "yearc")
+1761026142928:hist2 <- hist(rent99, "yearc")
+1761026157239:ggplot(data, aes(x = var)) +
+1761026157240:geom_histogram(ase(y = ..density..), bins = 30, color = "black", fill = "lightgray")+
+1761026157242:geom_density(color="red", linewidth = 0.5)+
+1761026157243:labs(
+1761026157244:title = paste("Hist. and Kernel Density: ", var),
+1761026157245:x =var
+1761026157248:)
+1761026177668:hist2 <- hist(rent99, "yearc")
+1761026184302:# Load required libraries
+1761026184304:library(gamlss.data)
+1761026184305:library(ggplot2)
+1761026184306:library(gridExtra)
+1761026184307:library(dplyr)
+1761026184308:data(rent99)
+1761026184310:rent99 <- as.data.frame(rent99)
+1761026184316:# Rent for sqm ----------------->
+1761026184317:rent99$rentsqm <- rent99$rent / rent99$area
+1761026184324:# Define the variables to plot --------------->
+1761026184324:vars <- c("rent", "rentsqm", "area", "yearc")
+1761026184326:hist1 <- ggplot(rent99, aes(x = rent)) +
+1761026184327:geom_histogram(aes(y = ..density..), bins = 30, color = "skyblue", fill = "lightgray") +
+1761026184327:geom_density(color = "green", linewidth = 1) +
+1761026184328:labs(
+1761026184328:title = "Histogram and density",
+1761026184329:x = "net rent in Euro",
+1761026184329:y = "Estimated Density"
+1761026184330:)
+1761026184354:print(hist1)
+1761026184433:hist <- function(data, var){
+1761026184434:ggplot(data, aes(x = var)) +
+1761026184435:geom_histogram(ase(y = ..density..), bins = 30, color = "black", fill = "lightgray")+
+1761026184435:geom_density(color="red", linewidth = 0.5)+
+1761026184436:labs(
+1761026184437:title = paste("Hist. and Kernel Density: ", var),
+1761026184438:x =var
+1761026184439:)
+1761026184440:}
+1761026184444:hist2 <- hist(rent99, "yearc")
+1761026251235:ggplot(data, aes(x = .data[[var]])) +
+1761026251236:geom_histogram(ase(y = ..density..), bins = 30, color = "black", fill = "lightgray")+
+1761026251237:geom_density(color="red", linewidth = 0.5)+
+1761026251237:labs(
+1761026251238:title = paste("Hist. and Kernel Density: ", var),
+1761026251238:x =var
+1761026251239:)
+1761026256103:# Load required libraries
+1761026256104:library(gamlss.data)
+1761026256105:library(ggplot2)
+1761026256106:library(gridExtra)
+1761026256107:library(dplyr)
+1761026256108:data(rent99)
+1761026256109:rent99 <- as.data.frame(rent99)
+1761026256115:# Rent for sqm ----------------->
+1761026256116:rent99$rentsqm <- rent99$rent / rent99$area
+1761026256120:# Define the variables to plot --------------->
+1761026256121:vars <- c("rent", "rentsqm", "area", "yearc")
+1761026256122:hist1 <- ggplot(rent99, aes(x = rent)) +
+1761026256123:geom_histogram(aes(y = ..density..), bins = 30, color = "skyblue", fill = "lightgray") +
+1761026256124:geom_density(color = "green", linewidth = 1) +
+1761026256124:labs(
+1761026256125:title = "Histogram and density",
+1761026256125:x = "net rent in Euro",
+1761026256126:y = "Estimated Density"
+1761026256126:)
+1761026256147:print(hist1)
+1761026256236:hist <- function(data, var){
+1761026256237:ggplot(data, aes(x = .data[[var]])) +
+1761026256237:geom_histogram(ase(y = ..density..), bins = 30, color = "black", fill = "lightgray")+
+1761026256238:geom_density(color="red", linewidth = 0.5)+
+1761026256238:labs(
+1761026256239:title = paste("Hist. and Kernel Density: ", var),
+1761026256240:x =var
+1761026256240:)
+1761026256241:}
+1761026256243:hist2 <- hist(rent99, "yearc")
+1761026302792:ggplot(data, aes(x = var) +
+1761026302793:geom_histogram(aes(y = ..density..), bins = 30, color = "black", fill = "lightgray")+
+1761026302793:geom_density(color="red", linewidth = 0.5)+
+1761026302794:labs(
+1761026302794:title = paste("Hist. and Kernel Density: ", var),
+1761026302795:x =var
+1761026302795:)
+1761026302795:}
+1761026308761:# Load required libraries
+1761026308763:library(gamlss.data)
+1761026308764:library(ggplot2)
+1761026308765:library(gridExtra)
+1761026308766:library(dplyr)
+1761026308767:data(rent99)
+1761026308771:rent99 <- as.data.frame(rent99)
+1761026308779:# Rent for sqm ----------------->
+1761026308780:rent99$rentsqm <- rent99$rent / rent99$area
+1761026308785:# Define the variables to plot --------------->
+1761026308786:vars <- c("rent", "rentsqm", "area", "yearc")
+1761026308787:hist1 <- ggplot(rent99, aes(x = rent)) +
+1761026308788:geom_histogram(aes(y = ..density..), bins = 30, color = "skyblue", fill = "lightgray") +
+1761026308789:geom_density(color = "green", linewidth = 1) +
+1761026308789:labs(
+1761026308790:title = "Histogram and density",
+1761026308790:x = "net rent in Euro",
+1761026308791:y = "Estimated Density"
+1761026308791:)
+1761026308816:print(hist1)
+1761026308914:hist <- function(data, var){
+1761026308914:ggplot(data, aes(x = var) +
+1761026308915:geom_histogram(aes(y = ..density..), bins = 30, color = "black", fill = "lightgray")+
+1761026308916:geom_density(color="red", linewidth = 0.5)+
+1761026308916:labs(
+1761026308917:title = paste("Hist. and Kernel Density: ", var),
+1761026308917:x =var
+1761026308918:)
+1761026308918:}
+1761026320235:# Load required libraries
+1761026320236:library(gamlss.data)
+1761026320236:library(ggplot2)
+1761026320237:library(gridExtra)
+1761026320237:library(dplyr)
+1761026320238:data(rent99)
+1761026320240:rent99 <- as.data.frame(rent99)
+1761026320248:# Rent for sqm ----------------->
+1761026320248:rent99$rentsqm <- rent99$rent / rent99$area
+1761026320254:# Define the variables to plot --------------->
+1761026320254:vars <- c("rent", "rentsqm", "area", "yearc")
+1761026320256:hist1 <- ggplot(rent99, aes(x = rent)) +
+1761026320257:geom_histogram(aes(y = ..density..), bins = 30, color = "skyblue", fill = "lightgray") +
+1761026320257:geom_density(color = "green", linewidth = 1) +
+1761026320258:labs(
+1761026320258:title = "Histogram and density",
+1761026320259:x = "net rent in Euro",
+1761026320259:y = "Estimated Density"
+1761026320260:)
+1761026320285:print(hist1)
+1761026320369:hist <- function(data, var){
+1761026320370:ggplot(data, aes(x = var)) +
+1761026320371:geom_histogram(aes(y = ..density..), bins = 30, color = "black", fill = "lightgray")+
+1761026320372:geom_density(color="red", linewidth = 0.5)+
+1761026320372:labs(
+1761026320373:title = paste("Hist. and Kernel Density: ", var),
+1761026320374:x =var
+1761026320374:)
+1761026320375:}
+1761026320377:hist2 <- hist(rent99, "yearc")
+1761026336481:# Load required libraries
+1761026336482:library(gamlss.data)
+1761026336483:library(ggplot2)
+1761026336484:library(gridExtra)
+1761026336484:library(dplyr)
+1761026336485:data(rent99)
+1761026336486:rent99 <- as.data.frame(rent99)
+1761026336492:# Rent for sqm ----------------->
+1761026336492:rent99$rentsqm <- rent99$rent / rent99$area
+1761026336496:# Define the variables to plot --------------->
+1761026336497:vars <- c("rent", "rentsqm", "area", "yearc")
+1761026336498:hist1 <- ggplot(rent99, aes(x = rent)) +
+1761026336499:geom_histogram(aes(y = ..density..), bins = 30, color = "skyblue", fill = "lightgray") +
+1761026336499:geom_density(color = "green", linewidth = 1) +
+1761026336500:labs(
+1761026336500:title = "Histogram and density",
+1761026336501:x = "net rent in Euro",
+1761026336501:y = "Estimated Density"
+1761026336502:)
+1761026336540:print(hist1)
+1761026336614:hist <- function(data, var){
+1761026336615:ggplot(data, aes(x = var)) +
+1761026336615:geom_histogram(aes(y = ..density..), bins = 30, color = "black", fill = "lightgray")+
+1761026336616:geom_density(color="red", linewidth = 0.5)+
+1761026336616:labs(
+1761026336617:title = paste("Hist. and Kernel Density: ", var),
+1761026336617:x =var
+1761026336618:)
+1761026336618:}
+1761026336620:hist2 <- hist(rent99, "yearc")
+1761026336641:print(hist2)
+1761026417198:grid.arrange(p1, p2, p3, p4, ncol = 2)
+1761026420737:# Load required libraries
+1761026420738:library(gamlss.data)
+1761026420739:library(ggplot2)
+1761026420740:library(gridExtra)
+1761026420741:library(dplyr)
+1761026420741:data(rent99)
+1761026420743:rent99 <- as.data.frame(rent99)
+1761026420748:# Rent for sqm ----------------->
+1761026420749:rent99$rentsqm <- rent99$rent / rent99$area
+1761026420753:# Define the variables to plot --------------->
+1761026420753:vars <- c("rent", "rentsqm", "area", "yearc")
+1761026420755:hist1 <- ggplot(rent99, aes(x = rent)) +
+1761026420755:geom_histogram(aes(y = ..density..), bins = 30, color = "skyblue", fill = "lightgray") +
+1761026420756:geom_density(color = "green", linewidth = 1) +
+1761026420756:labs(
+1761026420757:title = "Histogram and density",
+1761026420757:x = "net rent in Euro",
+1761026420757:y = "Estimated Density"
+1761026420758:)
+1761026420777:print(hist1)
+1761026420845:hist <- function(data, var) {
+1761026420846:ggplot(data, aes(x = .data[[var]])) +
+1761026420846:geom_histogram(aes(y = ..density..), bins = 30, color = "black", fill = "lightgray") +
+1761026420847:geom_density(color = "red", linewidth = 0.5) +
+1761026420847:labs(
+1761026420848:title = paste("Hist. and Kernel Density:", var),
+1761026420849:x = var,
+1761026420849:y = "Density"
+1761026420849:) +
+1761026420850:theme_minimal()
+1761026420851:}
+1761026420852:# Load data
+1761026420854:library(gamlss.data)
+1761026420855:data(rent99)
+1761026420856:rent99 <- as.data.frame(rent99)
+1761026420862:rent99$rentsqm <- rent99$rent / rent99$area
+1761026420867:# Create plots
+1761026420868:p1 <- hist(rent99, "rent")
+1761026420959:p2 <- hist(rent99, "rentsqm")
+1761026421038:p3 <- hist(rent99, "area")
+1761026421120:p4 <- hist(rent99, "yearc")
+1761026421189:# Display all
+1761026421190:library(gridExtra)
+1761026421191:grid.arrange(p1, p2, p3, p4, ncol = 2)
+1761026581638:ggplot(data, aes(x = .data[[var]])) +
+1761026581639:geom_histogram(aes(y = ..density..), bins = 30, color = "black", fill = "lightgray") +
+1761026581640:geom_density(color = "red", linewidth = 0.5) +
+1761026581640:labs(
+1761026581641:title = paste("Hist. and Kernel Density:", var),
+1761026581641:x = paste("net",var, " in Euro"),
+1761026581642:y = "Estimate Density"
+1761026581642:) +
+1761026581643:theme_minimal()
+1761026584227:# Load required libraries
+1761026584228:library(gamlss.data)
+1761026584229:library(ggplot2)
+1761026584230:library(gridExtra)
+1761026584231:library(dplyr)
+1761026584232:data(rent99)
+1761026584233:rent99 <- as.data.frame(rent99)
+1761026584240:# Rent for sqm ----------------->
+1761026584240:rent99$rentsqm <- rent99$rent / rent99$area
+1761026584245:# Define the variables to plot --------------->
+1761026584245:vars <- c("rent", "rentsqm", "area", "yearc")
+1761026584247:# Create a reusable function ----------------->
+1761026584248:hist <- function(data, var) {
+1761026584248:ggplot(data, aes(x = .data[[var]])) +
+1761026584249:geom_histogram(aes(y = ..density..), bins = 30, color = "black", fill = "lightgray") +
+1761026584249:geom_density(color = "red", linewidth = 0.5) +
+1761026584250:labs(
+1761026584250:title = paste("Hist. and Kernel Density:", var),
+1761026584251:x = paste("net",var, " in Euro"),
+1761026584251:y = "Estimate Density"
+1761026584252:) +
+1761026584252:theme_minimal()
+1761026584253:}
+1761026584254:# Create plots
+1761026584255:p1 <- hist(rent99, "rent")
+1761026584351:p2 <- hist(rent99, "rentsqm")
+1761026584454:p3 <- hist(rent99, "area")
+1761026584526:p4 <- hist(rent99, "yearc")
+1761026584611:# Display all
+1761026584612:library(gridExtra)
+1761026584613:grid.arrange(p1, p2, p3, p4, ncol = 2)
+1761027021885:# Load required libraries
+1761027021886:library(gamlss.data)
+1761027021887:library(ggplot2)
+1761027021888:library(gridExtra)
+1761027021888:library(dplyr)
+1761027021889:data(rent99)
+1761027021891:rent99 <- as.data.frame(rent99)
+1761027021897:# Rent for sqm ----------------->
+1761027021897:rent99$rentsqm <- rent99$rent / rent99$area
+1761027021902:# Define the variables to plot --------------->
+1761027021902:vars <- c("rent", "rentsqm", "area", "yearc")
+1761027021903:# Create a reusable function ----------------->
+1761027021904:hist <- function(data, var, x_name) {
+1761027021904:ggplot(data, aes(x = .data[[var]])) +
+1761027021905:geom_histogram(aes(y = ..density..), bins = 30, color = "black", fill = "lightgray") +
+1761027021905:geom_density(color = "red", linewidth = 0.5) +
+1761027021906:labs(
+1761027021906:title = paste("Hist. and Kernel Density:", var),
+1761027021907:if (var == "yearc"){
+1761027021907:x = paste(var,"of construction")
+1761027021908:}else if(var == "area"){
+1761027021908:x = paste(var,"in sqm")
+1761027021909:}else{
+1761027021909:x = paste("net",var, "in Euro")
+1761027021910:}
+1761027021910:y = "Estimate Density"
+1761027035806:# Load required libraries
+1761027035807:library(gamlss.data)
+1761027035808:library(ggplot2)
+1761027035809:library(gridExtra)
+1761027035810:library(dplyr)
+1761027035811:data(rent99)
+1761027035812:rent99 <- as.data.frame(rent99)
+1761027035819:# Rent for sqm ----------------->
+1761027035820:rent99$rentsqm <- rent99$rent / rent99$area
+1761027035825:# Define the variables to plot --------------->
+1761027035826:vars <- c("rent", "rentsqm", "area", "yearc")
+1761027035828:# Create a reusable function ----------------->
+1761027035828:hist <- function(data, var, x_name) {
+1761027035829:ggplot(data, aes(x = .data[[var]])) +
+1761027035829:geom_histogram(aes(y = ..density..), bins = 30, color = "black", fill = "lightgray") +
+1761027035830:geom_density(color = "red", linewidth = 0.5) +
+1761027035830:labs(
+1761027035831:title = paste("Hist. and Kernel Density:", var),
+1761027035831:if (var == "yearc"){
+1761027035832:x = paste(var,"of construction")
+1761027035832:}else if(var == "area"){
+1761027035833:x = paste(var,"in sqm")
+1761027035833:}else{
+1761027035834:x = paste("net",var, "in Euro")
+1761027035834:},
+1761027035835:y = "Estimate Density"
+1761027035835:) +
+1761027035836:theme_minimal()
+1761027035836:}
+1761027035838:# Create plots
+1761027035838:p1 <- hist(rent99, "rent")
+1761027035943:p2 <- hist(rent99, "rentsqm")
+1761027036044:p3 <- hist(rent99, "area")
+1761027036119:p4 <- hist(rent99, "yearc")
+1761027036210:# Display all
+1761027036210:library(gridExtra)
+1761027036211:grid.arrange(p1, p2, p3, p4, ncol = 2)
+1761027104604:# Load required libraries
+1761027104605:library(gamlss.data)
+1761027104607:library(ggplot2)
+1761027104608:library(gridExtra)
+1761027104609:library(dplyr)
+1761027104611:data(rent99)
+1761027104613:rent99 <- as.data.frame(rent99)
+1761027104621:# Rent for sqm ----------------->
+1761027104622:rent99$rentsqm <- rent99$rent / rent99$area
+1761027104628:# Define the variables to plot --------------->
+1761027104628:vars <- c("rent", "rentsqm", "area", "yearc")
+1761027104630:# Create a reusable function ----------------->
+1761027104630:hist <- function(data, var, x_name) {
+1761027104631:ggplot(data, aes(x = .data[[var]])) +
+1761027104631:geom_histogram(aes(y = ..density..), bins = 30, color = "black", fill = "lightgray") +
+1761027104632:geom_density(color = "red", linewidth = 0.5) +
+1761027104633:labs(
+1761027104633:title = paste("Hist. and Kernel Density:", var),
+1761027104633:if (var == "yearc"){
+1761027104634:x = paste(var,"of construction")
+1761027104634:}else if(var == "area"){
+1761027104635:x = paste(var,"in sqm")
+1761027104635:}else{
+1761027104636:x = paste("net", var, "in Euro")
+1761027104636:},
+1761027104637:y = "Estimate Density"
+1761027104637:) +
+1761027104638:theme_minimal()
+1761027104638:}
+1761027104640:# Create plots
+1761027104640:p1 <- hist(rent99, "rent")
+1761027104732:p2 <- hist(rent99, "rentsqm")
+1761027104852:p3 <- hist(rent99, "area")
+1761027104926:p4 <- hist(rent99, "yearc")
+1761027105009:# Display all
+1761027105010:library(gridExtra)
+1761027105011:grid.arrange(p1, p2, p3, p4, ncol = 2)
+1761027131747:x = paste("net" + var + "in Euro")
+1761027134040:# Load required libraries
+1761027134041:library(gamlss.data)
+1761027134042:library(ggplot2)
+1761027134043:library(gridExtra)
+1761027134043:library(dplyr)
+1761027134044:data(rent99)
+1761027134046:rent99 <- as.data.frame(rent99)
+1761027134057:# Rent for sqm ----------------->
+1761027134058:rent99$rentsqm <- rent99$rent / rent99$area
+1761027134064:# Define the variables to plot --------------->
+1761027134065:vars <- c("rent", "rentsqm", "area", "yearc")
+1761027134066:# Create a reusable function ----------------->
+1761027134067:hist <- function(data, var, x_name) {
+1761027134068:ggplot(data, aes(x = .data[[var]])) +
+1761027134068:geom_histogram(aes(y = ..density..), bins = 30, color = "black", fill = "lightgray") +
+1761027134069:geom_density(color = "red", linewidth = 0.5) +
+1761027134070:labs(
+1761027134070:title = paste("Hist. and Kernel Density:", var),
+1761027134071:if (var == "yearc"){
+1761027134071:x = paste(var + "of construction")
+1761027134072:}else if(var == "area"){
+1761027134072:x = paste(var + "in sqm")
+1761027134073:}else{
+1761027134073:x = paste("net" + var + "in Euro")
+1761027134074:},
+1761027134074:y = "Estimate Density"
+1761027134075:) +
+1761027134075:theme_minimal()
+1761027134076:}
+1761027134077:# Create plots
+1761027134078:p1 <- hist(rent99, "rent")
+1761027145832:# Load required libraries
+1761027145833:library(gamlss.data)
+1761027145834:library(ggplot2)
+1761027145835:library(gridExtra)
+1761027145835:library(dplyr)
+1761027145836:data(rent99)
+1761027145838:rent99 <- as.data.frame(rent99)
+1761027145845:# Rent for sqm ----------------->
+1761027145846:rent99$rentsqm <- rent99$rent / rent99$area
+1761027145851:# Define the variables to plot --------------->
+1761027145852:vars <- c("rent", "rentsqm", "area", "yearc")
+1761027145853:# Create a reusable function ----------------->
+1761027145854:hist <- function(data, var, x_name) {
+1761027145855:ggplot(data, aes(x = .data[[var]])) +
+1761027145855:geom_histogram(aes(y = ..density..), bins = 30, color = "black", fill = "lightgray") +
+1761027145856:geom_density(color = "red", linewidth = 0.5) +
+1761027145856:labs(
+1761027145857:title = paste("Hist. and Kernel Density:", var),
+1761027145857:if (var == "yearc"){
+1761027145858:x = paste(var,"of construction")
+1761027145858:}else if(var == "area"){
+1761027145859:x = paste(var,"in sqm")
+1761027145859:}else{
+1761027145860:x = paste("net", var, "in Euro")
+1761027145860:},
+1761027145861:y = "Estimate Density"
+1761027145861:) +
+1761027145862:theme_minimal()
+1761027145862:}
+1761027145864:# Create plots
+1761027145864:p1 <- hist(rent99, "rent")
+1761027145973:p2 <- hist(rent99, "rentsqm")
+1761027146087:p3 <- hist(rent99, "area")
+1761027146165:p4 <- hist(rent99, "yearc")
+1761027146232:# Display all
+1761027146233:library(gridExtra)
+1761027146234:grid.arrange(p1, p2, p3, p4, ncol = 2)
+1761027263386:# Load required libraries
+1761027263387:library(gamlss.data)
+1761027263388:library(ggplot2)
+1761027263388:library(gridExtra)
+1761027263389:library(dplyr)
+1761027263390:data(rent99)
+1761027263391:rent99 <- as.data.frame(rent99)
+1761027263398:# Rent for sqm ----------------->
+1761027263399:rent99$rentsqm <- rent99$rent / rent99$area
+1761027263404:# Define the variables to plot --------------->
+1761027263405:vars <- c("rent", "rentsqm", "area", "yearc")
+1761027263406:# Create a reusable function ----------------->
+1761027263407:hist <- function(data, var, x_name) {
+1761027263408:if (var == "yearc") {
+1761027263409:x_label <- "year of construction"
+1761027263409:} else if (var == "area") {
+1761027263410:x_label <- "area in sqm"
+1761027263410:} else if (var == "rentsqm") {
+1761027263411:x_label <- "net rent per sqm in Euro"
+1761027263411:} else {  # var == "rent"
+1761027263412:x_label <- "net rent in Euro"
+1761027263412:}
+1761027263413:ggplot(data, aes(x = .data[[var]])) +
+1761027263414:geom_histogram(aes(y = ..density..), bins = 30, color = "black", fill = "lightgray") +
+1761027263414:geom_density(color = "red", linewidth = 0.5) +
+1761027263415:labs(
+1761027263415:title = paste("Hist. and Kernel Density:", var),
+1761027263416:x = x_label,
+1761027263416:y = "Estimate Density"
+1761027263417:) +
+1761027263417:theme_minimal()
+1761027263417:}
+1761027263419:# Create plots
+1761027263419:p1 <- hist(rent99, "rent")
+1761027263519:p2 <- hist(rent99, "rentsqm")
+1761027263615:p3 <- hist(rent99, "area")
+1761027263696:p4 <- hist(rent99, "yearc")
+1761027263766:# Display all
+1761027263767:library(gridExtra)
+1761027263768:grid.arrange(p1, p2, p3, p4, ncol = 2)
+1761028164899:ggplot(data, aes(x = .data[[var_x]], y = .data[[var_y]]))+
+1761028164903:geom_point(alpha = 0.6, size = 1) +
+1761028164906:labs(
+1761028164909:title = "Net rent per sqm vs. area",
+1761028164911:x = x_lable,
+1761028164915:y = "Net rent per sqm (Euro)"
+1761028164918:) +
+1761028164921:theme_minimal()
+1761028168059:# =============================================================================>
+1761028168060:# (b). Reconstruct the scatter plots below.
+1761028168061:# =============================================================================>
+1761028168062:scatterplot <- function(data, var_x, var_y){
+1761028168063:if (var_x == "area"){
+1761028168064:x_label = "area in sqm"
+1761028168065:}else if (var_x = "yearc"){
+1761028185411:# =============================================================================>
+1761028185414:# (b). Reconstruct the scatter plots below.
+1761028185418:# =============================================================================>
+1761028185422:scatterplot <- function(data, var_x, var_y){
+1761028185428:if (var_x == "area"){
+1761028185432:x_label = "area in sqm"
+1761028185436:}else if (var_x == "yearc"){
+1761028185440:x_label = "year of construction"
+1761028185445:}
+1761028185452:ggplot(data, aes(x = .data[[var_x]], y = .data[[var_y]]))+
+1761028185458:geom_point(alpha = 0.6, size = 1) +
+1761028185462:labs(
+1761028185466:title = "Net rent per sqm vs. area",
+1761028185470:x = x_lable,
+1761028185473:y = "Net rent per sqm (Euro)"
+1761028185477:) +
+1761028185480:theme_minimal()
+1761028185484:}
+1761028234184:# =============================================================================>
+1761028234186:# (b). Reconstruct the scatter plots below.
+1761028234188:# =============================================================================>
+1761028234190:scatterplot <- function(data, var_x, var_y){
+1761028234192:if (var_x == "area"){
+1761028234194:x_label = "area in sqm"
+1761028234197:}else if (var_x == "yearc"){
+1761028234198:x_label = "year of construction"
+1761028234200:}
+1761028234204:ggplot(data, aes(x = .data[[var_x]], y = .data[[var_y]]))+
+1761028234205:geom_point(alpha = 0.6, size = 1) +
+1761028234207:labs(
+1761028234210:title = "Net rent per sqm vs. area",
+1761028234213:x = x_lable,
+1761028234216:y = "Net rent per sqm (Euro)"
+1761028234219:) +
+1761028234221:theme_minimal()
+1761028234223:}
+1761028234227:scatter1 <- scatterplot(rent99, "area", "rent")
+1761028254489:# =============================================================================>
+1761028254491:# (b). Reconstruct the scatter plots below.
+1761028254493:# =============================================================================>
+1761028254495:vars <- c("rent", "rentsqm", "area", "yearc")
+1761028254501:scatterplot <- function(data, var_x, var_y){
+1761028254503:if (var_x == "area"){
+1761028254505:x_label = "area in sqm"
+1761028254507:}else if (var_x == "yearc"){
+1761028254508:x_label = "year of construction"
+1761028254510:}
+1761028254514:ggplot(data, aes(x = .data[[var_x]], y = .data[[var_y]]))+
+1761028254516:geom_point(alpha = 0.6, size = 1) +
+1761028254519:labs(
+1761028254521:title = "Net rent per sqm vs. area",
+1761028254523:x = x_lable,
+1761028254525:y = "Net rent per sqm (Euro)"
+1761028254527:) +
+1761028254529:theme_minimal()
+1761028254531:}
+1761028254535:scatter1 <- scatterplot(rent99, "area", "rent")
+1761028291191:# =============================================================================>
+1761028291192:# (a). Reconstruct the histograms and kernel density estimates below
+1761028291194:# =============================================================================>
+1761028291196:data(rent99)
+1761028291201:rent99 <- as.data.frame(rent99)
+1761028291221:# Rent for sqm ----------------->
+1761028291223:rent99$rentsqm <- rent99$rent / rent99$area
+1761028291244:# Define the variables to plot --------------->
+1761028291247:vars <- c("rent", "rentsqm", "area", "yearc")
+1761028291252:# Create a reusable function ----------------->
+1761028291255:hist <- function(data, var) {
+1761028291258:if (var == "yearc") {
+1761028291260:x_label <- "year of construction"
+1761028291262:} else if (var == "area") {
+1761028291264:x_label <- "area in sqm"
+1761028291266:} else if (var == "rentsqm") {
+1761028291268:x_label <- "net rent per sqm in Euro"
+1761028291271:} else {  # var == "rent"
+1761028291273:x_label <- "net rent in Euro"
+1761028291275:}
+1761028291279:ggplot(data, aes(x = .data[[var]])) +
+1761028291282:geom_histogram(aes(y = ..density..), bins = 30, color = "black", fill = "lightgray") +
+1761028291284:geom_density(color = "red", linewidth = 0.5) +
+1761028291286:labs(
+1761028291288:title = paste("Hist. and Kernel Density:", var),
+1761028291290:x = x_label,
+1761028291292:y = "Estimate Density"
+1761028291294:) +
+1761028291296:theme_minimal()
+1761028291298:}
+1761028291303:# Create plots --------------->
+1761028291305:p1 <- hist(rent99, "rent")
+1761028291493:p2 <- hist(rent99, "rentsqm")
+1761028291690:p3 <- hist(rent99, "area")
+1761028291863:p4 <- hist(rent99, "yearc")
+1761028292010:# Display all ---------------->
+1761028292011:library(gridExtra)
+1761028292014:grid.arrange(p1, p2, p3, p4, ncol = 2)
+1761028317834:# =============================================================================>
+1761028317836:# (b). Reconstruct the scatter plots below.
+1761028317840:# =============================================================================>
+1761028317845:scatterplot <- function(data, var_x, var_y){
+1761028317848:if (var_x == "area"){
+1761028317850:x_label = "area in sqm"
+1761028317852:}else if (var_x == "yearc"){
+1761028317853:x_label = "year of construction"
+1761028317855:}
+1761028317858:ggplot(data, aes(x = .data[[var_x]], y = .data[[var_y]]))+
+1761028317860:geom_point(alpha = 0.6, size = 1) +
+1761028317862:labs(
+1761028317864:title = "Net rent per sqm vs. area",
+1761028317866:x = x_lable,
+1761028317867:y = "Net rent per sqm (Euro)"
+1761028317869:) +
+1761028317871:theme_minimal()
+1761028317873:}
+1761028317877:scatter1 <- scatterplot(rent99, "area", "rent")
+1761028331176:# =============================================================================>
+1761028331178:# (b). Reconstruct the scatter plots below.
+1761028331181:# =============================================================================>
+1761028331188:scatterplot <- function(data, var_x, var_y){
+1761028331190:if (var_x == "area"){
+1761028331193:x_label = "area in sqm"
+1761028331196:}else if (var_x == "yearc"){
+1761028331198:x_label = "year of construction"
+1761028331201:}
+1761028331206:ggplot(data, aes(x = .data[[var_x]], y = .data[[var_y]]))+
+1761028331209:geom_point(alpha = 0.6, size = 1) +
+1761028331212:labs(
+1761028331215:title = "Net rent per sqm vs. area",
+1761028331218:x = x_label,
+1761028331220:y = "Net rent per sqm (Euro)"
+1761028331222:) +
+1761028331226:theme_minimal()
+1761028331230:}
+1761028331235:scatter1 <- scatterplot(rent99, "area", "rent")
+1761028345217:# =============================================================================>
+1761028345218:# (b). Reconstruct the scatter plots below.
+1761028345219:# =============================================================================>
+1761028345221:scatterplot <- function(data, var_x, var_y){
+1761028345222:if (var_x == "area"){
+1761028345223:x_label = "area in sqm"
+1761028345224:}else if (var_x == "yearc"){
+1761028345225:x_label = "year of construction"
+1761028345226:}
+1761028345228:ggplot(data, aes(x = .data[[var_x]], y = .data[[var_y]]))+
+1761028345230:geom_point(alpha = 0.6, size = 1) +
+1761028345232:labs(
+1761028345233:title = "Net rent per sqm vs. area",
+1761028345235:x = x_label,
+1761028345237:y = "Net rent per sqm (Euro)"
+1761028345240:) +
+1761028345243:theme_minimal()
+1761028345246:}
+1761028345256:scatter1 <- scatterplot(rent99, "area", "rent")
+1761028345430:print(scatter1)
+1761028659244:# =============================================================================>
+1761028659246:# (b). Reconstruct the scatter plots below.
+1761028659250:# =============================================================================>
+1761028659253:scatterplot <- function(data, var_x, var_y){
+1761028659256:if (var_x == "area"){
+1761028659260:x_label = "area in sqm"
+1761028659263:}else if (var_x == "yearc"){
+1761028659266:x_label = "year of construction"
+1761028659269:}
+1761028659273:ggplot(data, aes(x = .data[[var_x]], y = .data[[var_y]]))+
+1761028659274:geom_point(alpha = 0.6, size = 1) +
+1761028659275:labs(
+1761028659277:title = "Net rent per sqm vs. area",
+1761028659279:x = x_label,
+1761028659281:y = "Net rent per sqm (Euro)"
+1761028659283:) +
+1761028659284:theme_minimal()
+1761028659286:}
+1761028659289:scatter1 <- scatterplot(rent99, "area", "rent")
+1761028659590:scatter2 <- scatterplot(rent99, "rentsqm", "rent")
+1761028711175:# =============================================================================>
+1761028711177:# (b). Reconstruct the scatter plots below.
+1761028711180:# =============================================================================>
+1761028711185:scatterplot <- function(data, var_x, var_y){
+1761028711188:if (var_x == "area"){
+1761028711191:x_label = "area in sqm"
+1761028711194:}else if (var_x == "yearc"){
+1761028711197:x_label = "year of construction"
+1761028711201:}else if (var_x == "rentsqm"){
+1761028711203:x_label = "area in sqm"
+1761028711206:}
+1761028711212:ggplot(data, aes(x = .data[[var_x]], y = .data[[var_y]]))+
+1761028711214:geom_point(alpha = 0.6, size = 1) +
+1761028711216:labs(
+1761028711219:title = "Net rent per sqm vs. area",
+1761028711221:x = x_label,
+1761028711224:y = "Net rent per sqm (Euro)"
+1761028711226:) +
+1761028711227:theme_minimal()
+1761028711229:}
+1761028711232:scatter1 <- scatterplot(rent99, "area", "rent")
+1761028711387:scatter2 <- scatterplot(rent99, "rentsqm", "rent")
+1761028711604:scatter3 <- scatterplot(rent99, "yearc", "rent")
+1761028711760:print(scatter1)
+1761028712108:print(scatter2)
+1761028827047:scatter2 <- scatterplot(rent99, "rentsqm", "area")
+1761028829829:# =============================================================================>
+1761028829833:# (b). Reconstruct the scatter plots below.
+1761028829837:# =============================================================================>
+1761028829841:scatterplot <- function(data, var_x, var_y){
+1761028829844:if (var_x == "area"){
+1761028829847:x_label = "area in sqm"
+1761028829849:}else if (var_x == "yearc"){
+1761028829851:x_label = "year of construction"
+1761028829853:}else if (var_x == "rentsqm"){
+1761028829855:x_label = "area in sqm"
+1761028829857:}
+1761028829860:ggplot(data, aes(x = .data[[var_x]], y = .data[[var_y]]))+
+1761028829862:geom_point(alpha = 0.6, size = 1) +
+1761028829863:labs(
+1761028829865:title = "Net rent per sqm vs. area",
+1761028829866:x = x_label,
+1761028829867:y = "Net rent per sqm (Euro)"
+1761028829869:) +
+1761028829870:theme_minimal()
+1761028829871:}
+1761028829875:scatter1 <- scatterplot(rent99, "area", "rent")
+1761028830039:scatter2 <- scatterplot(rent99, "rentsqm", "area")
+1761028830198:scatter3 <- scatterplot(rent99, "yearc", "rent")
+1761028830327:print(scatter1)
+1761028830637:print(scatter2)
+1761043931696:# ---------------->
+1761043931697:# Package
+1761043931698:# ---------------->
+1761043931698:library(gamlss.data)
+1761043931699:library(ggplot2)
+1761043931700:library(gridExtra)
+1761043931700:library(dplyr)
+1761043931701:glimpse(rent99)
+1761043935755:# =============================================================================>
+1761043935755:# (a). Reconstruct the histograms and kernel density estimates below
+1761043935756:# =============================================================================>
+1761043935756:data(rent99)
+1761043935758:rent99 <- as.data.frame(rent99)
+1761043935762:# Rent for sqm ----------------->
+1761043935763:rent99$rentsqm <- rent99$rent / rent99$area
+1761043935767:# Define the variables to plot --------------->
+1761043935767:vars <- c("rent", "rentsqm", "area", "yearc")
+1761043935769:# Create a reusable function ----------------->
+1761043935769:hist <- function(data, var) {
+1761043935770:if (var == "yearc") {
+1761043935770:x_label <- "year of construction"
+1761043935771:} else if (var == "area") {
+1761043935771:x_label <- "area in sqm"
+1761043935772:} else if (var == "rentsqm") {
+1761043935772:x_label <- "net rent per sqm in Euro"
+1761043935773:} else {  # var == "rent"
+1761043935773:x_label <- "net rent in Euro"
+1761043935773:}
+1761043935774:ggplot(data, aes(x = .data[[var]])) +
+1761043935774:geom_histogram(aes(y = ..density..), bins = 30, color = "black", fill = "lightgray") +
+1761043935775:geom_density(color = "red", linewidth = 0.5) +
+1761043935775:labs(
+1761043935775:title = paste("Hist. and Kernel Density:", var),
+1761043935776:x = x_label,
+1761043935776:y = "Estimate Density"
+1761043935776:) +
+1761043935777:theme_minimal()
+1761043935777:}
+1761043935778:# Create plots --------------->
+1761043935778:p1 <- hist(rent99, "rent")
+1761043935875:p2 <- hist(rent99, "rentsqm")
+1761043935961:p3 <- hist(rent99, "area")
+1761043936037:p4 <- hist(rent99, "yearc")
+1761043936115:# Display all ---------------->
+1761043936115:library(gridExtra)
+1761043936116:grid.arrange(p1, p2, p3, p4, ncol = 2)
+1761043939164:# =============================================================================>
+1761043939165:# (b). Reconstruct the scatter plots below.
+1761043939166:# =============================================================================>
+1761043939167:scatterplot <- function(data, var_x, var_y){
+1761043939168:if (var_x == "area"){
+1761043939169:x_label = "area in sqm"
+1761043939170:}else if (var_x == "yearc"){
+1761043939170:x_label = "year of construction"
+1761043939171:}else if (var_x == "rentsqm"){
+1761043939171:x_label = "area in sqm"
+1761043939172:}
+1761043939172:ggplot(data, aes(x = .data[[var_x]], y = .data[[var_y]]))+
+1761043939173:geom_point(alpha = 0.6, size = 1) +
+1761043939173:labs(
+1761043939174:title = "Net rent per sqm vs. area",
+1761043939174:x = x_label,
+1761043939174:y = "Net rent per sqm (Euro)"
+1761043939175:) +
+1761043939175:theme_minimal()
+1761043939176:}
+1761043939177:scatter1 <- scatterplot(rent99, "area", "rent")
+1761043939250:scatter2 <- scatterplot(rent99, "area", "rentsqm")
+1761043939340:scatter3 <- scatterplot(rent99, "yearc", "rent")
+1761043939410:scatter4 <- scatterplot(rent99, "yearc")
+1761043956048:scatter4 <- scatterplot(rent99, "yearc", "rentsqm")
+1761043959670:# =============================================================================>
+1761043959672:# (b). Reconstruct the scatter plots below.
+1761043959673:# =============================================================================>
+1761043959674:scatterplot <- function(data, var_x, var_y){
+1761043959675:if (var_x == "area"){
+1761043959676:x_label = "area in sqm"
+1761043959677:}else if (var_x == "yearc"){
+1761043959678:x_label = "year of construction"
+1761043959678:}else if (var_x == "rentsqm"){
+1761043959679:x_label = "area in sqm"
+1761043959679:}
+1761043959680:ggplot(data, aes(x = .data[[var_x]], y = .data[[var_y]]))+
+1761043959680:geom_point(alpha = 0.6, size = 1) +
+1761043959680:labs(
+1761043959681:title = "Net rent per sqm vs. area",
+1761043959682:x = x_label,
+1761043959682:y = "Net rent per sqm (Euro)"
+1761043959683:) +
+1761043959684:theme_minimal()
+1761043959685:}
+1761043959686:scatter1 <- scatterplot(rent99, "area", "rent")
+1761043959760:scatter2 <- scatterplot(rent99, "area", "rentsqm")
+1761043959846:scatter3 <- scatterplot(rent99, "yearc", "rent")
+1761043959917:scatter4 <- scatterplot(rent99, "yearc", "rentsqm")
+1761043959987:print(scatter1)
+1761043960169:print(scatter2)
+1761044062703:# =============================================================================>
+1761044062704:# (b). Reconstruct the scatter plots below.
+1761044062705:# =============================================================================>
+1761044062706:# A resuable function of scatterplot Rent99 ----------->
+1761044062707:scatterplot <- function(data, var_x, var_y){
+1761044062708:if (var_x == "area"){
+1761044062708:x_label = "area in sqm"
+1761044062709:}else if (var_x == "yearc"){
+1761044062709:x_label = "year of construction"
+1761044062710:}else if (var_x == "rentsqm"){
+1761044062710:x_label = "area in sqm"
+1761044062711:}
+1761044062712:ggplot(data, aes(x = .data[[var_x]], y = .data[[var_y]]))+
+1761044062712:geom_point(alpha = 0.6, size = 1) +
+1761044062713:labs(
+1761044062713:title = "Net rent per sqm vs. area",
+1761044062713:x = x_label,
+1761044062714:y = "Net rent per sqm (Euro)"
+1761044062714:) +
+1761044062715:theme_minimal()
+1761044062715:}
+1761044062716:scatter1 <- scatterplot(rent99, "area", "rent")
+1761044062816:scatter2 <- scatterplot(rent99, "area", "rentsqm")
+1761044062903:scatter3 <- scatterplot(rent99, "yearc", "rent")
+1761044062975:scatter4 <- scatterplot(rent99, "yearc", "rentsqm")
+1761044063046:grid.arrange(scatter1, scatter2, scatter3, scatter4, ncol = 2, nrow =2)
+1761044824152:# ==============================================================================>
+1761044824153:# Cluster scatter plot below
+1761044824154:# Recontruct Average net rent (left) and net rent per sqm (right) plus/minus one       # standard deviation versus area and year of construction
+1761044824154:# ==============================================================================>
+1761044824155:# ------------------> function
+1761044824156:cluster_scatter <- function(data, x, y){
+1761044824156:main <- data %>%
+1761044824157:group_by(x) %>%
+1761044824157:summarise(
+1761044824158:y_mean = mean(y, na.rm = TRUE),
+1761044824158:y_sd = sd(y, na.rm = TRUE),
+1761044824159:n() = n,
+1761044847513:# ==============================================================================>
+1761044847513:# Cluster scatter plot below
+1761044847514:# Recontruct Average net rent (left) and net rent per sqm (right) plus/minus one       # standard deviation versus area and year of construction
+1761044847514:# ==============================================================================>
+1761044847515:# ------------------> function
+1761044847517:cluster_scatter <- function(data, x, y){
+1761044847519:main <- data %>%
+1761044847520:group_by(x) %>%
+1761044847521:summarise(
+1761044847522:y_mean = mean(y, na.rm = TRUE),
+1761044847522:y_sd = sd(y, na.rm = TRUE),
+1761044847523:n() = n,
+1761044856909:# ==============================================================================>
+1761044856910:# Cluster scatter plot below
+1761044856910:# Recontruct Average net rent (left) and net rent per sqm (right) plus/minus one       # standard deviation versus area and year of construction
+1761044856911:# ==============================================================================>
+1761044856912:# ------------------> function
+1761044856912:cluster_scatter <- function(data, x, y){
+1761044856913:main <- data %>%
+1761044856913:group_by(x) %>%
+1761044856914:summarise(
+1761044856915:y_mean = mean(y, na.rm = TRUE),
+1761044856916:y_sd = sd(y, na.rm = TRUE),
+1761044856916:.groups = "new",
+1761044856917:)
+1761044856918:# ----------------------------------> Define min and max
+1761044856919:y_min = y_mean - y_sd
+1761044856919:y_max = y_mean + y_sd
+1761044856920:ggplot(main, aes(x = x, y = y_mean))+
+1761044856921:geom_point(size = 1)+
+1761044856921:geom_errorbar(aes(y_min, y_max), width = 0.5)+
+1761044856922:labs(title = title,
+1761044856923:x = x,
+1761044856923:y = y) +
+1761044856924:theme_minimal() +
+1761044856924:theme(plot.title = element_text(hjust = 0.5))
+1761044856925:}
+1761044930147:print(cluster1)
+1761044933317:# ==============================================================================>
+1761044933318:# Cluster scatter plot below
+1761044933320:# Recontruct Average net rent (left) and net rent per sqm (right) plus/minus one       # standard deviation versus area and year of construction
+1761044933322:# ==============================================================================>
+1761044933324:# ------------------> function
+1761044933325:cluster_scatter <- function(data, x, y, title){
+1761044933327:main <- data %>%
+1761044933331:group_by(x) %>%
+1761044933334:summarise(
+1761044933334:y_mean = mean(y, na.rm = TRUE),
+1761044933335:y_sd = sd(y, na.rm = TRUE),
+1761044933335:.groups = "new",
+1761044933336:)
+1761044933337:# ----------------------------------> Define min and max
+1761044933338:y_min = y_mean - y_sd
+1761044933338:y_max = y_mean + y_sd
+1761044933339:ggplot(main, aes(x = x, y = y_mean))+
+1761044933340:geom_point(size = 1)+
+1761044933340:geom_errorbar(aes(y_min, y_max), width = 0.5)+
+1761044933341:labs(title = title,
+1761044933341:x = x,
+1761044933342:y = y) +
+1761044933342:theme_minimal() +
+1761044933343:theme(plot.title = element_text(hjust = 0.5))
+1761044933343:}
+1761044933345:cluster1 <- cluster_scatter(rent99, "area", "rent", "Average net rent vs. area")
+1761044949249:# ==============================================================================>
+1761044949250:# Cluster scatter plot below
+1761044949251:# Recontruct Average net rent (left) and net rent per sqm (right) plus/minus one       # standard deviation versus area and year of construction
+1761044949251:# ==============================================================================>
+1761044949252:# ------------------> function
+1761044949252:cluster_scatter <- function(data, x, y, title){
+1761044949253:main <- data %>%
+1761044949253:group_by(!!x) %>%
+1761044949254:summarise(
+1761044949254:y_mean = mean(y, na.rm = TRUE),
+1761044949254:y_sd = sd(y, na.rm = TRUE),
+1761044949255:.groups = "new",
+1761044949255:)
+1761044949256:# ----------------------------------> Define min and max
+1761044949257:y_min = y_mean - y_sd
+1761044949257:y_max = y_mean + y_sd
+1761044949258:ggplot(main, aes(x = x, y = y_mean))+
+1761044949259:geom_point(size = 1)+
+1761044949259:geom_errorbar(aes(y_min, y_max), width = 0.5)+
+1761044949259:labs(title = title,
+1761044949260:x = x,
+1761044949260:y = y) +
+1761044949261:theme_minimal() +
+1761044949261:theme(plot.title = element_text(hjust = 0.5))
+1761044949262:}
+1761044949264:cluster1 <- cluster_scatter(rent99, "area", "rent", "Average net rent vs. area")
+1761044972426:# ==============================================================================>
+1761044972427:# Cluster scatter plot below
+1761044972428:# Recontruct Average net rent (left) and net rent per sqm (right) plus/minus one       # standard deviation versus area and year of construction
+1761044972429:# ==============================================================================>
+1761044972430:# ------------------> function
+1761044972430:cluster_scatter <- function(data, x, y, title){
+1761044972431:main <- data %>%
+1761044972431:group_by(!!x) %>%
+1761044972432:summarise(
+1761044972433:y_mean = mean(y, na.rm = TRUE),
+1761044972433:y_sd = sd(y, na.rm = TRUE),
+1761044972434:.groups = "drop",
+1761044972434:)
+1761044972435:# ----------------------------------> Define min and max
+1761044972436:y_min = y_mean - y_sd
+1761044972437:y_max = y_mean + y_sd
+1761044972437:ggplot(main, aes(x = x, y = y_mean))+
+1761044972438:geom_point(size = 1)+
+1761044972438:geom_errorbar(aes(y_min, y_max), width = 0.5)+
+1761044972439:labs(title = title,
+1761044972439:x = x,
+1761044972440:y = y) +
+1761044972440:theme_minimal() +
+1761044972440:theme(plot.title = element_text(hjust = 0.5))
+1761044972441:}
+1761044972442:cluster1 <- cluster_scatter(rent99, "area", "rent", "Average net rent vs. area")
+1761045118673:# ==============================================================================>
+1761045118674:# Cluster scatter plot below
+1761045118675:# Recontruct Average net rent (left) and net rent per sqm (right) plus/minus one       # standard deviation versus area and year of construction
+1761045118675:# ==============================================================================>
+1761045118676:# ------------------> function
+1761045118677:cluster_scatter <- function(data, x, y, title){
+1761045118677:x_main = sym(x) # --------------> unquote
+1761045118678:y_main = sym(y)
+1761045118678:main <- data %>%
+1761045118678:group_by(!!x_main) %>%
+1761045118679:summarise(
+1761045118679:y_mean = mean(!!y_main, na.rm = TRUE),
+1761045118680:y_sd = sd(y, na.rm = TRUE),
+1761045118680:.groups = "drop",
+1761045118681:)
+1761045118682:# ----------------------------------> Define min and max
+1761045118683:y_min = y_mean - y_sd
+1761045118683:y_max = y_mean + y_sd
+1761045118684:ggplot(main, aes(x = x, y = y_mean))+
+1761045118685:geom_point(size = 1)+
+1761045118685:geom_errorbar(aes(y_min, y_max), width = 0.5)+
+1761045118686:labs(title = title,
+1761045118686:x = x,
+1761045118686:y = y) +
+1761045118687:theme_minimal() +
+1761045118687:theme(plot.title = element_text(hjust = 0.5))
+1761045118688:}
+1761045118690:cluster1 <- cluster_scatter(rent99, "area", "rent", "Average net rent vs. area")
+1761045134465:# ==============================================================================>
+1761045134466:# Cluster scatter plot below
+1761045134467:# Recontruct Average net rent (left) and net rent per sqm (right) plus/minus one       # standard deviation versus area and year of construction
+1761045134468:# ==============================================================================>
+1761045134469:# ------------------> function
+1761045134469:cluster_scatter <- function(data, x, y, title){
+1761045134470:x_main = sym(x) # --------------> unquote
+1761045134470:y_main = sym(y)
+1761045134471:main <- data %>%
+1761045134471:group_by(!!x_main) %>%
+1761045134472:summarise(
+1761045134472:y_mean = mean(!!y_main, na.rm = TRUE),
+1761045134473:y_sd = sd(!!y_main, na.rm = TRUE),
+1761045134473:.groups = "drop",
+1761045134473:)
+1761045134474:# ----------------------------------> Define min and max
+1761045134475:y_min = y_mean - y_sd
+1761045134475:y_max = y_mean + y_sd
+1761045134476:ggplot(main, aes(x = x, y = y_mean))+
+1761045134477:geom_point(size = 1)+
+1761045134478:geom_errorbar(aes(y_min, y_max), width = 0.5)+
+1761045134482:labs(title = title,
+1761045134483:x = x,
+1761045134484:y = y) +
+1761045134485:theme_minimal() +
+1761045134486:theme(plot.title = element_text(hjust = 0.5))
+1761045134487:}
+1761045134489:cluster1 <- cluster_scatter(rent99, "area", "rent", "Average net rent vs. area")
+1761045161392:# ==============================================================================>
+1761045161394:# Cluster scatter plot below
+1761045161395:# Recontruct Average net rent (left) and net rent per sqm (right) plus/minus one       # standard deviation versus area and year of construction
+1761045161395:# ==============================================================================>
+1761045161396:# ------------------> function
+1761045161397:cluster_scatter <- function(data, x, y, title){
+1761045161397:x_main = sym(x) # --------------> unquote
+1761045161398:y_main = sym(y)
+1761045161398:main <- data %>%
+1761045161399:group_by(!!x_main) %>%
+1761045161399:summarise(
+1761045161400:y_mean = mean(!!y_main, na.rm = TRUE),
+1761045161400:y_sd = sd(!!y_main, na.rm = TRUE),
+1761045161401:.groups = "drop",
+1761045161401:)
+1761045161402:# ----------------------------------> Define min and max
+1761045161403:y_min = y_mean - y_sd
+1761045161403:y_max = y_mean + y_sd
+1761045161404:ggplot(main, aes(x = x, y = y_mean))+
+1761045161405:geom_point(size = 1)+
+1761045161405:geom_errorbar(aes(y_min, y_max), width = 0.5)+
+1761045161406:labs(title = title,
+1761045161406:x = x,
+1761045161407:y = y) +
+1761045161407:theme_minimal() +
+1761045161408:theme(plot.title = element_text(hjust = 0.5))
+1761045161408:}
+1761045161410:cluster1 <- cluster_scatter(rent99, "area", "rent", "Average net rent vs. area")
+1761045210055:# ==============================================================================>
+1761045210056:# Cluster scatter plot below
+1761045210057:# Recontruct Average net rent (left) and net rent per sqm (right) plus/minus one       # standard deviation versus area and year of construction
+1761045210058:# ==============================================================================>
+1761045210059:# ------------------> function
+1761045210060:cluster_scatter <- function(data, x, y, title){
+1761045210061:x_main = sym(x) # --------------> unquote
+1761045210062:y_main = sym(y)
+1761045210062:main <- data %>%
+1761045210063:group_by(!!x_main) %>%
+1761045210063:summarise(
+1761045210064:y_mean = mean(!!y_main, na.rm = TRUE),
+1761045210064:y_sd = sd(!!y_main, na.rm = TRUE),
+1761045210064:.groups = "drop",
+1761045210065:)
+1761045210066:# ----------------------------------> Define min and max
+1761045210067:y_min = y_mean - y_sd
+1761045210067:y_max = y_mean + y_sd
+1761045210068:ggplot(main, aes(x = !!x_main, y = y_mean))+
+1761045210069:geom_point(size = 1)+
+1761045210069:geom_errorbar(aes(y_min, y_max), width = 0.5)+
+1761045210070:labs(title = title,
+1761045210070:x = x,
+1761045210071:y = y) +
+1761045210071:theme_minimal() +
+1761045210071:theme(plot.title = element_text(hjust = 0.5))
+1761045210072:}
+1761045210074:cluster1 <- cluster_scatter(rent99, "area", "rent", "Average net rent vs. area")
+1761045334208:cluster1 <- cluster_scatter(rent99, "rent", "area", "abc" )
+1761045336900:# ==============================================================================>
+1761045336902:# Cluster scatter plot below
+1761045336904:# Recontruct Average net rent (left) and net rent per sqm (right) plus/minus one       # standard deviation versus area and year of construction
+1761045336905:# ==============================================================================>
+1761045336907:# ------------------> function
+1761045336908:cluster_scatter <- function(data, x, y, title) {
+1761045336908:# Summarize: group by x, compute mean and sd of y
+1761045336909:main <- data %>%
+1761045336910:group_by(.data[[x]]) %>%
+1761045336911:summarise(
+1761045336911:y_mean = mean(.data[[y]], na.rm = TRUE),
+1761045336912:y_sd   = sd(.data[[y]], na.rm = TRUE),
+1761045336912:.groups = "drop"
+1761045336913:) %>%
+1761045336914:mutate(
+1761045336915:ymin = y_mean - y_sd,
+1761045336916:ymax = y_mean + y_sd
+1761045336916:)
+1761045336918:# Plot
+1761045336918:ggplot(main, aes(x = .data[[x]], y = y_mean)) +
+1761045336919:geom_point(size = 1.5) +
+1761045336920:geom_errorbar(aes(ymin = ymin, ymax = ymax), width = 0.5) +
+1761045336921:labs(
+1761045336921:title = title,
+1761045336922:x = x,
+1761045336923:y = paste("Average", y)
+1761045336924:) +
+1761045336924:theme_minimal() +
+1761045336925:theme(plot.title = element_text(hjust = 0.5))
+1761045336925:}
+1761045336927:cluster1 <- cluster_scatter(rent99, "rent", "area", "abc" )
+1761045345468:# ==============================================================================>
+1761045345469:# Cluster scatter plot below
+1761045345470:# Recontruct Average net rent (left) and net rent per sqm (right) plus/minus one       # standard deviation versus area and year of construction
+1761045345470:# ==============================================================================>
+1761045345471:# ------------------> function
+1761045345471:cluster_scatter <- function(data, x, y, title) {
+1761045345472:# Summarize: group by x, compute mean and sd of y
+1761045345472:main <- data %>%
+1761045345473:group_by(.data[[x]]) %>%
+1761045345473:summarise(
+1761045345474:y_mean = mean(.data[[y]], na.rm = TRUE),
+1761045345474:y_sd   = sd(.data[[y]], na.rm = TRUE),
+1761045345475:.groups = "drop"
+1761045345475:) %>%
+1761045345476:mutate(
+1761045345476:ymin = y_mean - y_sd,
+1761045345476:ymax = y_mean + y_sd
+1761045345477:)
+1761045345478:# Plot
+1761045345478:ggplot(main, aes(x = .data[[x]], y = y_mean)) +
+1761045345479:geom_point(size = 1.5) +
+1761045345479:geom_errorbar(aes(ymin = ymin, ymax = ymax), width = 0.5) +
+1761045345480:labs(
+1761045345480:title = title,
+1761045345481:x = x,
+1761045345481:y = paste("Average", y)
+1761045345482:) +
+1761045345482:theme_minimal() +
+1761045345483:theme(plot.title = element_text(hjust = 0.5))
+1761045345483:}
+1761045345485:cluster1 <- cluster_scatter(rent99, "rent", "area", "abc" )
+1761045345678:print(cluster1)
+1761045511496:# ==============================================================================>
+1761045511496:# Cluster scatter plot below
+1761045511497:# Recontruct Average net rent (left) and net rent per sqm (right) plus/minus one       # standard deviation versus area and year of construction
+1761045511497:# ==============================================================================>
+1761045511499:# Define function (already correct!)
+1761045511499:cluster_scatter <- function(data, x, y, title) {
+1761045511500:main <- data %>%
+1761045511500:group_by(.data[[x]]) %>%
+1761045511501:summarise(
+1761045511501:y_mean = mean(.data[[y]], na.rm = TRUE),
+1761045511502:y_sd   = sd(.data[[y]], na.rm = TRUE),
+1761045511502:.groups = "drop"
+1761045511503:) %>%
+1761045511503:mutate(
+1761045511504:ymin = y_mean - y_sd,
+1761045511504:ymax = y_mean + y_sd
+1761045511504:)
+1761045511505:ggplot(main, aes(x = .data[[x]], y = y_mean)) +
+1761045511506:geom_point(size = 1.5) +
+1761045511506:geom_errorbar(aes(ymin = ymin, ymax = ymax), width = 0.5) +
+1761045511507:labs(
+1761045511508:title = title,
+1761045511508:x = x,
+1761045511509:y = paste("Average", y)
+1761045511510:) +
+1761045511510:theme_minimal() +
+1761045511511:theme(plot.title = element_text(hjust = 0.5))
+1761045511511:}
+1761045511513:# Create all 4 plots
+1761045511513:p1 <- cluster_scatter(rent99, "area", "rent", "Average net rent vs. area")
+1761045511654:p2 <- cluster_scatter(rent99, "area", "rentsqm", "Average net rent per sqm vs. area")
+1761045511753:p3 <- cluster_scatter(rent99, "yearc", "rent", "Average net rent vs. year of construction")
+1761045511844:p4 <- cluster_scatter(rent99, "yearc", "rentsqm", "Average net rent per sqm vs. year of const.")
+1761045511925:# Arrange in 2x2 grid
+1761045511925:grid.arrange(p1, p2, p3, p4, ncol = 2)
+1761045645283:ggplot(Galton, aes(x = parent, y = child)) +
+1761045645284:geom_point(alpha = 0.25, size = 1) +
+1761045645284:geom_smooth(method = "lm", se = FALSE, color = "red", linewidth = 0.5) +
+1761045645285:labs(
+1761045645285:title = "Scatter Plot and Regression Line",
+1761045645286:x = "Mid-Parent Height (inches)",
+1761045645286:y = "Child Height (inches)"
+1761045645287:) +
+1761045645287:theme_minimal()
+1761045650924:ggplot(Galton, aes(x = parent, y = child)) +
+1761045650924:geom_point(alpha = 0.25, size = 5) +
+1761045650925:geom_smooth(method = "lm", se = FALSE, color = "red", linewidth = 0.5) +
+1761045650925:labs(
+1761045650926:title = "Scatter Plot and Regression Line",
+1761045650926:x = "Mid-Parent Height (inches)",
+1761045650927:y = "Child Height (inches)"
+1761045650927:) +
+1761045650928:theme_minimal()
+1761045660938:ggplot(Galton, aes(x = parent, y = child)) +
+1761045660938:geom_point(alpha = 1, size = 4) +
+1761045660939:geom_smooth(method = "lm", se = FALSE, color = "red", linewidth = 0.5) +
+1761045660940:labs(
+1761045660940:title = "Scatter Plot and Regression Line",
+1761045660941:x = "Mid-Parent Height (inches)",
+1761045660941:y = "Child Height (inches)"
+1761045660942:) +
+1761045660942:theme_minimal()
+1761045774817:# ===================================================================================>
+1761045774817:# (d). Reconstruct the box plots and smooth density estimators below.
+1761045774818:# ===================================================================================>
+1761045774818:rent99 <- rent99 %>%
+1761045774819:mutate(
+1761045774819:location_label = case_when(
+1761045774820:location == 1 ~ "average",
+1761045774820:location == 2 ~ "good",
+1761045774821:location == 3 ~ "top"
+1761045774821:)
+1761045774822:)
+1761045774838:# ------------------> Panel 1: Boxplot of rentsqm by location
+1761045774839:p1 <- ggplot(rent99, aes(x = factor(location), y = rentsqm)) +
+1761045774840:geom_boxplot(fill = "lightgray", color = "black") +
+1761045774841:labs(
+1761045774843:title = "Boxplots of net rent per sqm by location",
+1761045774844:x = "location",
+1761045774845:y = "net rent per sqm"
+1761045774845:) +
+1761045774846:theme_minimal()
+1761045774939:# ------------------> Panel 2: Density curves by location
+1761045774940:p2 <- ggplot(rent99, aes(x = rentsqm, color = location_label)) +
+1761045774941:geom_density(linewidth = 1, show.legend = TRUE) +
+1761045774941:scale_color_manual(
+1761045774942:name = "",
+1761045774942:values = c("average" = "black", "good" = "blue", "top" = "red"),
+1761045774943:guide = guide_legend(override.aes = list(linetype = c(1, 2, 3)))
+1761045774943:) +
+1761045774944:labs(
+1761045774944:title = "Density of net rent per sqm by location",
+1761045774945:x = "net rent per sqm",
+1761045774945:y = "estimated density"
+1761045774946:) +
+1761045774946:theme_minimal() +
+1761045774947:theme(legend.position = c(0.9, 0.9))
+1761045775142:# Arrange side-by-side
+1761045775143:grid.arrange(p1, p2, ncol = 2, widths = c(1, 1.2))
+1761045789438:grid.arrange(p1, p2, ncol = 2, widths = c(1, 1.5))
+1761045824930:grid.arrange(box_plot, density, ncol = 2, widths = c(1, 1.5))
+1761045827512:# ===================================================================================>
+1761045827513:# (d). Reconstruct the box plots and smooth density estimators below.
+1761045827514:# ===================================================================================>
+1761045827515:rent99 <- rent99 %>%
+1761045827516:mutate(
+1761045827517:location_label = case_when(
+1761045827518:location == 1 ~ "average",
+1761045827519:location == 2 ~ "good",
+1761045827520:location == 3 ~ "top"
+1761045827521:)
+1761045827521:)
+1761045827528:# ------------------> Panel 1: Boxplot of rentsqm by location
+1761045827529:box_plot <- ggplot(rent99, aes(x = factor(location), y = rentsqm)) +
+1761045827529:geom_boxplot(fill = "lightgray", color = "black") +
+1761045827530:labs(
+1761045827530:title = "Boxplots of net rent per sqm by location",
+1761045827531:x = "location",
+1761045827531:y = "net rent per sqm"
+1761045827532:) +
+1761045827532:theme_minimal()
+1761045827613:# ------------------> Panel 2: Density curves by location
+1761045827614:density <- ggplot(rent99, aes(x = rentsqm, color = location_label)) +
+1761045827617:geom_density(linewidth = 1, show.legend = TRUE) +
+1761045827618:scale_color_manual(
+1761045827619:name = "",
+1761045827620:values = c("average" = "black", "good" = "blue", "top" = "red"),
+1761045827621:guide = guide_legend(override.aes = list(linetype = c(1, 2, 3)))
+1761045827622:) +
+1761045827622:labs(
+1761045827623:title = "Density of net rent per sqm by location",
+1761045827623:x = "net rent per sqm",
+1761045827624:y = "estimated density"
+1761045827625:) +
+1761045827626:theme_minimal() +
+1761045827627:theme(legend.position = c(0.9, 0.9))
+1761045827719:grid.arrange(box_plot, density, ncol = 2, widths = c(1, 1.5))
+1761045905152:install.packages("alr4") #for the first time you need to install the package
+1761045959464:library(alr4)
+1761045959926:data(fuel2001)
+1761045959928:fuel2001<-data.frame(fuel2001)
+1761045979257:# Packages ---------------------------------->
+1761045979258:library(alr4)
+1761045979259:data(fuel2001)
+1761045979260:fuel2001<-data.frame(fuel2001)
+1761046091309:# Packages ---------------------------------->
+1761046091310:library(alr4)
+1761046091311:data(fuel2001)
+1761046091312:fuel2001<-data.frame(fuel2001)
+1761046091324:print(fuel2001)
+1761046284663:# ============================================================================>
+1761046284664:# (a). Create 3 more following variables and add to the fuel data consumption.
+1761046284666:# • Fuel: 1000×FuelC/Pop
+1761046284667:# • Dlic: 1000×Drivers/Pop
+1761046284668:# • log(Miles): natural logarithm of Miles
+1761046284670:# ============================================================================>
+1761046284671:fuel2001$Fuel <- 1000 * fuel2001$FuelC / fuel2001$Pop
+1761046284677:fuel2001$Dlic <- 1000 * fuel2001$Drivers / fuel2001$Pop
+1761046284683:fuel2001$log <- log(fuel2001$Miles)
+1761046284690:summary(fuel2001$Fuel)
+1761046284692:summary(fuel2001$Dlic)
+1761046284693:summary(fuel2001$logMiles)
+1761046418294:# Correlation matrix + scatterplots
+1761046418295:ggpairs(fuel_numeric,
+1761046418296:lower = list(continuous = wrap("points", alpha = 0.6, size = 0.8)),
+1761046418297:diag = list(continuous = wrap("barDiag", bins = 15)),
+1761046418297:upper = list(continuous = wrap("cor", size = 3))) +
+1761046418298:theme_minimal()
+1761046429629:# ================================================================================>
+1761046429630:# b. Based on the goal of the task
+1761046429631:# • Define response variable
+1761046429632:# • Study the overview of each variable by using initial descriptive and graphical univariate analysis
+1761046429632:# • Construct the correlation plots across the variables
+1761046429633:# • Visualize the relation between response variables and predictor variables.
+1761046429633:# ================================================================================>
+1761046429634:# Reshape data for plotting
+1761046429635:library(tidyr)
+1761046429687:fuel_long <- fuel_numeric %>%
+1761046429688:select(-Fuel) %>%
+1761046429689:pivot_longer(everything(), names_to = "Predictor", values_to = "Value") %>%
+1761046429691:mutate(Fuel = fuel2001$Fuel)
+1761046443743:# Plot
+1761046443745:ggplot(fuel_long, aes(x = Value, y = Fuel)) +
+1761046443746:geom_point(alpha = 0.7) +
+1761046443747:geom_smooth(method = "loess", color = "red", se = FALSE) +
+1761046443749:facet_wrap(~ Predictor, scales = "free_x") +
+1761046443750:labs(
+1761046443751:title = "Fuel Consumption vs. Predictors",
+1761046443753:x = "Predictor Value",
+1761046443754:y = "Fuel (per 1000 people)"
+1761046443756:) +
+1761046443757:theme_minimal()
+1761046460055:install.packages(c("alr4", "dplyr", "ggplot2", "GGally", "gridExtra", "tidyr"))
+1761046464179:install.packages(c("alr4", "dplyr", "ggplot2", "GGally", "gridExtra", "tidyr"))
+1761046470767:install.packages(c("alr4", "dplyr", "ggplot2", "GGally", "gridExtra", "tidyr"))
+1761046474740:install.packages(c("alr4", "dplyr", "ggplot2", "GGally", "gridExtra", "tidyr"))
+1761046477947:install.packages(c("alr4", "dplyr", "ggplot2", "GGally", "gridExtra", "tidyr"))
+1761046479185:install.packages(c("alr4", "dplyr", "ggplot2", "GGally", "gridExtra", "tidyr"))
+1761046572684:# ================================================================================>
+1761046572684:# b. Based on the goal of the task
+1761046572685:# • Define response variable
+1761046572685:# • Study the overview of each variable by using initial descriptive and graphical univariate analysis
+1761046572686:# • Construct the correlation plots across the variables
+1761046572687:# • Visualize the relation between response variables and predictor variables.
+1761046572687:# ================================================================================>
+1761046572688:# ------------------> Load required packages
+1761046572688:library(alr4)      # for fuel2001 data
+1761046573657:library(dplyr)     # data manipulation
+1761046573664:library(ggplot2)   # plotting
+1761046573677:library(GGally)    # correlation plots (ggpairs)
+1761046573720:library(gridExtra) # arrange multiple plots
+1761046573728:library(tidyr)     # data reshaping (for faceted plot)
+1761046573734:# ------------------> Load and prepare data
+1761046573735:data(fuel2001)
+1761046573736:fuel2001 <- fuel2001 %>%
+1761046573737:mutate(
+1761046573737:Fuel = 1000 * FuelC / Pop,        # fuel per 1000 people
+1761046573738:Dlic = 1000 * Drivers / Pop,      # drivers per 1000 people
+1761046573738:logMiles = log(Miles)             # log of miles
+1761046573739:)
+1761046573749:# ------------------> Define response variable
+1761046573749:# Response: Fuel (fuel consumption per 1000 people)
+1761046573750:response <- "Fuel"
+1761046573751:# ------------------> Step 1: Univariate descriptive analysis
+1761046573751:# Key variables for analysis
+1761046573752:vars_eda <- c("Fuel", "Dlic", "logMiles", "Income", "Tax")
+1761046573753:# Print numerical summaries
+1761046573754:cat("=== Numerical Summaries ===\n")
+1761046573754:print(summary(fuel2001[vars_eda]))
+1761046573759:# Create univariate plots (histogram + density)
+1761046573759:plots_uni <- lapply(vars_eda, function(var) {
+1761046573759:ggplot(fuel2001, aes(x = .data[[var]])) +
+1761046573760:geom_histogram(aes(y = ..density..), bins = 15,
+1761046573760:fill = "lightgray", color = "black") +
+1761046573761:geom_density(color = "red", linewidth = 1) +
+1761046573761:labs(title = paste("Distribution of", var), x = var, y = "Density") +
+1761046573762:theme_minimal()
+1761046573762:})
+1761046574151:# Display univariate plots
+1761046574152:cat("\n--- Displaying univariate distributions ---\n")
+1761046574153:do.call(grid.arrange, c(plots_uni, ncol = 2))
+1761046575140:# ------------------> Step 2: Correlation plot
+1761046575141:# Select numeric variables (exclude State)
+1761046575143:fuel_numeric <- fuel2001 %>%
+1761046575143:select(all_of(vars_eda))
+1761046575150:cat("\n=== Correlation Matrix Plot ===\n")
+1761046575152:ggpairs(fuel_numeric,
+1761046575152:lower = list(continuous = wrap("points", alpha = 0.6, size = 0.8)),
+1761046575153:diag = list(continuous = wrap("barDiag", bins = 15)),
+1761046575153:upper = list(continuous = wrap("cor", size = 3, digits = 2))) +
+1761046575154:theme_minimal()
+1761046576660:# ------------------> Step 3: Response vs. Predictors
+1761046576662:# Option A: Faceted scatter plot (compact)
+1761046576663:fuel_long <- fuel_numeric %>%
+1761046576664:select(-Fuel) %>%
+1761046576665:pivot_longer(everything(), names_to = "Predictor", values_to = "Value") %>%
+1761046576665:mutate(Fuel = fuel2001$Fuel)
+1761046604795:# ================================================================================>
+1761046604795:# b. Based on the goal of the task
+1761046604796:# • Define response variable
+1761046604796:# • Study the overview of each variable by using initial descriptive and graphical univariate analysis
+1761046604797:# • Construct the correlation plots across the variables
+1761046604797:# • Visualize the relation between response variables and predictor variables.
+1761046604798:# ================================================================================>
+1761046604798:# ------------------> Load required packages
+1761046604798:library(alr4)      # for fuel2001 data
+1761046604799:library(dplyr)     # data manipulation
+1761046604800:library(ggplot2)   # plotting
+1761046604800:library(GGally)    # correlation plots (ggpairs)
+1761046604801:library(gridExtra) # arrange multiple plots
+1761046604801:library(tidyr)     # data reshaping (for faceted plot)
+1761046604802:# ------------------> Load and prepare data
+1761046604802:data(fuel2001)
+1761046604804:fuel2001 <- fuel2001 %>%
+1761046604805:mutate(
+1761046604805:Fuel = 1000 * FuelC / Pop,        # fuel per 1000 people
+1761046604806:Dlic = 1000 * Drivers / Pop,      # drivers per 1000 people
+1761046604806:logMiles = log(Miles)             # log of miles
+1761046604807:)
+1761046604813:# ------------------> Define response variable
+1761046604814:# Response: Fuel (fuel consumption per 1000 people)
+1761046604814:response <- "Fuel"
+1761046604815:# ------------------> Step 1: Univariate descriptive analysis
+1761046604816:# Key variables for analysis
+1761046604816:vars_eda <- c("Fuel", "Dlic", "logMiles", "Income", "Tax")
+1761046604818:# Print numerical summaries
+1761046604818:cat("=== Numerical Summaries ===\n")
+1761046604819:print(summary(fuel2001[vars_eda]))
+1761046604823:# Create univariate plots (histogram + density)
+1761046604824:plots_uni <- lapply(vars_eda, function(var) {
+1761046604825:ggplot(fuel2001, aes(x = .data[[var]])) +
+1761046604826:geom_histogram(aes(y = ..density..), bins = 15,
+1761046604828:fill = "lightgray", color = "black") +
+1761046604830:geom_density(color = "red", linewidth = 1) +
+1761046604832:labs(title = paste("Distribution of", var), x = var, y = "Density") +
+1761046604836:theme_minimal()
+1761046604837:})
+1761046605270:# Display univariate plots
+1761046605271:cat("\n--- Displaying univariate distributions ---\n")
+1761046605271:do.call(grid.arrange, c(plots_uni, ncol = 2))
+1761046606131:# ------------------> Step 2: Correlation plot
+1761046606132:# Select numeric variables (exclude State)
+1761046606134:fuel_numeric <- fuel2001 %>%
+1761046606134:select(all_of(vars_eda))
+1761046606140:cat("\n=== Correlation Matrix Plot ===\n")
+1761046606141:ggpairs(fuel_numeric,
+1761046606142:lower = list(continuous = wrap("points", alpha = 0.6, size = 0.8)),
+1761046606143:diag = list(continuous = wrap("barDiag", bins = 15)),
+1761046606143:upper = list(continuous = wrap("cor", size = 3, digits = 2))) +
+1761046606144:theme_minimal()
+1761046607694:# ------------------> Step 3: Response vs. Predictors
+1761046607697:# Option A: Faceted scatter plot (compact)
+1761046607699:fuel_long <- fuel_numeric %>%
+1761046607700:select(-Fuel) %>%
+1761046607700:pivot_longer(everything(), names_to = "Predictor", values_to = "Value") %>%
+1761046607700:mutate(Fuel = fuel2001$Fuel)
+1761046657527:# ================================================================================>
+1761046657528:# b. Based on the goal of the task
+1761046657529:# • Define response variable
+1761046657530:# • Study the overview of each variable by using initial descriptive and graphical univariate analysis
+1761046657531:# • Construct the correlation plots across the variables
+1761046657532:# • Visualize the relation between response variables and predictor variables.
+1761046657532:# ================================================================================>
+1761046657533:# ------------------> Load required packages
+1761046657534:library(alr4)      # for fuel2001 data
+1761046657535:library(dplyr)     # data manipulation
+1761046657536:library(ggplot2)   # plotting
+1761046657537:library(GGally)    # correlation plots (ggpairs)
+1761046657538:library(gridExtra) # arrange multiple plots
+1761046657539:library(tidyr)     # data reshaping (for faceted plot)
+1761046657540:# ------------------> Load and prepare data
+1761046657541:data(fuel2001)
+1761046657543:fuel2001 <- fuel2001 %>%
+1761046657544:mutate(
+1761046657545:Fuel = 1000 * FuelC / Pop,        # fuel per 1000 people
+1761046657545:Dlic = 1000 * Drivers / Pop,      # drivers per 1000 people
+1761046657546:logMiles = log(Miles)             # log of miles
+1761046657547:)
+1761046657552:# ------------------> Define response variable
+1761046657553:# Response: Fuel (fuel consumption per 1000 people)
+1761046657553:response <- "Fuel"
+1761046657555:# ------------------> Step 1: Univariate descriptive analysis
+1761046657555:# Key variables for analysis
+1761046657556:vars_eda <- c("Fuel", "Dlic", "logMiles", "Income", "Tax")
+1761046657557:# Print numerical summaries
+1761046657557:cat("=== Numerical Summaries ===\n")
+1761046657558:print(summary(fuel2001[vars_eda]))
+1761046657561:# Create univariate plots (histogram + density)
+1761046657562:plots_uni <- lapply(vars_eda, function(var) {
+1761046657562:ggplot(fuel2001, aes(x = .data[[var]])) +
+1761046657563:geom_histogram(aes(y = ..density..), bins = 15,
+1761046657563:fill = "lightgray", color = "black") +
+1761046657563:geom_density(color = "red", linewidth = 1) +
+1761046657564:labs(title = paste("Distribution of", var), x = var, y = "Density") +
+1761046657564:theme_minimal()
+1761046657565:})
+1761046657960:# Display univariate plots
+1761046657961:cat("\n--- Displaying univariate distributions ---\n")
+1761046657962:do.call(grid.arrange, c(plots_uni, ncol = 2))
+1761046658751:# ------------------> Step 2: Correlation plot
+1761046658753:# Select numeric variables (exclude State)
+1761046658754:fuel_numeric <- fuel2001 %>%
+1761046658754:select(all_of(vars_eda))
+1761046658766:cat("\n=== Correlation Matrix Plot ===\n")
+1761046658767:ggpairs(fuel_numeric,
+1761046658768:lower = list(continuous = wrap("points", alpha = 0.6, size = 0.8)),
+1761046658768:diag = list(continuous = wrap("barDiag", bins = 15)),
+1761046658769:upper = list(continuous = wrap("cor", size = 3, digits = 2))) +
+1761046658769:theme_minimal()
+1761046660146:# ------------------> Step 3: Response vs. Predictors
+1761046660148:# Option A: Faceted scatter plot (compact)
+1761046660149:fuel_long <- fuel_numeric %>%
+1761046660150:select(-Fuel) %>%
+1761046660150:pivot_longer(everything(), names_to = "Predictor", values_to = "Value") %>%
+1761046660151:mutate(Fuel = fuel2001$Fuel)
+1761046740439:# ================================================================================>
+1761046740439:# b. Based on the goal of the task
+1761046740440:# • Define response variable
+1761046740441:# • Study the overview of each variable by using initial descriptive and graphical univariate analysis
+1761046740441:# • Construct the correlation plots across the variables
+1761046740442:# • Visualize the relation between response variables and predictor variables.
+1761046740442:# ================================================================================>
+1761046740443:# ------------------> Load required packages
+1761046740444:library(alr4)      # for fuel2001 data
+1761046740444:library(dplyr)     # data manipulation
+1761046740445:library(ggplot2)   # plotting
+1761046740446:library(GGally)    # correlation plots (ggpairs)
+1761046740446:library(gridExtra) # arrange multiple plots
+1761046740447:library(tidyr)     # data reshaping (for faceted plot)
+1761046740448:# ------------------> Load and prepare data
+1761046740448:fuel_long <- fuel2001 %>%
+1761046740449:select(Fuel, Dlic, logMiles, Income, Tax) %>%   # include Fuel here
+1761046740449:pivot_longer(
+1761046740450:cols = c(Dlic, logMiles, Income, Tax),        # predictors only
+1761046740451:names_to = "Predictor",
+1761046740451:values_to = "Value"
+1761046740452:)
+1761046740466:p_facet <- ggplot(fuel_long, aes(x = Value, y = Fuel)) +
+1761046740467:geom_point(alpha = 0.7, size = 1.5) +
+1761046740467:geom_smooth(method = "loess", color = "red", se = FALSE, linewidth = 1) +
+1761046740468:facet_wrap(~ Predictor, scales = "free_x") +
+1761046740468:labs(
+1761046740469:title = "Fuel Consumption vs. Predictors",
+1761046740470:x = "Predictor Value",
+1761046740470:y = "Fuel (per 1000 people)"
+1761046740471:) +
+1761046740471:theme_minimal()
+1761046740619:# ------------------> Define response variable
+1761046740620:# Response: Fuel (fuel consumption per 1000 people)
+1761046740620:response <- "Fuel"
+1761046740622:# ------------------> Step 1: Univariate descriptive analysis
+1761046740622:# Key variables for analysis
+1761046740623:vars_eda <- c("Fuel", "Dlic", "logMiles", "Income", "Tax")
+1761046740624:# Print numerical summaries
+1761046740625:cat("=== Numerical Summaries ===\n")
+1761046740625:print(summary(fuel2001[vars_eda]))
+1761046740629:# Create univariate plots (histogram + density)
+1761046740630:plots_uni <- lapply(vars_eda, function(var) {
+1761046740630:ggplot(fuel2001, aes(x = .data[[var]])) +
+1761046740631:geom_histogram(aes(y = ..density..), bins = 15,
+1761046740631:fill = "lightgray", color = "black") +
+1761046740632:geom_density(color = "red", linewidth = 1) +
+1761046740632:labs(title = paste("Distribution of", var), x = var, y = "Density") +
+1761046740633:theme_minimal()
+1761046740633:})
+1761046741093:# Display univariate plots
+1761046741094:cat("\n--- Displaying univariate distributions ---\n")
+1761046741095:do.call(grid.arrange, c(plots_uni, ncol = 2))
+1761046741897:# ------------------> Step 2: Correlation plot
+1761046741900:# Select numeric variables (exclude State)
+1761046741902:fuel_numeric <- fuel2001 %>%
+1761046741903:select(all_of(vars_eda))
+1761046741908:cat("\n=== Correlation Matrix Plot ===\n")
+1761046741910:ggpairs(fuel_numeric,
+1761046741911:lower = list(continuous = wrap("points", alpha = 0.6, size = 0.8)),
+1761046741912:diag = list(continuous = wrap("barDiag", bins = 15)),
+1761046741912:upper = list(continuous = wrap("cor", size = 3, digits = 2))) +
+1761046741912:theme_minimal()
+1761046743331:# ------------------> Step 3: Response vs. Predictors
+1761046743333:# Option A: Faceted scatter plot (compact)
+1761046743335:fuel_long <- fuel_numeric %>%
+1761046743336:select(-Fuel) %>%
+1761046743336:pivot_longer(everything(), names_to = "Predictor", values_to = "Value") %>%
+1761046743337:mutate(Fuel = fuel2001$Fuel)
+1761046857301:# Load required libraries
+1761046857302:library(alr4)
+1761046857302:library(ggplot2)
+1761046857303:library(GGally)
+1761046857304:library(dplyr)
+1761046857304:library(corrplot)
+1761046886140:# Load required libraries
+1761046886141:install.packages(corrplot)
+1761046886143:library(alr4)
+1761046886144:library(ggplot2)
+1761046886146:library(GGally)
+1761046886147:library(dplyr)
+1761046886148:library(corrplot)
+1761046901616:install.packages("corrplot")
+1761046918815:# Load required libraries
+1761046918816:library(alr4)
+1761046918816:library(ggplot2)
+1761046918817:library(GGally)
+1761046918818:library(dplyr)
+1761046918818:library(corrplot)
+1761046918829:# Load and prepare the data
+1761046918829:data(fuel2001)
+1761046918831:fuel2001 <- data.frame(fuel2001)
+1761046918836:# Part a: Create new variables
+1761046918836:fuel2001 <- fuel2001 %>%
+1761046918837:mutate(
+1761046918837:Fuel = 1000 * FuelC / Pop,      # Fuel consumption per capita
+1761046918838:Dlic = 1000 * Drivers / Pop,    # Licensed drivers per 1000 population
+1761046918838:log_Miles = log(Miles)          # Natural logarithm of Miles
+1761046918838:)
+1761046918845:# Part b: Analysis
+1761046918846:## Define response variable
+1761046918846:# Based on the task goal, Fuel (fuel consumption per capita) is the response variable
+1761046918847:response_var <- "Fuel"
+1761046918848:## Study overview of each variable - Descriptive statistics
+1761046918849:cat("Descriptive Statistics:\n")
+1761046918849:print(summary(fuel2001))
+1761046918855:# Function to create univariate plots
+1761046918856:create_univariate_plots <- function(data) {
+1761046918856:# Select numeric variables for univariate analysis
+1761046918857:numeric_vars <- c("Fuel", "Dlic", "Income", "log_Miles", "Pop", "Tax")
+1761046918858:# Create histograms for each variable
+1761046918858:plots <- list()
+1761046918859:for (var in numeric_vars) {
+1761046918859:plots[[var]] <- ggplot(data, aes(x = .data[[var]])) +
+1761046918860:geom_histogram(bins = 15, fill = "skyblue", color = "black", alpha = 0.7) +
+1761046918860:labs(title = paste("Distribution of", var),
+1761046918860:x = var, y = "Frequency") +
+1761046918861:theme_minimal()
+1761046918862:}
+1761046918862:# Print all plots
+1761046918863:for (plot in plots) {
+1761046918863:print(plot)
+1761046918864:}
+1761046918864:}
+1761046918865:# Create univariate plots
+1761046918866:cat("\nCreating Univariate Plots...\n")
+1761046918867:create_univariate_plots(fuel2001)
+1761046919692:## Correlation plots across variables
+1761046919693:cat("\nCorrelation Analysis:\n")
+1761046919695:# Select variables for correlation analysis
+1761046919699:cor_vars <- fuel2001 %>%
+1761046919700:select(Fuel, Dlic, Income, log_Miles, Pop, Tax)
+1761046919705:# Calculate correlation matrix
+1761046919707:cor_matrix <- cor(cor_vars)
+1761046919709:print(round(cor_matrix, 3))
+1761046919712:# Create correlation plot
+1761046919713:corrplot(cor_matrix, method = "color", type = "upper",
+1761046919714:order = "hclust", tl.col = "black", tl.srt = 45,
+1761046919714:title = "Correlation Plot of Fuel Consumption Variables",
+1761046919714:mar = c(0, 0, 1, 0))
+1761046919756:# Alternative correlation plot using ggpairs
+1761046919757:cat("\nCreating Detailed Correlation Plot...\n")
+1761046919758:ggpairs(cor_vars) +
+1761046919759:labs(title = "Pairwise Relationships - Fuel Consumption Data") +
+1761046919759:theme_minimal()
+1761046921909:## Visualize relationship between response and predictor variables
+1761046921912:cat("\nCreating Response-Predictor Relationship Plots...\n")
+1761046921914:# Create scatter plots of Fuel vs each predictor
+1761046921916:predictors <- c("Dlic", "Income", "log_Miles", "Tax")
+1761046921920:response_predictor_plots <- list()
+1761046921923:for (predictor in predictors) {
+1761046921924:response_predictor_plots[[predictor]] <- ggplot(fuel2001, aes(x = .data[[predictor]], y = Fuel)) +
+1761046921924:geom_point(size = 2, alpha = 0.7, color = "steelblue") +
+1761046921925:geom_smooth(method = "lm", se = TRUE, color = "red", linetype = "solid") +
+1761046921925:labs(title = paste("Fuel Consumption vs", predictor),
+1761046921926:x = predictor, y = "Fuel Consumption per Capita") +
+1761046921927:theme_minimal()
+1761046921927:}
+1761046922294:# Print all response-predictor plots
+1761046922298:for (plot in response_predictor_plots) {
+1761046922298:print(plot)
+1761046922299:}
+1761046923245:# Additional detailed analysis
+1761046923246:cat("\n=== ADDITIONAL INSIGHTS ===\n")
+1761046923247:# State with highest and lowest fuel consumption
+1761046923248:max_fuel_state <- fuel2001[which.max(fuel2001$Fuel), "row.names"]
+1761046923249:min_fuel_state <- fuel2001[which.min(fuel2001$Fuel), "row.names"]
+1761046923251:cat("State with highest fuel consumption per capita:", max_fuel_state, "\n")
+1761046923252:cat("State with lowest fuel consumption per capita:", min_fuel_state, "\n")
+1761046923253:# Basic linear model to see initial relationships
+1761046923254:cat("\nInitial Linear Model Summary:\n")
+1761046923255:initial_model <- lm(Fuel ~ Dlic + Income + log_Miles + Tax, data = fuel2001)
+1761046923272:print(summary(initial_model))
+1761046923291:# Create a comprehensive summary table
+1761046923292:cat("\nComprehensive Summary Table:\n")
+1761046923293:summary_table <- fuel2001 %>%
+1761046923294:select(Fuel, Dlic, Income, log_Miles, Tax) %>%
+1761046923294:summarise(across(everything(),
+1761046923295:list(Mean = mean, SD = sd, Min = min, Max = max),
+1761046923296:.names = "{.col}_{.fn}")) %>%
+1761046923296:round(3)
+1761046923310:print(summary_table)
+1761047191835:# ==============================>
+1761047191835:# Task 1: Galton Inheredity
+1761047191836:# ==============================>
+1761047191837:# (a). Reconstruct the contingency table between the height of 928 adults children and the average height of their 205 set of parents.
+1761047191838:library(HistData)
+1761047191850:data(Galton)
+1761047191881:Galton <- data.frame(Galton)
+1761047191891:print(Galton)
+1761047192006:contigency_table <- table(Galton$parent, Galton$child)
+1761047192011:dim(contigency_table)
+1761047192012:print(contigency_table)
+1761047192024:# (b). Recontruct the scatter plot and regression line between the height of children and average height of parents
+1761047192025:library(ggplot2)
+1761047192027:ggplot(Galton, aes(x = parent, y = child)) +
+1761047192029:geom_point(alpha = 1, size = 4) +
+1761047192031:geom_smooth(method = "lm", se = FALSE, color = "red", linewidth = 0.5) +
+1761047192032:labs(
+1761047192033:title = "Scatter Plot and Regression Line",
+1761047192034:x = "Mid-Parent Height (inches)",
+1761047192035:y = "Child Height (inches)"
+1761047192036:) +
+1761047192037:theme_minimal()
+1761047192192:# ---------------->
+1761047192193:# Package
+1761047192194:# ---------------->
+1761047192194:library(gamlss.data)
+1761047192213:library(ggplot2)
+1761047192214:library(gridExtra)
+1761047192215:library(dplyr)
+1761047192216:glimpse(rent99)
+1761047192239:# =============================================================================>
+1761047192240:# (a). Reconstruct the histograms and kernel density estimates below
+1761047192240:# =============================================================================>
+1761047192241:data(rent99)
+1761047192243:rent99 <- as.data.frame(rent99)
+1761047192249:# Rent for sqm ----------------->
+1761047192250:rent99$rentsqm <- rent99$rent / rent99$area
+1761047192256:# Define the variables to plot --------------->
+1761047192256:vars <- c("rent", "rentsqm", "area", "yearc")
+1761047192258:# Create a reusable function ----------------->
+1761047192259:hist <- function(data, var) {
+1761047192260:if (var == "yearc") {
+1761047192260:x_label <- "year of construction"
+1761047192261:} else if (var == "area") {
+1761047192261:x_label <- "area in sqm"
+1761047192262:} else if (var == "rentsqm") {
+1761047192262:x_label <- "net rent per sqm in Euro"
+1761047192263:} else {  # var == "rent"
+1761047192264:x_label <- "net rent in Euro"
+1761047192264:}
+1761047192265:ggplot(data, aes(x = .data[[var]])) +
+1761047192265:geom_histogram(aes(y = ..density..), bins = 30, color = "black", fill = "lightgray") +
+1761047192266:geom_density(color = "red", linewidth = 0.5) +
+1761047192266:labs(
+1761047192267:title = paste("Hist. and Kernel Density:", var),
+1761047192268:x = x_label,
+1761047192268:y = "Estimate Density"
+1761047192269:) +
+1761047192269:theme_minimal()
+1761047192270:}
+1761047192271:# Create plots --------------->
+1761047192271:p1 <- hist(rent99, "rent")
+1761047192352:p2 <- hist(rent99, "rentsqm")
+1761047192459:p3 <- hist(rent99, "area")
+1761047192549:p4 <- hist(rent99, "yearc")
+1761047192632:# Display all ---------------->
+1761047192633:library(gridExtra)
+1761047192634:grid.arrange(p1, p2, p3, p4, ncol = 2)
+1761047193348:# =============================================================================>
+1761047193349:# (b). Reconstruct the scatter plots below.
+1761047193350:# =============================================================================>
+1761047193351:# A resuable function of scatterplot Rent99 ----------->
+1761047193351:scatterplot <- function(data, var_x, var_y){
+1761047193352:if (var_x == "area"){
+1761047193352:x_label = "area in sqm"
+1761047193353:}else if (var_x == "yearc"){
+1761047193353:x_label = "year of construction"
+1761047193354:}else if (var_x == "rentsqm"){
+1761047193354:x_label = "area in sqm"
+1761047193355:}
+1761047193356:ggplot(data, aes(x = .data[[var_x]], y = .data[[var_y]]))+
+1761047193356:geom_point(alpha = 0.6, size = 1) +
+1761047193357:labs(
+1761047193357:title = "Net rent per sqm vs. area",
+1761047193358:x = x_label,
+1761047193358:y = "Net rent per sqm (Euro)"
+1761047193359:) +
+1761047193359:theme_minimal()
+1761047193360:}
+1761047193361:scatter1 <- scatterplot(rent99, "area", "rent")
+1761047193462:scatter2 <- scatterplot(rent99, "area", "rentsqm")
+1761047193562:scatter3 <- scatterplot(rent99, "yearc", "rent")
+1761047193637:scatter4 <- scatterplot(rent99, "yearc", "rentsqm")
+1761047193737:grid.arrange(scatter1, scatter2, scatter3, scatter4, ncol = 2, nrow =2)
+1761047194513:# ==============================================================================>
+1761047194514:# Cluster scatter plot below
+1761047194515:# (c). Recontruct Average net rent (left) and net rent per sqm (right) plus/minus one
+1761047194516:# standard deviation versus area and year of construction
+1761047194516:# ==============================================================================>
+1761047194517:# Define function ---------------->
+1761047194518:cluster_scatter <- function(data, x, y, title) {
+1761047194518:main <- data %>%
+1761047194519:group_by(.data[[x]]) %>%
+1761047194519:summarise(
+1761047194520:y_mean = mean(.data[[y]], na.rm = TRUE),
+1761047194520:y_sd   = sd(.data[[y]], na.rm = TRUE),
+1761047194521:.groups = "drop"
+1761047194521:) %>%
+1761047194522:mutate(
+1761047194522:ymin = y_mean - y_sd,
+1761047194523:ymax = y_mean + y_sd
+1761047194523:)
+1761047194524:ggplot(main, aes(x = .data[[x]], y = y_mean)) +
+1761047194525:geom_point(size = 1.5) +
+1761047194525:geom_errorbar(aes(ymin = ymin, ymax = ymax), width = 0.5) +
+1761047194526:labs(
+1761047194526:title = title,
+1761047194527:x = x,
+1761047194527:y = paste("Average", y)
+1761047194528:) +
+1761047194528:theme_minimal() +
+1761047194529:theme(plot.title = element_text(hjust = 0.5))
+1761047194529:}
+1761047194530:p1 <- cluster_scatter(rent99, "area", "rent", "Average net rent vs. area")
+1761047194640:p2 <- cluster_scatter(rent99, "area", "rentsqm", "Average net rent per sqm vs. area")
+1761047194755:p3 <- cluster_scatter(rent99, "yearc", "rent", "Average net rent vs. year of construction")
+1761047194850:p4 <- cluster_scatter(rent99, "yearc", "rentsqm", "Average net rent per sqm vs. year of const.")
+1761047195156:grid.arrange(p1, p2, p3, p4, ncol = 2)
+1761047195749:# ===================================================================================>
+1761047195750:# (d). Reconstruct the box plots and smooth density estimators below.
+1761047195750:# ===================================================================================>
+1761047195751:rent99 <- rent99 %>%
+1761047195751:mutate(
+1761047195752:location_label = case_when(
+1761047195752:location == 1 ~ "average",
+1761047195753:location == 2 ~ "good",
+1761047195753:location == 3 ~ "top"
+1761047195754:)
+1761047195754:)
+1761047195761:# ------------------> Panel 1: Boxplot of rentsqm by location
+1761047195762:box_plot <- ggplot(rent99, aes(x = factor(location), y = rentsqm)) +
+1761047195762:geom_boxplot(fill = "lightgray", color = "black") +
+1761047195763:labs(
+1761047195763:title = "Boxplots of net rent per sqm by location",
+1761047195764:x = "location",
+1761047195764:y = "net rent per sqm"
+1761047195765:) +
+1761047195765:theme_minimal()
+1761047195842:# ------------------> Panel 2: Density curves by location
+1761047195843:density <- ggplot(rent99, aes(x = rentsqm, color = location_label)) +
+1761047195844:geom_density(linewidth = 1, show.legend = TRUE) +
+1761047195845:scale_color_manual(
+1761047195846:name = "",
+1761047195846:values = c("average" = "black", "good" = "blue", "top" = "red"),
+1761047195847:guide = guide_legend(override.aes = list(linetype = c(1, 2, 3)))
+1761047195847:) +
+1761047195848:labs(
+1761047195848:title = "Density of net rent per sqm by location",
+1761047195849:x = "net rent per sqm",
+1761047195849:y = "estimated density"
+1761047195850:) +
+1761047195850:theme_minimal() +
+1761047195851:theme(legend.position = c(0.9, 0.9))
+1761047195967:grid.arrange(box_plot, density, ncol = 2, widths = c(1, 1.5))
+1761047196189:# Packages ---------------------------------->
+1761047196190:library(alr4)
+1761047196190:data(fuel2001)
+1761047196192:fuel2001<-data.frame(fuel2001)
+1761047196196:print(fuel2001)
+1761047196203:# ============================================================================>
+1761047196204:# (a). Create 3 more following variables and add to the fuel data consumption.
+1761047196205:# • Fuel: 1000×FuelC/Pop
+1761047196205:# • Dlic: 1000×Drivers/Pop
+1761047196206:# • log(Miles): natural logarithm of Miles
+1761047196207:# ============================================================================>
+1761047196208:fuel2001$Fuel <- 1000 * fuel2001$FuelC / fuel2001$Pop
+1761047196212:fuel2001$Dlic <- 1000 * fuel2001$Drivers / fuel2001$Pop
+1761047196216:fuel2001$log <- log(fuel2001$Miles)
+1761047196220:summary(fuel2001$Fuel)
+1761047196222:summary(fuel2001$Dlic)
+1761047196223:summary(fuel2001$logMiles)
+1761047196228:# Define a new columb ====================================================>
+1761047196229:fuel2001 <- fuel2001 %>%
+1761047196230:mutate(
+1761047196231:Fuel = 1000 * FuelC / Pop,      # Fuel consumption per capita
+1761047196232:Dlic = 1000 * Drivers / Pop,    # Licensed drivers per 1000 population
+1761047196232:log_Miles = log(Miles)          # Natural logarithm of Miles
+1761047196233:)
+1761047196238:# ===================================================================================>
+1761047196239:# (b). Define response variable Based on the task goal, Fuel (fuel consumption per  capital is the response variable
+1761047196240:# ===================================================================================>
+1761047196240:response_var <- "Fuel"
+1761047196241:# ===================================================================>
+1761047196242:# Study overview of each variable - Descriptive statistics
+1761047196242:# ===================================================================>
+1761047196243:cat("Descriptive Statistics:\n")
+1761047196244:print(summary(fuel2001))
+1761047196249:# Function to create univariate plots
+1761047196250:create_univariate_plots <- function(data) {
+1761047196251:# Select numeric variables for univariate analysis
+1761047196251:numeric_vars <- c("Fuel", "Dlic", "Income", "log_Miles", "Pop", "Tax")
+1761047196252:# Create histograms for each variable
+1761047196253:plots <- list()
+1761047196253:for (var in numeric_vars) {
+1761047196254:plots[[var]] <- ggplot(data, aes(x = .data[[var]])) +
+1761047196254:geom_histogram(bins = 15, fill = "skyblue", color = "black", alpha = 0.7) +
+1761047196255:labs(title = paste("Distribution of", var),
+1761047196255:x = var, y = "Frequency") +
+1761047196256:theme_minimal()
+1761047196256:}
+1761047196257:for (plot in plots) {
+1761047196257:print(plot)
+1761047196258:}
+1761047196258:}
+1761047196259:# Create univariate plots
+1761047196260:cat("\nCreating Univariate Plots...\n")
+1761047196261:create_univariate_plots(fuel2001)
+1761047196959:# Correlation plots across variables
+1761047196960:cat("\nCorrelation Analysis:\n")
+1761047196961:# Select variables for correlation analysis
+1761047196963:cor_vars <- fuel2001 %>%
+1761047196963:select(Fuel, Dlic, Income, log_Miles, Pop, Tax)
+1761047196972:# Calculate correlation matrix
+1761047196973:cor_matrix <- cor(cor_vars)
+1761047196976:print(round(cor_matrix, 3))
+1761047196979:# Create correlation plot
+1761047196980:corrplot(cor_matrix, method = "color", type = "upper",
+1761047196980:order = "hclust", tl.col = "black", tl.srt = 45,
+1761047196981:title = "Correlation Plot of Fuel Consumption Variables",
+1761047196981:mar = c(0, 0, 1, 0))
+1761047197012:# Alternative correlation plot using ggpairs
+1761047197013:cat("\nCreating Detailed Correlation Plot...\n")
+1761047197014:ggpairs(cor_vars) +
+1761047197014:labs(title = "Pairwise Relationships - Fuel Consumption Data") +
+1761047197015:theme_minimal()
+1761047198978:## Visualize relationship between response and predictor variables
+1761047198981:cat("\nCreating Response-Predictor Relationship Plots...\n")
+1761047198983:# Create scatter plots of Fuel vs each predictor
+1761047198986:predictors <- c("Dlic", "Income", "log_Miles", "Tax")
+1761047198989:response_predictor_plots <- list()
+1761047198992:for (predictor in predictors) {
+1761047198993:response_predictor_plots[[predictor]] <- ggplot(fuel2001, aes(x = .data[[predictor]], y = Fuel)) +
+1761047198993:geom_point(size = 2, alpha = 0.7, color = "steelblue") +
+1761047198994:geom_smooth(method = "lm", se = TRUE, color = "red", linetype = "solid") +
+1761047198995:labs(title = paste("Fuel Consumption vs", predictor),
+1761047198996:x = predictor, y = "Fuel Consumption per Capita") +
+1761047198996:theme_minimal()
+1761047198997:}
+1761047199317:# Print all response-predictor plots
+1761047199320:for (plot in response_predictor_plots) {
+1761047199321:print(plot)
+1761047199322:}
+1761047200151:# Additional detailed analysis
+1761047200153:cat("\n=== ADDITIONAL INSIGHTS ===\n")
+1761047200154:# State with highest and lowest fuel consumption
+1761047200155:max_fuel_state <- fuel2001[which.max(fuel2001$Fuel), "row.names"]
+1761047200156:min_fuel_state <- fuel2001[which.min(fuel2001$Fuel), "row.names"]
+1761047200157:cat("State with highest fuel consumption per capita:", max_fuel_state, "\n")
+1761047200158:cat("State with lowest fuel consumption per capita:", min_fuel_state, "\n")
+1761047200163:# Basic linear model to see initial relationships
+1761047200164:cat("\nInitial Linear Model Summary:\n")
+1761047200166:initial_model <- lm(Fuel ~ Dlic + Income + log_Miles + Tax, data = fuel2001)
+1761047200186:print(summary(initial_model))
+1761047200193:# Create a comprehensive summary table
+1761047200195:cat("\nComprehensive Summary Table:\n")
+1761047200196:summary_table <- fuel2001 %>%
+1761047200196:select(Fuel, Dlic, Income, log_Miles, Tax) %>%
+1761047200197:summarise(across(everything(),
+1761047200197:list(Mean = mean, SD = sd, Min = min, Max = max),
+1761047200198:.names = "{.col}_{.fn}")) %>%
+1761047200199:round(3)
+1761047200219:print(summary_table)
+1761047267650:# ==============================>
+1761047267651:# Task 1: Galton Inheredity
+1761047267652:# ==============================>
+1761047267653:# (a). Reconstruct the contingency table between the height of 928 adults children and the average height of their 205 set of parents.
+1761047267653:library(HistData)
+1761047267654:data(Galton)
+1761047267656:Galton <- data.frame(Galton)
+1761047267661:print(Galton)
+1761047267675:contigency_table <- table(Galton$parent, Galton$child)
+1761047267680:dim(contigency_table)
+1761047267681:print(contigency_table)
+1761047267694:# (b). Recontruct the scatter plot and regression line between the height of children and average height of parents
+1761047267695:library(ggplot2)
+1761047267696:ggplot(Galton, aes(x = parent, y = child)) +
+1761047267697:geom_point(alpha = 1, size = 4) +
+1761047267698:geom_smooth(method = "lm", se = FALSE, color = "red", linewidth = 0.5) +
+1761047267699:labs(
+1761047267700:title = "Scatter Plot and Regression Line",
+1761047267701:x = "Mid-Parent Height (inches)",
+1761047267702:y = "Child Height (inches)"
+1761047267703:) +
+1761047267703:theme_minimal()
+1761047267879:# ---------------->
+1761047267880:# Package
+1761047267881:# ---------------->
+1761047267882:library(gamlss.data)
+1761047267882:library(ggplot2)
+1761047267883:library(gridExtra)
+1761047267883:library(dplyr)
+1761047267884:glimpse(rent99)
+1761047267898:# =============================================================================>
+1761047267898:# (a). Reconstruct the histograms and kernel density estimates below
+1761047267899:# =============================================================================>
+1761047267900:data(rent99)
+1761047267901:rent99 <- as.data.frame(rent99)
+1761047267906:# Rent for sqm ----------------->
+1761047267907:rent99$rentsqm <- rent99$rent / rent99$area
+1761047267911:# Define the variables to plot --------------->
+1761047267912:vars <- c("rent", "rentsqm", "area", "yearc")
+1761047267913:# Create a reusable function ----------------->
+1761047267914:hist <- function(data, var) {
+1761047267915:if (var == "yearc") {
+1761047267915:x_label <- "year of construction"
+1761047267915:} else if (var == "area") {
+1761047267916:x_label <- "area in sqm"
+1761047267916:} else if (var == "rentsqm") {
+1761047267917:x_label <- "net rent per sqm in Euro"
+1761047267918:} else {  # var == "rent"
+1761047267918:x_label <- "net rent in Euro"
+1761047267919:}
+1761047267919:ggplot(data, aes(x = .data[[var]])) +
+1761047267920:geom_histogram(aes(y = ..density..), bins = 30, color = "black", fill = "lightgray") +
+1761047267920:geom_density(color = "red", linewidth = 0.5) +
+1761047267921:labs(
+1761047267921:title = paste("Hist. and Kernel Density:", var),
+1761047267922:x = x_label,
+1761047267922:y = "Estimate Density"
+1761047267923:) +
+1761047267924:theme_minimal()
+1761047267924:}
+1761047267926:# Create plots --------------->
+1761047267926:p1 <- hist(rent99, "rent")
+1761047268007:p2 <- hist(rent99, "rentsqm")
+1761047268097:p3 <- hist(rent99, "area")
+1761047268196:p4 <- hist(rent99, "yearc")
+1761047268272:# Display all ---------------->
+1761047268273:library(gridExtra)
+1761047268273:grid.arrange(p1, p2, p3, p4, ncol = 2)
+1761047268948:# =============================================================================>
+1761047268949:# (b). Reconstruct the scatter plots below.
+1761047268950:# =============================================================================>
+1761047268950:# A resuable function of scatterplot Rent99 ----------->
+1761047268951:scatterplot <- function(data, var_x, var_y){
+1761047268952:if (var_x == "area"){
+1761047268952:x_label = "area in sqm"
+1761047268953:}else if (var_x == "yearc"){
+1761047268953:x_label = "year of construction"
+1761047268954:}else if (var_x == "rentsqm"){
+1761047268954:x_label = "area in sqm"
+1761047268955:}
+1761047268955:ggplot(data, aes(x = .data[[var_x]], y = .data[[var_y]]))+
+1761047268956:geom_point(alpha = 0.6, size = 1) +
+1761047268956:labs(
+1761047268957:title = "Net rent per sqm vs. area",
+1761047268957:x = x_label,
+1761047268958:y = "Net rent per sqm (Euro)"
+1761047268958:) +
+1761047268960:theme_minimal()
+1761047268963:}
+1761047268966:scatter1 <- scatterplot(rent99, "area", "rent")
+1761047269044:scatter2 <- scatterplot(rent99, "area", "rentsqm")
+1761047269133:scatter3 <- scatterplot(rent99, "yearc", "rent")
+1761047269200:scatter4 <- scatterplot(rent99, "yearc", "rentsqm")
+1761047269289:grid.arrange(scatter1, scatter2, scatter3, scatter4, ncol = 2, nrow =2)
+1761047270015:# ==============================================================================>
+1761047270016:# Cluster scatter plot below
+1761047270017:# (c). Recontruct Average net rent (left) and net rent per sqm (right) plus/minus one
+1761047270017:# standard deviation versus area and year of construction
+1761047270018:# ==============================================================================>
+1761047270019:# Define function ---------------->
+1761047270019:cluster_scatter <- function(data, x, y, title) {
+1761047270020:main <- data %>%
+1761047270020:group_by(.data[[x]]) %>%
+1761047270021:summarise(
+1761047270021:y_mean = mean(.data[[y]], na.rm = TRUE),
+1761047270022:y_sd   = sd(.data[[y]], na.rm = TRUE),
+1761047270022:.groups = "drop"
+1761047270023:) %>%
+1761047270023:mutate(
+1761047270024:ymin = y_mean - y_sd,
+1761047270024:ymax = y_mean + y_sd
+1761047270025:)
+1761047270025:ggplot(main, aes(x = .data[[x]], y = y_mean)) +
+1761047270026:geom_point(size = 1.5) +
+1761047270026:geom_errorbar(aes(ymin = ymin, ymax = ymax), width = 0.5) +
+1761047270027:labs(
+1761047270028:title = title,
+1761047270028:x = x,
+1761047270029:y = paste("Average", y)
+1761047270030:) +
+1761047270030:theme_minimal() +
+1761047270031:theme(plot.title = element_text(hjust = 0.5))
+1761047270031:}
+1761047270033:p1 <- cluster_scatter(rent99, "area", "rent", "Average net rent vs. area")
+1761047270142:p2 <- cluster_scatter(rent99, "area", "rentsqm", "Average net rent per sqm vs. area")
+1761047270264:p3 <- cluster_scatter(rent99, "yearc", "rent", "Average net rent vs. year of construction")
+1761047270344:p4 <- cluster_scatter(rent99, "yearc", "rentsqm", "Average net rent per sqm vs. year of const.")
+1761047270439:grid.arrange(p1, p2, p3, p4, ncol = 2)
+1761047271100:# ===================================================================================>
+1761047271101:# (d). Reconstruct the box plots and smooth density estimators below.
+1761047271102:# ===================================================================================>
+1761047271103:rent99 <- rent99 %>%
+1761047271103:mutate(
+1761047271104:location_label = case_when(
+1761047271104:location == 1 ~ "average",
+1761047271105:location == 2 ~ "good",
+1761047271105:location == 3 ~ "top"
+1761047271106:)
+1761047271106:)
+1761047271113:# ------------------> Panel 1: Boxplot of rentsqm by location
+1761047271114:box_plot <- ggplot(rent99, aes(x = factor(location), y = rentsqm)) +
+1761047271114:geom_boxplot(fill = "lightgray", color = "black") +
+1761047271115:labs(
+1761047271115:title = "Boxplots of net rent per sqm by location",
+1761047271116:x = "location",
+1761047271116:y = "net rent per sqm"
+1761047271117:) +
+1761047271117:theme_minimal()
+1761047271206:# ------------------> Panel 2: Density curves by location
+1761047271207:density <- ggplot(rent99, aes(x = rentsqm, color = location_label)) +
+1761047271208:geom_density(linewidth = 1, show.legend = TRUE) +
+1761047271208:scale_color_manual(
+1761047271209:name = "",
+1761047271209:values = c("average" = "black", "good" = "blue", "top" = "red"),
+1761047271211:guide = guide_legend(override.aes = list(linetype = c(1, 2, 3)))
+1761047271214:) +
+1761047271215:labs(
+1761047271216:title = "Density of net rent per sqm by location",
+1761047271218:x = "net rent per sqm",
+1761047271218:y = "estimated density"
+1761047271219:) +
+1761047271220:theme_minimal() +
+1761047271220:theme(legend.position = c(0.9, 0.9))
+1761047271299:grid.arrange(box_plot, density, ncol = 2, widths = c(1, 1.5))
+1761047271592:# Packages ---------------------------------->
+1761047271593:library(alr4)
+1761047271593:data(fuel2001)
+1761047271595:fuel2001<-data.frame(fuel2001)
+1761047271600:print(fuel2001)
+1761047271609:# ============================================================================>
+1761047271609:# (a). Create 3 more following variables and add to the fuel data consumption.
+1761047271610:# • Fuel: 1000×FuelC/Pop
+1761047271611:# • Dlic: 1000×Drivers/Pop
+1761047271611:# • log(Miles): natural logarithm of Miles
+1761047271612:# ============================================================================>
+1761047271613:fuel2001$Fuel <- 1000 * fuel2001$FuelC / fuel2001$Pop
+1761047271626:fuel2001$Dlic <- 1000 * fuel2001$Drivers / fuel2001$Pop
+1761047271632:fuel2001$log <- log(fuel2001$Miles)
+1761047271638:summary(fuel2001$Fuel)
+1761047271640:summary(fuel2001$Dlic)
+1761047271642:summary(fuel2001$logMiles)
+1761047271647:# Define a new columb ====================================================>
+1761047271648:fuel2001 <- fuel2001 %>%
+1761047271649:mutate(
+1761047271649:Fuel = 1000 * FuelC / Pop,      # Fuel consumption per capita
+1761047271650:Dlic = 1000 * Drivers / Pop,    # Licensed drivers per 1000 population
+1761047271651:log_Miles = log(Miles)          # Natural logarithm of Miles
+1761047271652:)
+1761047271660:# ===================================================================================>
+1761047271661:# (b). Define response variable Based on the task goal, Fuel (fuel consumption per  capital is the response variable
+1761047271661:# ===================================================================================>
+1761047271662:response_var <- "Fuel"
+1761047271664:# ===================================================================>
+1761047271665:# Study overview of each variable - Descriptive statistics
+1761047271665:# ===================================================================>
+1761047271666:cat("Descriptive Statistics:\n")
+1761047271667:print(summary(fuel2001))
+1761047271673:# Function to create univariate plots
+1761047271674:create_univariate_plots <- function(data) {
+1761047271674:# Select numeric variables for univariate analysis
+1761047271675:numeric_vars <- c("Fuel", "Dlic", "Income", "log_Miles", "Pop", "Tax")
+1761047271676:# Create histograms for each variable
+1761047271677:plots <- list()
+1761047271678:for (var in numeric_vars) {
+1761047271678:plots[[var]] <- ggplot(data, aes(x = .data[[var]])) +
+1761047271679:geom_histogram(bins = 15, fill = "skyblue", color = "black", alpha = 0.7) +
+1761047271679:labs(title = paste("Distribution of", var),
+1761047271680:x = var, y = "Frequency") +
+1761047271681:theme_minimal()
+1761047271681:}
+1761047271682:for (plot in plots) {
+1761047271682:print(plot)
+1761047271683:}
+1761047271683:}
+1761047271685:# Create univariate plots
+1761047271685:cat("\nCreating Univariate Plots...\n")
+1761047271686:create_univariate_plots(fuel2001)
+1761047272426:# Correlation plots across variables
+1761047272427:cat("\nCorrelation Analysis:\n")
+1761047272428:# Select variables for correlation analysis
+1761047272429:cor_vars <- fuel2001 %>%
+1761047272430:select(Fuel, Dlic, Income, log_Miles, Pop, Tax)
+1761047272435:# Calculate correlation matrix
+1761047272436:cor_matrix <- cor(cor_vars)
+1761047272438:print(round(cor_matrix, 3))
+1761047272442:# Create correlation plot
+1761047272442:corrplot(cor_matrix, method = "color", type = "upper",
+1761047272443:order = "hclust", tl.col = "black", tl.srt = 45,
+1761047272444:title = "Correlation Plot of Fuel Consumption Variables",
+1761047272444:mar = c(0, 0, 1, 0))
+1761047272476:# Alternative correlation plot using ggpairs
+1761047272477:cat("\nCreating Detailed Correlation Plot...\n")
+1761047272478:ggpairs(cor_vars) +
+1761047272479:labs(title = "Pairwise Relationships - Fuel Consumption Data") +
+1761047272479:theme_minimal()
+1761047274704:## Visualize relationship between response and predictor variables
+1761047274706:cat("\nCreating Response-Predictor Relationship Plots...\n")
+1761047274709:# Create scatter plots of Fuel vs each predictor
+1761047274711:predictors <- c("Dlic", "Income", "log_Miles", "Tax")
+1761047274718:response_predictor_plots <- list()
+1761047274722:for (predictor in predictors) {
+1761047274723:response_predictor_plots[[predictor]] <- ggplot(fuel2001, aes(x = .data[[predictor]], y = Fuel)) +
+1761047274723:geom_point(size = 2, alpha = 0.7, color = "steelblue") +
+1761047274724:geom_smooth(method = "lm", se = TRUE, color = "red", linetype = "solid") +
+1761047274725:labs(title = paste("Fuel Consumption vs", predictor),
+1761047274725:x = predictor, y = "Fuel Consumption per Capita") +
+1761047274726:theme_minimal()
+1761047274727:}
+1761047275111:# Print all response-predictor plots
+1761047275115:for (plot in response_predictor_plots) {
+1761047275116:print(plot)
+1761047275117:}
+1761047276071:# Additional detailed analysis
+1761047276072:cat("\n=== ADDITIONAL INSIGHTS ===\n")
+1761047276073:# State with highest and lowest fuel consumption
+1761047276075:max_fuel_state <- fuel2001[which.max(fuel2001$Fuel), "row.names"]
+1761047276077:min_fuel_state <- fuel2001[which.min(fuel2001$Fuel), "row.names"]
+1761047276078:cat("State with highest fuel consumption per capita:", max_fuel_state, "\n")
+1761047276079:cat("State with lowest fuel consumption per capita:", min_fuel_state, "\n")
+1761047276080:# Basic linear model to see initial relationships
+1761047276081:cat("\nInitial Linear Model Summary:\n")
+1761047276082:initial_model <- lm(Fuel ~ Dlic + Income + log_Miles + Tax, data = fuel2001)
+1761047276099:print(summary(initial_model))
+1761047276112:# Create a comprehensive summary table
+1761047276114:cat("\nComprehensive Summary Table:\n")
+1761047276115:summary_table <- fuel2001 %>%
+1761047276116:select(Fuel, Dlic, Income, log_Miles, Tax) %>%
+1761047276117:summarise(across(everything(),
+1761047276117:list(Mean = mean, SD = sd, Min = min, Max = max),
+1761047276118:.names = "{.col}_{.fn}")) %>%
+1761047276119:round(3)
+1761047276135:print(summary_table)
