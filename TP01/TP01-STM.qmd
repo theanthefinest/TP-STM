@@ -21,7 +21,6 @@ data(Galton)
 
 Galton <- data.frame(Galton)
 
-print(Galton)
 ```
 
 ```{r}
@@ -38,7 +37,7 @@ print(contigency_table)
 library(ggplot2)
 
 ggplot(Galton, aes(x = parent, y = child)) +
-  geom_point(alpha = 1, size = 4) +
+  geom_point(alpha = 1, size = 2) +
   geom_smooth(method = "lm", se = FALSE, color = "red", linewidth = 0.5) +
   labs(
     title = "Scatter Plot and Regression Line",
@@ -269,7 +268,11 @@ summary(fuel2001$logMiles)
 plots
 
 ```{r}
+# ======= Packages ===========>
 
+library(corrplot)
+library(ggplot2)
+library(GGally)
 # Define a new columb ====================================================>
 
 fuel2001 <- fuel2001 %>%
@@ -384,3 +387,212 @@ summary_table <- fuel2001 %>%
 
 print(summary_table)
 ```
+
+### Section 2:  The nassCDS data
+
+Problem: In this section of the exam, we focus on the nassCDS data which is a US data from police-reported car crashes (1997-2002) in which there is a harmful event (people or property). Data are restricted to front-seat occupants, include only a subset of the variables recorded. More information about the dataset can be found using the following link: https://www.rdocumentation.org/packages/DAAG/versions/1.22/topics/nassCDS. The data is a part of the DAAG R package. To get an access to the data you first need to install the package.
+
+#### Question 1:
+
+```{r}
+
+# ================================================>
+# (1). How many individuals used seatbelt?
+# ================================================>
+library("DAAG")
+data(nassCDS)
+names(nassCDS)
+head(nassCDS)
+str(nassCDS)
+
+```
+
+```{r}
+
+belt <- sum(nassCDS$seatbelt == "belted" , na.rm = TRUE)
+cat("There are", {belt}, "individuals used seatbelt")
+
+```
+
+```{r}
+# =================================================================================>
+# What is the distribution of seatbelt usage across the accident’s outcome factor ? Produce a 2X2 table that shows the number of seatbelt users (belted/none) and accident’s outcome (alive/dead)?
+# =================================================================================>
+
+tbl <- table(nassCDS$seatbelt, nassCDS$dead)
+tbl
+```
+
+(3). Write a function that can be used to conduct inference for proportions in two independent populations. The null hypothesis is that there is no difference between the proportions in the two populations. Test the null hypothesis against a two sided alternative. The input of the function should be the 2X2 table in the previous item (Question 1.2) and the output should be the test statistic and the p value. Apply your function to test the null hypothesis that the proportion of deaths among individuals who used seatbelt is equal to the proportion of deaths among the individuals who did not use seatbelt.
+
+```{r}
+# Create a 2x2 table
+contingency_table <- table(nassCDS$seatbelt, nassCDS$dead)
+print("2x2 Contingency Table:")
+print(contingency_table)
+
+# More readable format
+cat("\nSeatbelt Usage vs Accident Outcome:\n")
+cat("           Alive   Dead\n")
+cat("belted    ", contingency_table["belted", "alive"], "    ", contingency_table["belted", "dead"], "\n")
+cat("none      ", contingency_table["none", "alive"], "    ", contingency_table["none", "dead"], "\n")
+```
+
+```{r}
+
+# H_{0} : p_{1} = p_{2} vs H_{a} : p_{1} != p_{2}
+# Function for two proportion z-test
+two_prop_test <- function(contingency_table) {
+  # Extract values from contingency table
+  n1 <- sum(contingency_table["belted", ])  # total belt users
+  n2 <- sum(contingency_table["none", ])    # total non-users
+  x1 <- contingency_table["belted", "dead"] # deaths among belt users
+  x2 <- contingency_table["none", "dead"]   # deaths among non-users
+  
+  # Calculate proportions
+  p1 <- x1 / n1
+  p2 <- x2 / n2
+  p_pool <- (x1 + x2) / (n1 + n2)
+  
+  # Calculate test statistic
+  z_stat <- (p1 - p2) / sqrt(p_pool * (1 - p_pool) * (1/n1 + 1/n2))
+  
+  # Calculate two-sided p-value
+  p_value <- 2 * (1 - pnorm(abs(z_stat)))
+  
+  # Return results
+  return(list(test_statistic = z_stat, p_value = p_value))
+}
+
+# Apply the function to our data
+test_results <- two_prop_test(contingency_table)
+cat("\nTwo Proportion Z-Test Results:\n")
+cat("Test Statistic:", test_results$test_statistic, "\n")
+cat("P-value:", test_results$p_value, "\n")
+
+# Interpretation
+if (test_results$p_value < 0.05) {
+  cat("Conclusion: Reject the null hypothesis - there is a significant difference in death proportions.\n")
+} else {
+  cat("Conclusion: Fail to reject the null hypothesis - no significant difference in death proportions.\n")
+}
+```
+
+```{r}
+
+
+# Create a barplot
+par(mfrow = c(1, 2))  # Set up side-by-side plots
+
+# Barplot 1: Counts by seatbelt usage and outcome
+barplot(contingency_table, 
+        main = "Seatbelt Usage by Accident Outcome",
+        xlab = "Accident Outcome", 
+        ylab = "Count",
+        col = c("lightblue", "lightcoral"),
+        legend = rownames(contingency_table),
+        beside = TRUE)
+
+# Barplot 2: Proportions (more informative)
+prop_table <- prop.table(contingency_table, margin = 1) * 100
+
+barplot(prop_table, 
+        main = "Death Rate by Seatbelt Usage (%)",
+        xlab = "Seatbelt Usage", 
+        ylab = "Percentage",
+        col = c("lightgreen", "salmon"),
+        legend = colnames(prop_table),
+        ylim = c(0, 100))
+
+# Reset plot parameters
+par(mfrow = c(1, 1))
+
+# Alternative visualization using ggplot2 (if preferred)
+if (require(ggplot2)) {
+  library(ggplot2)
+  
+  # Create a more polished plot
+  ggplot(as.data.frame(contingency_table), 
+         aes(x = Var1, y = Freq, fill = Var2)) +
+    geom_bar(stat = "identity", position = "dodge") +
+    labs(title = "Seatbelt Usage Distribution by Accident Outcome",
+         x = "Seatbelt Usage",
+         y = "Count",
+         fill = "Outcome") +
+    theme_minimal()
+}
+```
+
+#### Question 2: 
+
+1.  Mean and Standard Deviation of age by accident
+
+    ```{r}
+    # Calculate mean and standard deviation by group
+    age_stats <- aggregate(ageOFocc ~ dead, data = nassCDS, 
+                          FUN = function(x) c(mean = mean(x), sd = sd(x)))
+
+    # Display the results
+    cat("Mean and Standard Deviation of Age by Accident Outcome:\n")
+    for(i in 1:nrow(age_stats)) {
+      outcome <- age_stats$dead[i]
+      mean_age <- age_stats$ageOFocc[i, "mean"]
+      sd_age <- age_stats$ageOFocc[i, "sd"]
+      cat(outcome, ": Mean =", round(mean_age, 2), 
+          ", SD =", round(sd_age, 2), "\n")
+    }
+
+    # Alternative approach using tapply
+    cat("\nAlternative calculation using tapply:\n")
+    mean_age_by_outcome <- tapply(nassCDS$ageOFocc, nassCDS$dead, mean)
+    sd_age_by_outcome <- tapply(nassCDS$ageOFocc, nassCDS$dead, sd)
+
+    cat("Alive - Mean:", round(mean_age_by_outcome["alive"], 2), 
+        "SD:", round(sd_age_by_outcome["alive"], 2), "\n")
+    cat("Dead - Mean:", round(mean_age_by_outcome["dead"], 2), 
+        "SD:", round(sd_age_by_outcome["dead"], 2), "\n")
+    ```
+
+2.  Box plot and Data point
+
+    ```{r}
+    # Create boxplot with data points
+    par(mfrow = c(1, 1))
+    # Basic boxplot
+    boxplot(ageOFocc ~ dead, data = nassCDS,
+            main = "Distribution of Occupant Age by Accident Outcome",
+            xlab = "Accident Outcome",
+            ylab = "Age of Occupant",
+            col = c("lightgreen", "lightcoral"),
+            ylim = c(0, 100))
+    stripchart(ageOFocc ~ dead, data = nassCDS,
+               method = "jitter",
+               jitter = 0.2,
+               pch = 16,
+               col = adjustcolor("blue", alpha.f = 0.3),
+               vertical = TRUE,
+               add = TRUE)
+
+    # Add mean points
+    means <- tapply(nassCDS$ageOFocc, nassCDS$dead, mean)
+    points(1:2, means, pch = 18, col = "red", cex = 2)
+    text(1:2, means, labels = paste("Mean:", round(means, 1)), 
+         pos = 3, col = "red")
+    ```
+
+3.  Calculate 95% confidence interval for mean difference
+
+    ```{r}
+    t_test_result <- t.test(ageOFocc ~ dead, data = nassCDS, conf.level = 0.95)
+
+    cat("Two-Sample t-Test Results:\n")
+    print(t_test_result)
+
+    ci_lower <- t_test_result$conf.int[1]
+    ci_upper <- t_test_result$conf.int[2]
+    mean_diff <- t_test_result$estimate[1] - t_test_result$estimate[2]
+
+    cat("\n95% Confidence Interval for Mean Age Difference (Alive - Dead):\n")
+    cat("Mean difference:", round(mean_diff, 4), "\n")
+    cat("95% CI: [", round(ci_lower, 4), ", ", round(ci_upper, 4), "]\n")
+    ```
