@@ -1,0 +1,7 @@
+"0","    stripchart(ageOFocc ~ dead, data = nassCDS,"
+"0","               method = ""jitter"","
+"0","               jitter = 0.2,"
+"0","               pch = 16,"
+"0","               col = adjustcolor(""blue"", alpha.f = 0.3),"
+"0","               vertical = TRUE,"
+"0","               add = TRUE)"

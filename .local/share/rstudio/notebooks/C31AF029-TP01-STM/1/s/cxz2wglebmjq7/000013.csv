@@ -1,0 +1,4 @@
+"0",""
+"0","    # Add mean points"
+"0","    means <- tapply(nassCDS$ageOFocc, nassCDS$dead, mean)"
+"0","    points(1:2, means, pch = 18, col = ""red"", cex = 2)"

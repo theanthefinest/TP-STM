@@ -1,0 +1,8 @@
+"0",""
+"0","belt <- sum(nassCDS$seatbelt == ""belted"" , na.rm = TRUE)"
+"0","cat(""There are"", {belt}, ""individuals used seatbelt"")"
+"1","There are"
+"1"," "
+"1","18573"
+"1"," "
+"1","individuals used seatbelt"

@@ -1,0 +1,9 @@
+"0",""
+"0","# Alternative correlation plot using ggpairs"
+"0","cat(""\nCreating Detailed Correlation Plot...\n"")"
+"1","
+Creating Detailed Correlation Plot...
+"
+"0","ggpairs(cor_vars) +"
+"0","  labs(title = ""Pairwise Relationships - Fuel Consumption Data"") +"
+"0","  theme_minimal()"

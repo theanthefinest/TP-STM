@@ -1,0 +1,2 @@
+"0","    text(1:2, means, labels = paste(""Mean:"", round(means, 1)), "
+"0","         pos = 3, col = ""red"")"

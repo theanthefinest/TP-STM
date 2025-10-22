@@ -1,0 +1,10 @@
+"0",""
+"0","    survived_over_50 <- sum(nassCDS$ageOFocc > 50 & nassCDS$dead == 0, na.rm = TRUE)"
+"0","    cat(""Occupants over 50 who survived:"", survived_over_50, ""\n\n"")"
+"1","Occupants over 50 who survived:"
+"1"," "
+"1","0"
+"1"," "
+"1","
+
+"

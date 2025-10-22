@@ -1,0 +1,36 @@
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+]0;~[?2004h]0;rstudio@dff366d872a4: ~[01;32mrstudio@dff366d872a4[00m:[01;34m~[00m$ git feth[Kch 
+[?2004lgit ]0;~[?2004h]0;rstudio@dff366d872a4: ~[01;32mrstudio@dff366d872a4[00m:[01;34m~[00m$ git oull [K[K[K[K[Kpull orogi[K[K[Kigo[Kn[Kin main
+[?2004lFrom https://github.com/theanthefinest/TP-STM
+ * branch            main       -> FETCH_HEAD
+[33mhint: You have divergent branches and need to specify how to reconcile them.[m
+[33mhint: You can do so by running one of the following commands sometime before[m
+[33mhint: your next pull:[m
+[33mhint: [m
+[33mhint:   git config pull.rebase false  # merge (the default strategy)[m
+[33mhint:   git config pull.rebase true   # rebase[m
+[33mhint:   git config pull.ff only       # fast-forward only[m
+[33mhint: [m
+[33mhint: You can replace "git config" with "git config --global" to set a default[m
+[33mhint: preference for all repositories. You can also pass --rebase, --no-rebase,[m
+[33mhint: or --ff-only on the command line to override the configured default per[m
+[33mhint: invocation.[m
+fatal: Need to specify how to reconcile divergent branches.
+]0;~[?2004h]0;rstudio@dff366d872a4: ~[01;32mrstudio@dff366d872a4[00m:[01;34m~[00m$ git conf[K[K[K[K[K[K[K[Kgit config o[Kpull --rebase
+[?2004lerror: key does not contain a section: pull
+]0;~[?2004h]0;rstudio@dff366d872a4: ~[01;32mrstudio@dff366d872a4[00m:[01;34m~[00m$ clear[K[K[K[K[Kgit pull origin main --re[K[Ke[Krebase
+[?2004lerror: cannot pull with rebase: You have unstaged changes.
+error: please commit or stash them.
+]0;~[?2004h]0;rstudio@dff366d872a4: ~[01;32mrstudio@dff366d872a4[00m:[01;34m~[00m$ clear
+[?2004l[H[2J[3J]0;~[?2004h]0;rstudio@dff366d872a4: ~[01;32mrstudio@dff366d872a4[00m:[01;34m~[00m$ git stash
+[?2004lclearSaved working directory and index state WIP on main: b9cc7b6 added
+]0;~[?2004h]0;rstudio@dff366d872a4: ~[01;32mrstudio@dff366d872a4[00m:[01;34m~[00m$ clear[K[K[K[K[Kc;lear[K[K[Klea[K[K[K[Kl[K[K[Klear[K[K[K[Kclear
+[?2004l[H[2J[3J]0;~[?2004h]0;rstudio@dff366d872a4: ~[01;32mrstudio@dff366d872a4[00m:[01;34m~[00m$ git pil[K[Kull origi n[K[Kn main --rebase
+[?2004lFrom https://github.com/theanthefinest/TP-STM
+ * branch            main       -> FETCH_HEAD
+Rebasing (1/4)Rebasing (2/4)Rebasing (3/4)Rebasing (4/4)[KSuccessfully rebased and updated refs/heads/main.
+]0;~[?2004h]0;rstudio@dff366d872a4: ~[01;32mrstudio@dff366d872a4[00m:[01;34m~[00m$ clear[K[K[K[K[Kclear[K[K[K[K[Kclear
+[?2004l[H[2J[3J]0;~[?2004h]0;rstudio@dff366d872a4: ~[01;32mrstudio@dff366d872a4[00m:[01;34m~[00m$ a[Kgit add .
+[?2004lgit

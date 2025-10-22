@@ -1,0 +1,16 @@
+"0","    nassCDS$AgeOFocc_class <- ifelse(nassCDS$ageOFocc > 50, 1, 0)"
+"0","    cat(""AgeOFocc_class variable added successfully\n"")"
+"1","AgeOFocc_class variable added successfully
+"
+"0","    cat(""Distribution: 0 ="", sum(nassCDS$AgeOFocc_class == 0), "", 1 ="", sum(nassCDS$AgeOFocc_class == 1), ""\n\n"")"
+"1","Distribution: 0 ="
+"1"," "
+"1","20619"
+"1"," "
+"1",", 1 ="
+"1"," "
+"1","5598"
+"1"," "
+"1","
+
+"
