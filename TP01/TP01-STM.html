@@ -854,19 +854,12 @@ Attaching package: 'DAAG'</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>belt <span class="ot">&lt;-</span> <span class="fu">sum</span>(nassCDS<span class="sc">$</span>seatbelt <span class="sc">==</span> <span class="st">"belted"</span> , <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"There are"</span>, {belt}, <span class="st">"individuals used seatbelt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>There are 18573 individuals used seatbelt</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="co"># =================================================================================</span></span>
-<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="co"># What is the distribution of seatbelt usage across the accident’s outcome factor ? Produce a 2X2 table that shows the number of seatbelt users (belted/none) and accident’s outcome (alive/dead)?</span></span>
-<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a><span class="co"># =================================================================================</span></span>
-<span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb93-5"><a href="#cb93-5" aria-hidden="true" tabindex="-1"></a>tbl <span class="ot">&lt;-</span> <span class="fu">table</span>(nassCDS<span class="sc">$</span>seatbelt, nassCDS<span class="sc">$</span>dead)</span>
-<span id="cb93-6"><a href="#cb93-6" aria-hidden="true" tabindex="-1"></a>tbl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co"># =================================================================================</span></span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="co"># What is the distribution of seatbelt usage across the accident’s outcome factor ? Produce a 2X2 table that shows the number of seatbelt users (belted/none) and accident’s outcome (alive/dead)?</span></span>
+<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a><span class="co"># =================================================================================</span></span>
+<span id="cb91-4"><a href="#cb91-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb91-5"><a href="#cb91-5" aria-hidden="true" tabindex="-1"></a>tbl <span class="ot">&lt;-</span> <span class="fu">table</span>(nassCDS<span class="sc">$</span>seatbelt, nassCDS<span class="sc">$</span>dead)</span>
+<span id="cb91-6"><a href="#cb91-6" aria-hidden="true" tabindex="-1"></a>tbl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        
          alive  dead
@@ -876,133 +869,133 @@ Attaching package: 'DAAG'</code></pre>
 </div>
 <p>(3). Write a function that can be used to conduct inference for proportions in two independent populations. The null hypothesis is that there is no difference between the proportions in the two populations. Test the null hypothesis against a two sided alternative. The input of the function should be the 2X2 table in the previous item (Question 1.2) and the output should be the test statistic and the p value. Apply your function to test the null hypothesis that the proportion of deaths among individuals who used seatbelt is equal to the proportion of deaths among the individuals who did not use seatbelt.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a 2x2 table</span></span>
-<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>contingency_table <span class="ot">&lt;-</span> <span class="fu">table</span>(nassCDS<span class="sc">$</span>seatbelt, nassCDS<span class="sc">$</span>dead)</span>
-<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"2x2 Contingency Table:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a 2x2 table</span></span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>contingency_table <span class="ot">&lt;-</span> <span class="fu">table</span>(nassCDS<span class="sc">$</span>seatbelt, nassCDS<span class="sc">$</span>dead)</span>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"2x2 Contingency Table:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2x2 Contingency Table:"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(contingency_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(contingency_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        
          alive  dead
   none    6964   680
   belted 18073   500</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="co"># More readable format</span></span>
-<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Seatbelt Usage vs Accident Outcome:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="co"># More readable format</span></span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Seatbelt Usage vs Accident Outcome:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Seatbelt Usage vs Accident Outcome:</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"           Alive   Dead</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"           Alive   Dead</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           Alive   Dead</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"belted    "</span>, contingency_table[<span class="st">"belted"</span>, <span class="st">"alive"</span>], <span class="st">"    "</span>, contingency_table[<span class="st">"belted"</span>, <span class="st">"dead"</span>], <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"belted    "</span>, contingency_table[<span class="st">"belted"</span>, <span class="st">"alive"</span>], <span class="st">"    "</span>, contingency_table[<span class="st">"belted"</span>, <span class="st">"dead"</span>], <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>belted     18073      500 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"none      "</span>, contingency_table[<span class="st">"none"</span>, <span class="st">"alive"</span>], <span class="st">"    "</span>, contingency_table[<span class="st">"none"</span>, <span class="st">"dead"</span>], <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"none      "</span>, contingency_table[<span class="st">"none"</span>, <span class="st">"alive"</span>], <span class="st">"    "</span>, contingency_table[<span class="st">"none"</span>, <span class="st">"dead"</span>], <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>none       6964      680 </code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="co"># H_{0} : p_{1} = p_{2} vs H_{a} : p_{1} != p_{2}</span></span>
-<span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Function for two proportion z-test</span></span>
-<span id="cb107-3"><a href="#cb107-3" aria-hidden="true" tabindex="-1"></a>two_prop_test <span class="ot">&lt;-</span> <span class="cf">function</span>(contingency_table) {</span>
-<span id="cb107-4"><a href="#cb107-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Extract values from contingency table</span></span>
-<span id="cb107-5"><a href="#cb107-5" aria-hidden="true" tabindex="-1"></a>  n1 <span class="ot">&lt;-</span> <span class="fu">sum</span>(contingency_table[<span class="st">"belted"</span>, ])  <span class="co"># total belt users</span></span>
-<span id="cb107-6"><a href="#cb107-6" aria-hidden="true" tabindex="-1"></a>  n2 <span class="ot">&lt;-</span> <span class="fu">sum</span>(contingency_table[<span class="st">"none"</span>, ])    <span class="co"># total non-users</span></span>
-<span id="cb107-7"><a href="#cb107-7" aria-hidden="true" tabindex="-1"></a>  x1 <span class="ot">&lt;-</span> contingency_table[<span class="st">"belted"</span>, <span class="st">"dead"</span>] <span class="co"># deaths among belt users</span></span>
-<span id="cb107-8"><a href="#cb107-8" aria-hidden="true" tabindex="-1"></a>  x2 <span class="ot">&lt;-</span> contingency_table[<span class="st">"none"</span>, <span class="st">"dead"</span>]   <span class="co"># deaths among non-users</span></span>
-<span id="cb107-9"><a href="#cb107-9" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb107-10"><a href="#cb107-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate proportions</span></span>
-<span id="cb107-11"><a href="#cb107-11" aria-hidden="true" tabindex="-1"></a>  p1 <span class="ot">&lt;-</span> x1 <span class="sc">/</span> n1</span>
-<span id="cb107-12"><a href="#cb107-12" aria-hidden="true" tabindex="-1"></a>  p2 <span class="ot">&lt;-</span> x2 <span class="sc">/</span> n2</span>
-<span id="cb107-13"><a href="#cb107-13" aria-hidden="true" tabindex="-1"></a>  p_pool <span class="ot">&lt;-</span> (x1 <span class="sc">+</span> x2) <span class="sc">/</span> (n1 <span class="sc">+</span> n2)</span>
-<span id="cb107-14"><a href="#cb107-14" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb107-15"><a href="#cb107-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate test statistic</span></span>
-<span id="cb107-16"><a href="#cb107-16" aria-hidden="true" tabindex="-1"></a>  z_stat <span class="ot">&lt;-</span> (p1 <span class="sc">-</span> p2) <span class="sc">/</span> <span class="fu">sqrt</span>(p_pool <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p_pool) <span class="sc">*</span> (<span class="dv">1</span><span class="sc">/</span>n1 <span class="sc">+</span> <span class="dv">1</span><span class="sc">/</span>n2))</span>
-<span id="cb107-17"><a href="#cb107-17" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb107-18"><a href="#cb107-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate two-sided p-value</span></span>
-<span id="cb107-19"><a href="#cb107-19" aria-hidden="true" tabindex="-1"></a>  p_value <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(z_stat)))</span>
-<span id="cb107-20"><a href="#cb107-20" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb107-21"><a href="#cb107-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Return results</span></span>
-<span id="cb107-22"><a href="#cb107-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">test_statistic =</span> z_stat, <span class="at">p_value =</span> p_value))</span>
-<span id="cb107-23"><a href="#cb107-23" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb107-24"><a href="#cb107-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb107-25"><a href="#cb107-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the function to our data</span></span>
-<span id="cb107-26"><a href="#cb107-26" aria-hidden="true" tabindex="-1"></a>test_results <span class="ot">&lt;-</span> <span class="fu">two_prop_test</span>(contingency_table)</span>
-<span id="cb107-27"><a href="#cb107-27" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Two Proportion Z-Test Results:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="co"># H_{0} : p_{1} = p_{2} vs H_{a} : p_{1} != p_{2}</span></span>
+<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Function for two proportion z-test</span></span>
+<span id="cb105-3"><a href="#cb105-3" aria-hidden="true" tabindex="-1"></a>two_prop_test <span class="ot">&lt;-</span> <span class="cf">function</span>(contingency_table) {</span>
+<span id="cb105-4"><a href="#cb105-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Extract values from contingency table</span></span>
+<span id="cb105-5"><a href="#cb105-5" aria-hidden="true" tabindex="-1"></a>  n1 <span class="ot">&lt;-</span> <span class="fu">sum</span>(contingency_table[<span class="st">"belted"</span>, ])  <span class="co"># total belt users</span></span>
+<span id="cb105-6"><a href="#cb105-6" aria-hidden="true" tabindex="-1"></a>  n2 <span class="ot">&lt;-</span> <span class="fu">sum</span>(contingency_table[<span class="st">"none"</span>, ])    <span class="co"># total non-users</span></span>
+<span id="cb105-7"><a href="#cb105-7" aria-hidden="true" tabindex="-1"></a>  x1 <span class="ot">&lt;-</span> contingency_table[<span class="st">"belted"</span>, <span class="st">"dead"</span>] <span class="co"># deaths among belt users</span></span>
+<span id="cb105-8"><a href="#cb105-8" aria-hidden="true" tabindex="-1"></a>  x2 <span class="ot">&lt;-</span> contingency_table[<span class="st">"none"</span>, <span class="st">"dead"</span>]   <span class="co"># deaths among non-users</span></span>
+<span id="cb105-9"><a href="#cb105-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb105-10"><a href="#cb105-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate proportions</span></span>
+<span id="cb105-11"><a href="#cb105-11" aria-hidden="true" tabindex="-1"></a>  p1 <span class="ot">&lt;-</span> x1 <span class="sc">/</span> n1</span>
+<span id="cb105-12"><a href="#cb105-12" aria-hidden="true" tabindex="-1"></a>  p2 <span class="ot">&lt;-</span> x2 <span class="sc">/</span> n2</span>
+<span id="cb105-13"><a href="#cb105-13" aria-hidden="true" tabindex="-1"></a>  p_pool <span class="ot">&lt;-</span> (x1 <span class="sc">+</span> x2) <span class="sc">/</span> (n1 <span class="sc">+</span> n2)</span>
+<span id="cb105-14"><a href="#cb105-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb105-15"><a href="#cb105-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate test statistic</span></span>
+<span id="cb105-16"><a href="#cb105-16" aria-hidden="true" tabindex="-1"></a>  z_stat <span class="ot">&lt;-</span> (p1 <span class="sc">-</span> p2) <span class="sc">/</span> <span class="fu">sqrt</span>(p_pool <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p_pool) <span class="sc">*</span> (<span class="dv">1</span><span class="sc">/</span>n1 <span class="sc">+</span> <span class="dv">1</span><span class="sc">/</span>n2))</span>
+<span id="cb105-17"><a href="#cb105-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb105-18"><a href="#cb105-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate two-sided p-value</span></span>
+<span id="cb105-19"><a href="#cb105-19" aria-hidden="true" tabindex="-1"></a>  p_value <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(z_stat)))</span>
+<span id="cb105-20"><a href="#cb105-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb105-21"><a href="#cb105-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Return results</span></span>
+<span id="cb105-22"><a href="#cb105-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">test_statistic =</span> z_stat, <span class="at">p_value =</span> p_value))</span>
+<span id="cb105-23"><a href="#cb105-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb105-24"><a href="#cb105-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb105-25"><a href="#cb105-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the function to our data</span></span>
+<span id="cb105-26"><a href="#cb105-26" aria-hidden="true" tabindex="-1"></a>test_results <span class="ot">&lt;-</span> <span class="fu">two_prop_test</span>(contingency_table)</span>
+<span id="cb105-27"><a href="#cb105-27" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Two Proportion Z-Test Results:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Two Proportion Z-Test Results:</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Test Statistic:"</span>, test_results<span class="sc">$</span>test_statistic, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Test Statistic:"</span>, test_results<span class="sc">$</span>test_statistic, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Test Statistic: -22.02001 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"P-value:"</span>, test_results<span class="sc">$</span>p_value, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"P-value:"</span>, test_results<span class="sc">$</span>p_value, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>P-value: 0 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Interpretation</span></span>
-<span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (test_results<span class="sc">$</span>p_value <span class="sc">&lt;</span> <span class="fl">0.05</span>) {</span>
-<span id="cb113-3"><a href="#cb113-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"Conclusion: Reject the null hypothesis - there is a significant difference in death proportions.</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb113-4"><a href="#cb113-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb113-5"><a href="#cb113-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"Conclusion: Fail to reject the null hypothesis - no significant difference in death proportions.</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb113-6"><a href="#cb113-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Interpretation</span></span>
+<span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (test_results<span class="sc">$</span>p_value <span class="sc">&lt;</span> <span class="fl">0.05</span>) {</span>
+<span id="cb111-3"><a href="#cb111-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"Conclusion: Reject the null hypothesis - there is a significant difference in death proportions.</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb111-4"><a href="#cb111-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb111-5"><a href="#cb111-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"Conclusion: Fail to reject the null hypothesis - no significant difference in death proportions.</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb111-6"><a href="#cb111-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Conclusion: Reject the null hypothesis - there is a significant difference in death proportions.</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a barplot</span></span>
-<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))  <span class="co"># Set up side-by-side plots</span></span>
-<span id="cb115-3"><a href="#cb115-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb115-4"><a href="#cb115-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Barplot 1: Counts by seatbelt usage and outcome</span></span>
-<span id="cb115-5"><a href="#cb115-5" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(contingency_table, </span>
-<span id="cb115-6"><a href="#cb115-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Seatbelt Usage by Accident Outcome"</span>,</span>
-<span id="cb115-7"><a href="#cb115-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Accident Outcome"</span>, </span>
-<span id="cb115-8"><a href="#cb115-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">"Count"</span>,</span>
-<span id="cb115-9"><a href="#cb115-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"lightblue"</span>, <span class="st">"lightcoral"</span>),</span>
-<span id="cb115-10"><a href="#cb115-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend =</span> <span class="fu">rownames</span>(contingency_table),</span>
-<span id="cb115-11"><a href="#cb115-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">beside =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb115-12"><a href="#cb115-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb115-13"><a href="#cb115-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Barplot 2: Proportions (more informative)</span></span>
-<span id="cb115-14"><a href="#cb115-14" aria-hidden="true" tabindex="-1"></a>prop_table <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(contingency_table, <span class="at">margin =</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb115-15"><a href="#cb115-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb115-16"><a href="#cb115-16" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(prop_table, </span>
-<span id="cb115-17"><a href="#cb115-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Death Rate by Seatbelt Usage (%)"</span>,</span>
-<span id="cb115-18"><a href="#cb115-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Seatbelt Usage"</span>, </span>
-<span id="cb115-19"><a href="#cb115-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">"Percentage"</span>,</span>
-<span id="cb115-20"><a href="#cb115-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"lightgreen"</span>, <span class="st">"salmon"</span>),</span>
-<span id="cb115-21"><a href="#cb115-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend =</span> <span class="fu">colnames</span>(prop_table),</span>
-<span id="cb115-22"><a href="#cb115-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a barplot</span></span>
+<span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))  <span class="co"># Set up side-by-side plots</span></span>
+<span id="cb113-3"><a href="#cb113-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb113-4"><a href="#cb113-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Barplot 1: Counts by seatbelt usage and outcome</span></span>
+<span id="cb113-5"><a href="#cb113-5" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(contingency_table, </span>
+<span id="cb113-6"><a href="#cb113-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Seatbelt Usage by Accident Outcome"</span>,</span>
+<span id="cb113-7"><a href="#cb113-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Accident Outcome"</span>, </span>
+<span id="cb113-8"><a href="#cb113-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">"Count"</span>,</span>
+<span id="cb113-9"><a href="#cb113-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"lightblue"</span>, <span class="st">"lightcoral"</span>),</span>
+<span id="cb113-10"><a href="#cb113-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend =</span> <span class="fu">rownames</span>(contingency_table),</span>
+<span id="cb113-11"><a href="#cb113-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">beside =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb113-12"><a href="#cb113-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb113-13"><a href="#cb113-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Barplot 2: Proportions (more informative)</span></span>
+<span id="cb113-14"><a href="#cb113-14" aria-hidden="true" tabindex="-1"></a>prop_table <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(contingency_table, <span class="at">margin =</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb113-15"><a href="#cb113-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb113-16"><a href="#cb113-16" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(prop_table, </span>
+<span id="cb113-17"><a href="#cb113-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Death Rate by Seatbelt Usage (%)"</span>,</span>
+<span id="cb113-18"><a href="#cb113-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Seatbelt Usage"</span>, </span>
+<span id="cb113-19"><a href="#cb113-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">"Percentage"</span>,</span>
+<span id="cb113-20"><a href="#cb113-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"lightgreen"</span>, <span class="st">"salmon"</span>),</span>
+<span id="cb113-21"><a href="#cb113-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend =</span> <span class="fu">colnames</span>(prop_table),</span>
+<span id="cb113-22"><a href="#cb113-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="TP01-STM_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+<p><img src="TP01-STM_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
 </div>
-<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reset plot parameters</span></span>
-<span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb116-3"><a href="#cb116-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb116-4"><a href="#cb116-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Alternative visualization using ggplot2 (if preferred)</span></span>
-<span id="cb116-5"><a href="#cb116-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">require</span>(ggplot2)) {</span>
-<span id="cb116-6"><a href="#cb116-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(ggplot2)</span>
-<span id="cb116-7"><a href="#cb116-7" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb116-8"><a href="#cb116-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create a more polished plot</span></span>
-<span id="cb116-9"><a href="#cb116-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">as.data.frame</span>(contingency_table), </span>
-<span id="cb116-10"><a href="#cb116-10" aria-hidden="true" tabindex="-1"></a>         <span class="fu">aes</span>(<span class="at">x =</span> Var1, <span class="at">y =</span> Freq, <span class="at">fill =</span> Var2)) <span class="sc">+</span></span>
-<span id="cb116-11"><a href="#cb116-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
-<span id="cb116-12"><a href="#cb116-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Seatbelt Usage Distribution by Accident Outcome"</span>,</span>
-<span id="cb116-13"><a href="#cb116-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Seatbelt Usage"</span>,</span>
-<span id="cb116-14"><a href="#cb116-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Count"</span>,</span>
-<span id="cb116-15"><a href="#cb116-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">fill =</span> <span class="st">"Outcome"</span>) <span class="sc">+</span></span>
-<span id="cb116-16"><a href="#cb116-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span>
-<span id="cb116-17"><a href="#cb116-17" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reset plot parameters</span></span>
+<span id="cb114-2"><a href="#cb114-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb114-3"><a href="#cb114-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb114-4"><a href="#cb114-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Alternative visualization using ggplot2 (if preferred)</span></span>
+<span id="cb114-5"><a href="#cb114-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">require</span>(ggplot2)) {</span>
+<span id="cb114-6"><a href="#cb114-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(ggplot2)</span>
+<span id="cb114-7"><a href="#cb114-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb114-8"><a href="#cb114-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create a more polished plot</span></span>
+<span id="cb114-9"><a href="#cb114-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">as.data.frame</span>(contingency_table), </span>
+<span id="cb114-10"><a href="#cb114-10" aria-hidden="true" tabindex="-1"></a>         <span class="fu">aes</span>(<span class="at">x =</span> Var1, <span class="at">y =</span> Freq, <span class="at">fill =</span> Var2)) <span class="sc">+</span></span>
+<span id="cb114-11"><a href="#cb114-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb114-12"><a href="#cb114-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Seatbelt Usage Distribution by Accident Outcome"</span>,</span>
+<span id="cb114-13"><a href="#cb114-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Seatbelt Usage"</span>,</span>
+<span id="cb114-14"><a href="#cb114-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Count"</span>,</span>
+<span id="cb114-15"><a href="#cb114-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">fill =</span> <span class="st">"Outcome"</span>) <span class="sc">+</span></span>
+<span id="cb114-16"><a href="#cb114-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span>
+<span id="cb114-17"><a href="#cb114-17" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="TP01-STM_files/figure-html/unnamed-chunk-17-2.png" class="img-fluid" width="672"></p>
+<p><img src="TP01-STM_files/figure-html/unnamed-chunk-16-2.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -1011,83 +1004,77 @@ Two Proportion Z-Test Results:</code></pre>
 <ol type="1">
 <li><p>Mean and Standard Deviation of age by accident</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate mean and standard deviation by group</span></span>
-<span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a>age_stats <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(ageOFocc <span class="sc">~</span> dead, <span class="at">data =</span> nassCDS, </span>
-<span id="cb117-3"><a href="#cb117-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">FUN =</span> <span class="cf">function</span>(x) <span class="fu">c</span>(<span class="at">mean =</span> <span class="fu">mean</span>(x), <span class="at">sd =</span> <span class="fu">sd</span>(x)))</span>
-<span id="cb117-4"><a href="#cb117-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb117-5"><a href="#cb117-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the results</span></span>
-<span id="cb117-6"><a href="#cb117-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Mean and Standard Deviation of Age by Accident Outcome:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a>age_stats <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(ageOFocc <span class="sc">~</span> dead, <span class="at">data =</span> nassCDS, </span>
+<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">FUN =</span> <span class="cf">function</span>(x) <span class="fu">c</span>(<span class="at">mean =</span> <span class="fu">mean</span>(x), <span class="at">sd =</span> <span class="fu">sd</span>(x)))</span>
+<span id="cb115-3"><a href="#cb115-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb115-4"><a href="#cb115-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Mean and Standard Deviation of Age by Accident Outcome:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Mean and Standard Deviation of Age by Accident Outcome:</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(age_stats)) {</span>
-<span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a>  outcome <span class="ot">&lt;-</span> age_stats<span class="sc">$</span>dead[i]</span>
-<span id="cb119-3"><a href="#cb119-3" aria-hidden="true" tabindex="-1"></a>  mean_age <span class="ot">&lt;-</span> age_stats<span class="sc">$</span>ageOFocc[i, <span class="st">"mean"</span>]</span>
-<span id="cb119-4"><a href="#cb119-4" aria-hidden="true" tabindex="-1"></a>  sd_age <span class="ot">&lt;-</span> age_stats<span class="sc">$</span>ageOFocc[i, <span class="st">"sd"</span>]</span>
-<span id="cb119-5"><a href="#cb119-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(outcome, <span class="st">": Mean ="</span>, <span class="fu">round</span>(mean_age, <span class="dv">2</span>), </span>
-<span id="cb119-6"><a href="#cb119-6" aria-hidden="true" tabindex="-1"></a>      <span class="st">", SD ="</span>, <span class="fu">round</span>(sd_age, <span class="dv">2</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb119-7"><a href="#cb119-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(age_stats)) {</span>
+<span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a>  outcome <span class="ot">&lt;-</span> age_stats<span class="sc">$</span>dead[i]</span>
+<span id="cb117-3"><a href="#cb117-3" aria-hidden="true" tabindex="-1"></a>  mean_age <span class="ot">&lt;-</span> age_stats<span class="sc">$</span>ageOFocc[i, <span class="st">"mean"</span>]</span>
+<span id="cb117-4"><a href="#cb117-4" aria-hidden="true" tabindex="-1"></a>  sd_age <span class="ot">&lt;-</span> age_stats<span class="sc">$</span>ageOFocc[i, <span class="st">"sd"</span>]</span>
+<span id="cb117-5"><a href="#cb117-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(outcome, <span class="st">": Mean ="</span>, <span class="fu">round</span>(mean_age, <span class="dv">2</span>), </span>
+<span id="cb117-6"><a href="#cb117-6" aria-hidden="true" tabindex="-1"></a>      <span class="st">", SD ="</span>, <span class="fu">round</span>(sd_age, <span class="dv">2</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb117-7"><a href="#cb117-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>1 : Mean = 36.86 , SD = 17.66 
 2 : Mean = 44.62 , SD = 21.32 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Alternative approach using tapply</span></span>
-<span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Alternative calculation using tapply:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Alternative calculation using tapply:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Alternative calculation using tapply:</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a>mean_age_by_outcome <span class="ot">&lt;-</span> <span class="fu">tapply</span>(nassCDS<span class="sc">$</span>ageOFocc, nassCDS<span class="sc">$</span>dead, mean)</span>
-<span id="cb123-2"><a href="#cb123-2" aria-hidden="true" tabindex="-1"></a>sd_age_by_outcome <span class="ot">&lt;-</span> <span class="fu">tapply</span>(nassCDS<span class="sc">$</span>ageOFocc, nassCDS<span class="sc">$</span>dead, sd)</span>
-<span id="cb123-3"><a href="#cb123-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb123-4"><a href="#cb123-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Alive - Mean:"</span>, <span class="fu">round</span>(mean_age_by_outcome[<span class="st">"alive"</span>], <span class="dv">2</span>), </span>
-<span id="cb123-5"><a href="#cb123-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SD:"</span>, <span class="fu">round</span>(sd_age_by_outcome[<span class="st">"alive"</span>], <span class="dv">2</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a>mean_age_by_outcome <span class="ot">&lt;-</span> <span class="fu">tapply</span>(nassCDS<span class="sc">$</span>ageOFocc, nassCDS<span class="sc">$</span>dead, mean)</span>
+<span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a>sd_age_by_outcome <span class="ot">&lt;-</span> <span class="fu">tapply</span>(nassCDS<span class="sc">$</span>ageOFocc, nassCDS<span class="sc">$</span>dead, sd)</span>
+<span id="cb121-3"><a href="#cb121-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb121-4"><a href="#cb121-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Alive - Mean:"</span>, <span class="fu">round</span>(mean_age_by_outcome[<span class="st">"alive"</span>], <span class="dv">2</span>), </span>
+<span id="cb121-5"><a href="#cb121-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SD:"</span>, <span class="fu">round</span>(sd_age_by_outcome[<span class="st">"alive"</span>], <span class="dv">2</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Alive - Mean: 36.86 SD: 17.66 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb125"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Dead - Mean:"</span>, <span class="fu">round</span>(mean_age_by_outcome[<span class="st">"dead"</span>], <span class="dv">2</span>), </span>
-<span id="cb125-2"><a href="#cb125-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SD:"</span>, <span class="fu">round</span>(sd_age_by_outcome[<span class="st">"dead"</span>], <span class="dv">2</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Dead - Mean:"</span>, <span class="fu">round</span>(mean_age_by_outcome[<span class="st">"dead"</span>], <span class="dv">2</span>), </span>
+<span id="cb123-2"><a href="#cb123-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SD:"</span>, <span class="fu">round</span>(sd_age_by_outcome[<span class="st">"dead"</span>], <span class="dv">2</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Dead - Mean: 44.62 SD: 21.32 </code></pre>
 </div>
 </div></li>
 <li><p>Box plot and Data point</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb127"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create boxplot with data points</span></span>
-<span id="cb127-2"><a href="#cb127-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb127-3"><a href="#cb127-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic boxplot</span></span>
-<span id="cb127-4"><a href="#cb127-4" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(ageOFocc <span class="sc">~</span> dead, <span class="at">data =</span> nassCDS,</span>
-<span id="cb127-5"><a href="#cb127-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Distribution of Occupant Age by Accident Outcome"</span>,</span>
-<span id="cb127-6"><a href="#cb127-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Accident Outcome"</span>,</span>
-<span id="cb127-7"><a href="#cb127-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">"Age of Occupant"</span>,</span>
-<span id="cb127-8"><a href="#cb127-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"lightgreen"</span>, <span class="st">"lightcoral"</span>),</span>
-<span id="cb127-9"><a href="#cb127-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>))</span>
-<span id="cb127-10"><a href="#cb127-10" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(ageOFocc <span class="sc">~</span> dead, <span class="at">data =</span> nassCDS,</span>
-<span id="cb127-11"><a href="#cb127-11" aria-hidden="true" tabindex="-1"></a>           <span class="at">method =</span> <span class="st">"jitter"</span>,</span>
-<span id="cb127-12"><a href="#cb127-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">jitter =</span> <span class="fl">0.2</span>,</span>
-<span id="cb127-13"><a href="#cb127-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">pch =</span> <span class="dv">16</span>,</span>
-<span id="cb127-14"><a href="#cb127-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">col =</span> <span class="fu">adjustcolor</span>(<span class="st">"blue"</span>, <span class="at">alpha.f =</span> <span class="fl">0.3</span>),</span>
-<span id="cb127-15"><a href="#cb127-15" aria-hidden="true" tabindex="-1"></a>           <span class="at">vertical =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb127-16"><a href="#cb127-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb127-17"><a href="#cb127-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb127-18"><a href="#cb127-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Add mean points</span></span>
-<span id="cb127-19"><a href="#cb127-19" aria-hidden="true" tabindex="-1"></a>means <span class="ot">&lt;-</span> <span class="fu">tapply</span>(nassCDS<span class="sc">$</span>ageOFocc, nassCDS<span class="sc">$</span>dead, mean)</span>
-<span id="cb127-20"><a href="#cb127-20" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, means, <span class="at">pch =</span> <span class="dv">18</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">cex =</span> <span class="dv">2</span>)</span>
-<span id="cb127-21"><a href="#cb127-21" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, means, <span class="at">labels =</span> <span class="fu">paste</span>(<span class="st">"Mean:"</span>, <span class="fu">round</span>(means, <span class="dv">1</span>)), </span>
-<span id="cb127-22"><a href="#cb127-22" aria-hidden="true" tabindex="-1"></a>     <span class="at">pos =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb125"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb125-2"><a href="#cb125-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(ageOFocc <span class="sc">~</span> dead, <span class="at">data =</span> nassCDS,</span>
+<span id="cb125-3"><a href="#cb125-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Distribution of Occupant Age by Accident Outcome"</span>,</span>
+<span id="cb125-4"><a href="#cb125-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Accident Outcome"</span>,</span>
+<span id="cb125-5"><a href="#cb125-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">"Age of Occupant"</span>,</span>
+<span id="cb125-6"><a href="#cb125-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"lightgreen"</span>, <span class="st">"lightcoral"</span>),</span>
+<span id="cb125-7"><a href="#cb125-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>))</span>
+<span id="cb125-8"><a href="#cb125-8" aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(ageOFocc <span class="sc">~</span> dead, <span class="at">data =</span> nassCDS,</span>
+<span id="cb125-9"><a href="#cb125-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">method =</span> <span class="st">"jitter"</span>,</span>
+<span id="cb125-10"><a href="#cb125-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">jitter =</span> <span class="fl">0.2</span>,</span>
+<span id="cb125-11"><a href="#cb125-11" aria-hidden="true" tabindex="-1"></a>           <span class="at">pch =</span> <span class="dv">16</span>,</span>
+<span id="cb125-12"><a href="#cb125-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">col =</span> <span class="fu">adjustcolor</span>(<span class="st">"blue"</span>, <span class="at">alpha.f =</span> <span class="fl">0.3</span>),</span>
+<span id="cb125-13"><a href="#cb125-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">vertical =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb125-14"><a href="#cb125-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb125-15"><a href="#cb125-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb125-16"><a href="#cb125-16" aria-hidden="true" tabindex="-1"></a>means <span class="ot">&lt;-</span> <span class="fu">tapply</span>(nassCDS<span class="sc">$</span>ageOFocc, nassCDS<span class="sc">$</span>dead, mean)</span>
+<span id="cb125-17"><a href="#cb125-17" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, means, <span class="at">pch =</span> <span class="dv">18</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">cex =</span> <span class="dv">2</span>)</span>
+<span id="cb125-18"><a href="#cb125-18" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, means, <span class="at">labels =</span> <span class="fu">paste</span>(<span class="st">"Mean:"</span>, <span class="fu">round</span>(means, <span class="dv">1</span>)), </span>
+<span id="cb125-19"><a href="#cb125-19" aria-hidden="true" tabindex="-1"></a>     <span class="at">pos =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="TP01-STM_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+<p><img src="TP01-STM_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
 </div>
 </div></li>
 <li><p>Calculate 95% confidence interval for mean difference</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb128"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a>t_test_result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(ageOFocc <span class="sc">~</span> dead, <span class="at">data =</span> nassCDS, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
-<span id="cb128-2"><a href="#cb128-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb128-3"><a href="#cb128-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Two-Sample t-Test Results:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb126"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a>t_test_result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(ageOFocc <span class="sc">~</span> dead, <span class="at">data =</span> nassCDS, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
+<span id="cb126-2"><a href="#cb126-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb126-3"><a href="#cb126-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Two-Sample t-Test Results:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Two-Sample t-Test Results:</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb130"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(t_test_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb128"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(t_test_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Welch Two Sample t-test
@@ -1101,20 +1088,20 @@ sample estimates:
 mean in group alive  mean in group dead 
            36.85701            44.61525 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb132"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a>ci_lower <span class="ot">&lt;-</span> t_test_result<span class="sc">$</span>conf.int[<span class="dv">1</span>]</span>
-<span id="cb132-2"><a href="#cb132-2" aria-hidden="true" tabindex="-1"></a>ci_upper <span class="ot">&lt;-</span> t_test_result<span class="sc">$</span>conf.int[<span class="dv">2</span>]</span>
-<span id="cb132-3"><a href="#cb132-3" aria-hidden="true" tabindex="-1"></a>mean_diff <span class="ot">&lt;-</span> t_test_result<span class="sc">$</span>estimate[<span class="dv">1</span>] <span class="sc">-</span> t_test_result<span class="sc">$</span>estimate[<span class="dv">2</span>]</span>
-<span id="cb132-4"><a href="#cb132-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb132-5"><a href="#cb132-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">95% Confidence Interval for Mean Age Difference (Alive - Dead):</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb130"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a>ci_lower <span class="ot">&lt;-</span> t_test_result<span class="sc">$</span>conf.int[<span class="dv">1</span>]</span>
+<span id="cb130-2"><a href="#cb130-2" aria-hidden="true" tabindex="-1"></a>ci_upper <span class="ot">&lt;-</span> t_test_result<span class="sc">$</span>conf.int[<span class="dv">2</span>]</span>
+<span id="cb130-3"><a href="#cb130-3" aria-hidden="true" tabindex="-1"></a>mean_diff <span class="ot">&lt;-</span> t_test_result<span class="sc">$</span>estimate[<span class="dv">1</span>] <span class="sc">-</span> t_test_result<span class="sc">$</span>estimate[<span class="dv">2</span>]</span>
+<span id="cb130-4"><a href="#cb130-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-5"><a href="#cb130-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">95% Confidence Interval for Mean Age Difference (Alive - Dead):</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 95% Confidence Interval for Mean Age Difference (Alive - Dead):</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb134"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Mean difference:"</span>, <span class="fu">round</span>(mean_diff, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb132"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Mean difference:"</span>, <span class="fu">round</span>(mean_diff, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Mean difference: -7.7582 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb136"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb136-1"><a href="#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"95% CI: ["</span>, <span class="fu">round</span>(ci_lower, <span class="dv">4</span>), <span class="st">", "</span>, <span class="fu">round</span>(ci_upper, <span class="dv">4</span>), <span class="st">"]</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb134"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"95% CI: ["</span>, <span class="fu">round</span>(ci_lower, <span class="dv">4</span>), <span class="st">", "</span>, <span class="fu">round</span>(ci_upper, <span class="dv">4</span>), <span class="st">"]</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>95% CI: [ -8.9955 ,  -6.521 ]</code></pre>
 </div>
@@ -1126,37 +1113,42 @@ mean in group alive  mean in group dead
 <ol type="1">
 <li><p>Visualize the distribution of the occupant age by sex.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb138"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(nassCDS, <span class="fu">aes</span>(<span class="at">x =</span> ageOFocc, <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
-<span id="cb138-2"><a href="#cb138-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
-<span id="cb138-3"><a href="#cb138-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Occupant Age by Sex"</span>,</span>
-<span id="cb138-4"><a href="#cb138-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Age of Occupant"</span>,</span>
-<span id="cb138-5"><a href="#cb138-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Density"</span>,</span>
-<span id="cb138-6"><a href="#cb138-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Sex"</span>) <span class="sc">+</span></span>
-<span id="cb138-7"><a href="#cb138-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb138-8"><a href="#cb138-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb138-9"><a href="#cb138-9" aria-hidden="true" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(nassCDS, <span class="fu">aes</span>(<span class="at">x =</span> ageOFocc, <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
-<span id="cb138-10"><a href="#cb138-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">position =</span> <span class="st">"identity"</span>, <span class="at">bins =</span> <span class="dv">30</span>) <span class="sc">+</span></span>
-<span id="cb138-11"><a href="#cb138-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Occupant Age by Sex"</span>,</span>
-<span id="cb138-12"><a href="#cb138-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Age of Occupant"</span>,</span>
-<span id="cb138-13"><a href="#cb138-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Count"</span>,</span>
-<span id="cb138-14"><a href="#cb138-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Sex"</span>) <span class="sc">+</span></span>
-<span id="cb138-15"><a href="#cb138-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb138-16"><a href="#cb138-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb138-17"><a href="#cb138-17" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(plot1, plot2, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb136"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb136-1"><a href="#cb136-1" aria-hidden="true" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(nassCDS, <span class="fu">aes</span>(<span class="at">x =</span> ageOFocc, <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
+<span id="cb136-2"><a href="#cb136-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb136-3"><a href="#cb136-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Occupant Age by Sex"</span>,</span>
+<span id="cb136-4"><a href="#cb136-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Age of Occupant"</span>,</span>
+<span id="cb136-5"><a href="#cb136-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Density"</span>,</span>
+<span id="cb136-6"><a href="#cb136-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Sex"</span>) <span class="sc">+</span></span>
+<span id="cb136-7"><a href="#cb136-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb136-8"><a href="#cb136-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb136-9"><a href="#cb136-9" aria-hidden="true" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(nassCDS, <span class="fu">aes</span>(<span class="at">x =</span> ageOFocc, <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
+<span id="cb136-10"><a href="#cb136-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">position =</span> <span class="st">"identity"</span>, <span class="at">bins =</span> <span class="dv">30</span>) <span class="sc">+</span></span>
+<span id="cb136-11"><a href="#cb136-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Occupant Age by Sex"</span>,</span>
+<span id="cb136-12"><a href="#cb136-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Age of Occupant"</span>,</span>
+<span id="cb136-13"><a href="#cb136-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Count"</span>,</span>
+<span id="cb136-14"><a href="#cb136-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Sex"</span>) <span class="sc">+</span></span>
+<span id="cb136-15"><a href="#cb136-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb136-16"><a href="#cb136-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb136-17"><a href="#cb136-17" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(plot1, plot2, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="TP01-STM_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
+<p><img src="TP01-STM_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
 </div>
 </div></li>
 <li><p>How many occupants over the age of 50 years old survived the accident?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb139"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb139-1"><a href="#cb139-1" aria-hidden="true" tabindex="-1"></a>survived_over_50 <span class="ot">&lt;-</span> <span class="fu">sum</span>(nassCDS<span class="sc">$</span>ageOFocc <span class="sc">&gt;</span> <span class="dv">50</span> <span class="sc">&amp;</span> nassCDS<span class="sc">$</span>dead <span class="sc">==</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb139-2"><a href="#cb139-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Occupants over 50 who survived:"</span>, survived_over_50, <span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb137"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a>survived_over_50 <span class="ot">&lt;-</span> <span class="fu">sum</span>(nassCDS<span class="sc">$</span>ageOFocc <span class="sc">&gt;</span> <span class="dv">50</span> <span class="sc">&amp;</span> nassCDS<span class="sc">$</span>dead <span class="sc">==</span> <span class="st">"alive"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb137-2"><a href="#cb137-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Occupants over 50 who survived:"</span>, survived_over_50, <span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Occupants over 50 who survived: 0 </code></pre>
+<pre><code>Occupants over 50 who survived: 5174 </code></pre>
 </div>
 </div></li>
 <li><p>Add a binary variable AgeOFocc_class that takes the value of 1 when the occupant age is over 50 years and 0 for when the occupant age is 50 years or less.</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb139"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb139-1"><a href="#cb139-1" aria-hidden="true" tabindex="-1"></a>hm <span class="ot">&lt;-</span> <span class="fu">sum</span>(nassCDS<span class="sc">$</span>ageOFocc <span class="sc">&gt;</span> <span class="dv">50</span>)</span>
+<span id="cb139-2"><a href="#cb139-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(hm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5598</code></pre>
+</div>
 <div class="sourceCode cell-code" id="cb141"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb141-1"><a href="#cb141-1" aria-hidden="true" tabindex="-1"></a>nassCDS<span class="sc">$</span>AgeOFocc_class <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(nassCDS<span class="sc">$</span>ageOFocc <span class="sc">&gt;</span> <span class="dv">50</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
 <span id="cb141-2"><a href="#cb141-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"AgeOFocc_class variable added successfully</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1182,7 +1174,249 @@ mean in group alive  mean in group dead
 </div>
 </div></li>
 </ol>
+<p>6.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb149"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb149-1"><a href="#cb149-1" aria-hidden="true" tabindex="-1"></a>nassCDS_o50<span class="sc">$</span>dead_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(nassCDS_o50<span class="sc">$</span>dead, </span>
+<span id="cb149-2"><a href="#cb149-2" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), </span>
+<span id="cb149-3"><a href="#cb149-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Alive"</span>, <span class="st">"Dead"</span>))</span>
+<span id="cb149-4"><a href="#cb149-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb149-5"><a href="#cb149-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nassCDS_o50, <span class="fu">aes</span>(<span class="at">x =</span> dead_factor, <span class="at">fill =</span> airbag)) <span class="sc">+</span></span>
+<span id="cb149-6"><a href="#cb149-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb149-7"><a href="#cb149-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Airbag Usage by Survival Status (Age &gt; 50)"</span>,</span>
+<span id="cb149-8"><a href="#cb149-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Survival Status"</span>,</span>
+<span id="cb149-9"><a href="#cb149-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Count"</span>,</span>
+<span id="cb149-10"><a href="#cb149-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Airbag"</span>) <span class="sc">+</span></span>
+<span id="cb149-11"><a href="#cb149-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="TP01-STM_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>7.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb150"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb150-1"><a href="#cb150-1" aria-hidden="true" tabindex="-1"></a>nassCDS_o50<span class="sc">$</span>injSeverity_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(nassCDS_o50<span class="sc">$</span>injSeverity,</span>
+<span id="cb150-2"><a href="#cb150-2" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">levels =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">6</span>,</span>
+<span id="cb150-3"><a href="#cb150-3" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"0: No injury"</span>, <span class="st">"1: Minor"</span>, <span class="st">"2: Moderate"</span>, </span>
+<span id="cb150-4"><a href="#cb150-4" aria-hidden="true" tabindex="-1"></a>                                                  <span class="st">"3: Serious"</span>, <span class="st">"4: Severe"</span>, <span class="st">"5: Critical"</span>, </span>
+<span id="cb150-5"><a href="#cb150-5" aria-hidden="true" tabindex="-1"></a>                                                  <span class="st">"6: Maximum"</span>))</span>
+<span id="cb150-6"><a href="#cb150-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb150-7"><a href="#cb150-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nassCDS_o50, <span class="fu">aes</span>(<span class="at">x =</span> injSeverity_factor, <span class="at">fill =</span> airbag)) <span class="sc">+</span></span>
+<span id="cb150-8"><a href="#cb150-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb150-9"><a href="#cb150-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Airbag Usage by Injury Severity (Age &gt; 50)"</span>,</span>
+<span id="cb150-10"><a href="#cb150-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Injury Severity"</span>,</span>
+<span id="cb150-11"><a href="#cb150-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Count"</span>,</span>
+<span id="cb150-12"><a href="#cb150-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Airbag"</span>) <span class="sc">+</span></span>
+<span id="cb150-13"><a href="#cb150-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb150-14"><a href="#cb150-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="TP01-STM_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 </section>
+</section>
+<section id="question-4" class="level3">
+<h3 class="anchored" data-anchor-id="question-4">Question 4:</h3>
+<p>Write a R function that receives as an input the nassCDS dataset. The function should conduct the following analysis:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb151"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb151-1"><a href="#cb151-1" aria-hidden="true" tabindex="-1"></a>analyze_fatal_accidents <span class="ot">&lt;-</span> <span class="cf">function</span>(nass_data) {</span>
+<span id="cb151-2"><a href="#cb151-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 4.1 Select only observations where accident outcome is "dead"</span></span>
+<span id="cb151-3"><a href="#cb151-3" aria-hidden="true" tabindex="-1"></a>  fatal_accidents <span class="ot">&lt;-</span> nass_data[nass_data<span class="sc">$</span>dead <span class="sc">==</span> <span class="st">"dead"</span>, ]</span>
+<span id="cb151-4"><a href="#cb151-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb151-5"><a href="#cb151-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 4.2 Calculate percentage of deaths out of overall observations</span></span>
+<span id="cb151-6"><a href="#cb151-6" aria-hidden="true" tabindex="-1"></a>  death_percentage <span class="ot">&lt;-</span> (<span class="fu">nrow</span>(fatal_accidents) <span class="sc">/</span> <span class="fu">nrow</span>(nass_data)) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb151-7"><a href="#cb151-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb151-8"><a href="#cb151-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 4.3 Calculate percentages of females and males among occupants who died</span></span>
+<span id="cb151-9"><a href="#cb151-9" aria-hidden="true" tabindex="-1"></a>  gender_table <span class="ot">&lt;-</span> <span class="fu">table</span>(fatal_accidents<span class="sc">$</span>sex)</span>
+<span id="cb151-10"><a href="#cb151-10" aria-hidden="true" tabindex="-1"></a>  female_percentage <span class="ot">&lt;-</span> (gender_table[<span class="st">"female"</span>] <span class="sc">/</span> <span class="fu">nrow</span>(fatal_accidents)) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb151-11"><a href="#cb151-11" aria-hidden="true" tabindex="-1"></a>  male_percentage <span class="ot">&lt;-</span> (gender_table[<span class="st">"male"</span>] <span class="sc">/</span> <span class="fu">nrow</span>(fatal_accidents)) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb151-12"><a href="#cb151-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb151-13"><a href="#cb151-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 4.4 Show the most frequent severity of injuries</span></span>
+<span id="cb151-14"><a href="#cb151-14" aria-hidden="true" tabindex="-1"></a>  injury_severity <span class="ot">&lt;-</span> <span class="fu">table</span>(fatal_accidents<span class="sc">$</span>injSeverity)</span>
+<span id="cb151-15"><a href="#cb151-15" aria-hidden="true" tabindex="-1"></a>  most_frequent_severity <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">which.max</span>(injury_severity))</span>
+<span id="cb151-16"><a href="#cb151-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb151-17"><a href="#cb151-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 4.5 Calculate minimum and maximum age of occupants</span></span>
+<span id="cb151-18"><a href="#cb151-18" aria-hidden="true" tabindex="-1"></a>  min_age <span class="ot">&lt;-</span> <span class="fu">min</span>(fatal_accidents<span class="sc">$</span>ageOFocc, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb151-19"><a href="#cb151-19" aria-hidden="true" tabindex="-1"></a>  max_age <span class="ot">&lt;-</span> <span class="fu">max</span>(fatal_accidents<span class="sc">$</span>ageOFocc, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb151-20"><a href="#cb151-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb151-21"><a href="#cb151-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create numerical output table</span></span>
+<span id="cb151-22"><a href="#cb151-22" aria-hidden="true" tabindex="-1"></a>  numerical_output <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb151-23"><a href="#cb151-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">Metric =</span> <span class="fu">c</span>(<span class="st">"Percentage of Deaths"</span>, </span>
+<span id="cb151-24"><a href="#cb151-24" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Female Percentage (deaths)"</span>, </span>
+<span id="cb151-25"><a href="#cb151-25" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Male Percentage (deaths)"</span>,</span>
+<span id="cb151-26"><a href="#cb151-26" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Most Frequent Injury Severity"</span>,</span>
+<span id="cb151-27"><a href="#cb151-27" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Minimum Age"</span>,</span>
+<span id="cb151-28"><a href="#cb151-28" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Maximum Age"</span>),</span>
+<span id="cb151-29"><a href="#cb151-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">Value =</span> <span class="fu">c</span>(<span class="fu">round</span>(death_percentage, <span class="dv">2</span>),</span>
+<span id="cb151-30"><a href="#cb151-30" aria-hidden="true" tabindex="-1"></a>              <span class="fu">round</span>(female_percentage, <span class="dv">2</span>),</span>
+<span id="cb151-31"><a href="#cb151-31" aria-hidden="true" tabindex="-1"></a>              <span class="fu">round</span>(male_percentage, <span class="dv">2</span>),</span>
+<span id="cb151-32"><a href="#cb151-32" aria-hidden="true" tabindex="-1"></a>              most_frequent_severity,</span>
+<span id="cb151-33"><a href="#cb151-33" aria-hidden="true" tabindex="-1"></a>              min_age,</span>
+<span id="cb151-34"><a href="#cb151-34" aria-hidden="true" tabindex="-1"></a>              max_age)</span>
+<span id="cb151-35"><a href="#cb151-35" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb151-36"><a href="#cb151-36" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb151-37"><a href="#cb151-37" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 4.6 Create histogram</span></span>
+<span id="cb151-38"><a href="#cb151-38" aria-hidden="true" tabindex="-1"></a>  graphical_output <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(fatal_accidents, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(injSeverity), <span class="at">y =</span> ageOFocc)) <span class="sc">+</span></span>
+<span id="cb151-39"><a href="#cb151-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"lightblue"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb151-40"><a href="#cb151-40" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Injury Severity vs Occupant Age (Fatal Accidents)"</span>,</span>
+<span id="cb151-41"><a href="#cb151-41" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="st">"Injury Severity"</span>,</span>
+<span id="cb151-42"><a href="#cb151-42" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"Occupant Age"</span>) <span class="sc">+</span></span>
+<span id="cb151-43"><a href="#cb151-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span>
+<span id="cb151-44"><a href="#cb151-44" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb151-45"><a href="#cb151-45" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Return both outputs</span></span>
+<span id="cb151-46"><a href="#cb151-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">numerical_output =</span> numerical_output, </span>
+<span id="cb151-47"><a href="#cb151-47" aria-hidden="true" tabindex="-1"></a>              <span class="at">graphical_output =</span> graphical_output))</span>
+<span id="cb151-48"><a href="#cb151-48" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb151-49"><a href="#cb151-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb151-50"><a href="#cb151-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the function to the dataset</span></span>
+<span id="cb151-51"><a href="#cb151-51" aria-hidden="true" tabindex="-1"></a>analysis_results <span class="ot">&lt;-</span> <span class="fu">analyze_fatal_accidents</span>(nassCDS)</span>
+<span id="cb151-52"><a href="#cb151-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb151-53"><a href="#cb151-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Display numerical results</span></span>
+<span id="cb151-54"><a href="#cb151-54" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Numerical Analysis Results:"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Numerical Analysis Results:"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb153"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb153-1"><a href="#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(analysis_results<span class="sc">$</span>numerical_output)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                         Metric Value
+1          Percentage of Deaths   4.5
+2    Female Percentage (deaths)  &lt;NA&gt;
+3      Male Percentage (deaths)  &lt;NA&gt;
+4 Most Frequent Injury Severity     4
+5                   Minimum Age    16
+6                   Maximum Age    97</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb155"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb155-1"><a href="#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display graphical results</span></span>
+<span id="cb155-2"><a href="#cb155-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(analysis_results<span class="sc">$</span>graphical_output)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="TP01-STM_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="question-5" class="level3">
+<h3 class="anchored" data-anchor-id="question-5">Question 5:</h3>
+<ol type="1">
+<li>Create a new data frame which contains only occupants who used seatbelt.</li>
+<li>How many occupants used seatbelt ?</li>
+<li>Among the individuals who used seatbelt, how many died and how many survived the accident ?</li>
+<li>Among the individuals who used seatbelt, how many were drivers among the individuals who died and how many were passengers among the individuals who survived the accident (use the variable occRole to identify drivers/passengers) ?</li>
+<li>Sort the data frame according to the injury’s severity and the occupant age.</li>
+<li>Print the 25 occupants with the highest weight.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb156"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb156-1"><a href="#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"nassCDS"</span>)</span>
+<span id="cb156-2"><a href="#cb156-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-3"><a href="#cb156-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Create a new data frame which contains only occupants who used seatbelt</span></span>
+<span id="cb156-4"><a href="#cb156-4" aria-hidden="true" tabindex="-1"></a>seatbelt_users <span class="ot">&lt;-</span> nassCDS[nassCDS<span class="sc">$</span>seatbelt <span class="sc">==</span> <span class="st">"belted"</span>, ]</span>
+<span id="cb156-5"><a href="#cb156-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-6"><a href="#cb156-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. How many occupants used seatbelt?</span></span>
+<span id="cb156-7"><a href="#cb156-7" aria-hidden="true" tabindex="-1"></a>num_seatbelt_users <span class="ot">&lt;-</span> <span class="fu">nrow</span>(seatbelt_users)</span>
+<span id="cb156-8"><a href="#cb156-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Number of occupants who used seatbelt:"</span>, num_seatbelt_users, <span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Number of occupants who used seatbelt: 18573 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb158"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb158-1"><a href="#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Among individuals who used seatbelt, how many died and how many survived?</span></span>
+<span id="cb158-2"><a href="#cb158-2" aria-hidden="true" tabindex="-1"></a>survival <span class="ot">&lt;-</span> <span class="fu">sum</span>(seatbelt_users <span class="sc">==</span> <span class="st">"alive"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb158-3"><a href="#cb158-3" aria-hidden="true" tabindex="-1"></a>dead <span class="ot">&lt;-</span> <span class="fu">sum</span>(seatbelt_users <span class="sc">==</span> <span class="st">"dead"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb158-4"><a href="#cb158-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Seatbelt users - Survival status:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Seatbelt users - Survival status:</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb160"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb160-1"><a href="#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"  Survived:"</span>, survival, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Survived: 18073 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb162"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb162-1"><a href="#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"  Died:"</span>, dead, <span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Died: 500 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb164"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb164-1"><a href="#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Among seatbelt users:</span></span>
+<span id="cb164-2"><a href="#cb164-2" aria-hidden="true" tabindex="-1"></a><span class="co">#    - How many were drivers among those who died</span></span>
+<span id="cb164-3"><a href="#cb164-3" aria-hidden="true" tabindex="-1"></a><span class="co">#    - How many were passengers among those who survived</span></span>
+<span id="cb164-4"><a href="#cb164-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-5"><a href="#cb164-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Drivers among those who died</span></span>
+<span id="cb164-6"><a href="#cb164-6" aria-hidden="true" tabindex="-1"></a>drivers_died <span class="ot">&lt;-</span> seatbelt_users[seatbelt_users<span class="sc">$</span>dead <span class="sc">!=</span> <span class="st">"alive"</span> <span class="sc">&amp;</span> seatbelt_users<span class="sc">$</span>occRole <span class="sc">==</span> <span class="st">"driver"</span>, ]</span>
+<span id="cb164-7"><a href="#cb164-7" aria-hidden="true" tabindex="-1"></a>num_drivers_died <span class="ot">&lt;-</span> <span class="fu">nrow</span>(drivers_died)</span>
+<span id="cb164-8"><a href="#cb164-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-9"><a href="#cb164-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Passengers among those who survived</span></span>
+<span id="cb164-10"><a href="#cb164-10" aria-hidden="true" tabindex="-1"></a>passengers_survived <span class="ot">&lt;-</span> seatbelt_users[seatbelt_users<span class="sc">$</span>dead <span class="sc">==</span> <span class="st">"alive"</span> <span class="sc">&amp;</span> seatbelt_users<span class="sc">$</span>occRole <span class="sc">==</span> <span class="st">"pass"</span>, ]</span>
+<span id="cb164-11"><a href="#cb164-11" aria-hidden="true" tabindex="-1"></a>num_passengers_survived <span class="ot">&lt;-</span> <span class="fu">nrow</span>(passengers_survived)</span>
+<span id="cb164-12"><a href="#cb164-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-13"><a href="#cb164-13" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Among seatbelt users:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Among seatbelt users:</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb166"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb166-1"><a href="#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"  Drivers who died:"</span>, num_drivers_died, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Drivers who died: 363 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb168"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb168-1"><a href="#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"  Passengers who survived:"</span>, num_passengers_survived, <span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Passengers who survived: 3523 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb170"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb170-1"><a href="#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Sort the data frame according to injury severity and occupant age</span></span>
+<span id="cb170-2"><a href="#cb170-2" aria-hidden="true" tabindex="-1"></a>seatbelt_sorted <span class="ot">&lt;-</span> seatbelt_users[<span class="fu">order</span>(seatbelt_users<span class="sc">$</span>injSeverity, seatbelt_users<span class="sc">$</span>ageOFocc), ]</span>
+<span id="cb170-3"><a href="#cb170-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb170-4"><a href="#cb170-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Data frame sorted by injury severity and age.</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Data frame sorted by injury severity and age.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb172"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb172-1"><a href="#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"First few rows of sorted data:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>First few rows of sorted data:</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb174"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb174-1"><a href="#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">head</span>(seatbelt_sorted[, <span class="fu">c</span>(<span class="st">"injSeverity"</span>, <span class="st">"ageOFocc"</span>, <span class="st">"dead"</span>, <span class="st">"occRole"</span>)]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     injSeverity ageOFocc  dead occRole
+32             0       16 alive  driver
+477            0       16 alive  driver
+682            0       16 alive  driver
+1028           0       16 alive  driver
+1029           0       16 alive    pass
+1033           0       16 alive    pass</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb176"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb176-1"><a href="#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. Print the 25 occupants with the highest weight</span></span>
+<span id="cb176-2"><a href="#cb176-2" aria-hidden="true" tabindex="-1"></a>heaviest_25 <span class="ot">&lt;-</span> seatbelt_users[<span class="fu">order</span>(<span class="sc">-</span>seatbelt_users<span class="sc">$</span>weight), ][<span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>, ]</span>
+<span id="cb176-3"><a href="#cb176-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb176-4"><a href="#cb176-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">25 occupants with the highest weight:</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+25 occupants with the highest weight:</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb178"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb178-1"><a href="#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(heaviest_25[, <span class="fu">c</span>(<span class="st">"weight"</span>, <span class="st">"ageOFocc"</span>, <span class="st">"sex"</span>, <span class="st">"dead"</span>, <span class="st">"injSeverity"</span>, <span class="st">"occRole"</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        weight ageOFocc sex  dead injSeverity occRole
+6844  57871.59       59   f alive           2  driver
+6888  57871.59       16   f alive           0  driver
+6889  57871.59       16   m alive           0    pass
+2630  47463.09       24   f alive           0  driver
+25422 31694.04       33   m alive           0  driver
+25423 31694.04       47   f alive           0    pass
+10596 29533.13       19   m alive           0  driver
+24332 29301.14       23   m alive           1  driver
+10572 28281.11       43   m alive           0  driver
+20993 28215.77       35   m alive           0  driver
+20994 28215.77       37   f alive           1    pass
+11092 26789.34       30   m alive           3  driver
+10538 25988.01       34   f alive           0  driver
+2507  25688.37       36   m alive           0  driver
+19732 25029.20       31   f alive           0  driver
+19733 25029.20       37   m alive           0    pass
+19704 23428.61       31   f alive           3  driver
+15682 23131.14       18   m alive           2  driver
+15683 23131.14       42   m alive           0  driver
+15684 23131.14       43   f alive           0    pass
+19612 22232.64       36   m alive           0  driver
+10521 20296.81       16   m alive           0  driver
+10522 20296.81       17   m alive           0    pass
+24242 20081.63       26   m alive           0  driver
+24243 20081.63       21   f alive           0    pass</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb180"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb180-1"><a href="#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sum</span>(seatbelt_users<span class="sc">$</span>dead <span class="sc">!=</span> <span class="st">"alive"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 500</code></pre>
+</div>
+</div>
 </section>
 
 </main>
